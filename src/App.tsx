@@ -17,10 +17,7 @@ import * as THREE from 'three';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence, MotionConfig } from 'motion/react';
 import { 
   Terminal, 
-  ArrowRight, 
   Mail, 
-  Github, 
-  Linkedin,
   Box,
   Cpu,
   BrainCircuit,
@@ -39,6 +36,8 @@ import {
 type ExperienceMode = 'full' | 'simple';
 
 const EXPERIENCE_MODE_KEY = 'zia.experienceMode';
+const HERO_ACTION_BASE_CLASS =
+  "inline-flex min-h-[4.5rem] w-full items-center justify-center rounded-full border-2 px-10 py-5 text-center text-base font-black uppercase tracking-[0.2em] transition-all duration-300 sm:w-auto sm:min-w-[17rem] sm:text-lg";
 
 const isLikelyMobileDevice = () => {
   if (typeof window === 'undefined') return false;
@@ -244,7 +243,7 @@ const ExperienceToggle = ({
 
 const TextScramble = ({ text }: { text: string }) => {
   const [displayText, setDisplayText] = useState(text);
-  const chars = "!<>-_\\/[]{}â€”=+*^?#________";
+  const chars = "!<>-_\\/[]{}=+*^?#________";
 
   useEffect(() => {
     let iteration = 0;
@@ -601,7 +600,7 @@ const SystemBoot = ({ onComplete }: { onComplete: () => void }) => {
       <div className="max-w-md w-full space-y-4">
         <div className="flex items-center gap-4 mb-8">
           <Terminal className="text-primary size-8 animate-pulse" />
-          <h1 className="text-2xl font-black tracking-tighter uppercase">ZIA.OS v2.5</h1>
+          <h1 className="text-2xl font-black tracking-tighter uppercase">ZIA.OS v1.0.0</h1>
         </div>
         <div className="space-y-2">
           {logs.map((log, i) => (
@@ -847,44 +846,193 @@ export default function App() {
   }, [experienceMode]);
 
   const videoArtifacts: Artifact[] = useMemo(() => {
-    return Array.from({ length: 10 }, (_, i) => {
-      const index = String(i + 1).padStart(2, '0');
-      return {
-        id: `video-${index}`,
-        title: `Project Video ${index}`,
-        role: "Private SaaS / Startup Build",
+    return [
+      {
+        id: 'video-01',
+        title: 'Residential House 3D Walkthrough',
+        role: 'Course Project - 3D modeling and space visualization',
         type: 'video' as const,
-        src: `/artifacts/videos/video-${index}.mp4`,
-        tags: ["PRIVATE", "VIDEO"],
-      };
-    });
+        src: '/artifacts/videos/video-01.mp4',
+        tags: ['COURSEWORK', '3D'],
+      },
+      {
+        id: 'video-02',
+        title: 'FILO Animated Short',
+        role: 'Course Project - Character illustration and short-form animation',
+        type: 'video' as const,
+        src: '/artifacts/videos/video-02.mp4',
+        tags: ['COURSEWORK', 'ANIMATION'],
+      },
+      {
+        id: 'video-03',
+        title: 'Campus Clinic Visit Explainer',
+        role: 'Course Project - University service communication demo',
+        type: 'video' as const,
+        src: '/artifacts/videos/video-03.mp4',
+        tags: ['COURSEWORK', 'SERVICE'],
+      },
+      {
+        id: 'video-04',
+        title: 'Dean Evaluation Process Demo',
+        role: 'Course Project - Panpacific University service walkthrough',
+        type: 'video' as const,
+        src: '/artifacts/videos/video-04.mp4',
+        tags: ['COURSEWORK', 'CAMPUS'],
+      },
+      {
+        id: 'video-05',
+        title: 'PSNTI RouteCalc Mobile Prototype',
+        role: 'Course Project - Distance and fare calculator interface',
+        type: 'video' as const,
+        src: '/artifacts/videos/video-05.mp4',
+        tags: ['COURSEWORK', 'MOBILE'],
+      },
+      {
+        id: 'video-06',
+        title: 'Retro Highway Motion Loop',
+        role: 'Course Project - Neon motion graphics experiment',
+        type: 'video' as const,
+        src: '/artifacts/videos/video-06.mp4',
+        tags: ['COURSEWORK', 'MOTION'],
+      },
+      {
+        id: 'video-07',
+        title: 'FlipaClip Character Sketch Animation',
+        role: 'Course Project - Hand-drawn animation exercise',
+        type: 'video' as const,
+        src: '/artifacts/videos/video-07.mp4',
+        tags: ['COURSEWORK', 'SKETCH'],
+      },
+      {
+        id: 'video-08',
+        title: 'Rocket Launch Sketch Animation',
+        role: 'Course Project - Frame-by-frame concept animation',
+        type: 'video' as const,
+        src: '/artifacts/videos/video-08.mp4',
+        tags: ['COURSEWORK', 'CONCEPT'],
+      },
+      {
+        id: 'video-09',
+        title: 'PU Queue Registrar Dashboard',
+        role: 'Course Project - Document request and queue management system',
+        type: 'video' as const,
+        src: '/artifacts/videos/video-09.mp4',
+        tags: ['COURSEWORK', 'DASHBOARD'],
+      },
+      {
+        id: 'video-10',
+        title: 'Lingkod-Ani Agriculture Dashboard',
+        role: 'Course Project - Monitoring interface for municipal agriculture services',
+        type: 'video' as const,
+        src: '/artifacts/videos/video-10.mp4',
+        tags: ['COURSEWORK', 'WEB APP'],
+      },
+    ];
   }, []);
 
   const imageArtifacts: Artifact[] = useMemo(() => {
-    const imageFiles = [
-      'image-01.png',
-      'image-02.png',
-      'image-03.jpg',
-      'image-04.png',
-      'image-05.png',
-      'image-06.jpg',
-      'image-07.jpg',
-      'image-08.png',
-      'image-09.png',
-      'image-10.png',
-    ];
-    return imageFiles.map((fileName, i) => {
-      const index = String(i + 1).padStart(2, '0');
-      return {
-        id: `image-${index}`,
-        title: `Project Image ${index}`,
-        role: "Private SaaS / Startup Build",
+    return [
+      {
+        id: 'image-01',
+        title: 'RateMyDay Mobile UI System',
+        role: 'Course Project - High-fidelity mobile screens for activity tracking',
         type: 'image' as const,
-        src: `/artifacts/images/${fileName}`,
-        tags: ["PRIVATE", "IMAGE"],
-      };
-    });
+        src: '/artifacts/images/image-01.png',
+        tags: ['COURSEWORK', 'MOBILE UI'],
+      },
+      {
+        id: 'image-02',
+        title: 'Activity Tracker Low-Fidelity Wireframe',
+        role: 'Course Project - Early-stage mobile flow planning',
+        type: 'image' as const,
+        src: '/artifacts/images/image-02.png',
+        tags: ['COURSEWORK', 'WIREFRAME'],
+      },
+      {
+        id: 'image-03',
+        title: 'Eco-Life Website Wireframe Boards',
+        role: 'Course Project - Layout planning for a sustainability website',
+        type: 'image' as const,
+        src: '/artifacts/images/image-03.jpg',
+        tags: ['COURSEWORK', 'WEB WIREFRAME'],
+      },
+      {
+        id: 'image-04',
+        title: 'Good vs Bad Design Study',
+        role: 'Course Project - Visual design comparison and composition exercise',
+        type: 'image' as const,
+        src: '/artifacts/images/image-04.png',
+        tags: ['COURSEWORK', 'DESIGN'],
+      },
+      {
+        id: 'image-05',
+        title: 'Smart ID Wallet Product Mockup',
+        role: 'Course Project - Product concept rendering and presentation',
+        type: 'image' as const,
+        src: '/artifacts/images/image-05.png',
+        tags: ['COURSEWORK', 'PRODUCT'],
+      },
+      {
+        id: 'image-06',
+        title: 'Eco-Life Sustainability Website',
+        role: 'Course Project - Final interface design for an environmental website',
+        type: 'image' as const,
+        src: '/artifacts/images/image-06.jpg',
+        tags: ['COURSEWORK', 'WEB DESIGN'],
+      },
+      {
+        id: 'image-07',
+        title: 'Eco-Life Detail Screens',
+        role: 'Course Project - Supporting sections for the Eco-Life experience',
+        type: 'image' as const,
+        src: '/artifacts/images/image-07.jpg',
+        tags: ['COURSEWORK', 'UI DETAIL'],
+      },
+      {
+        id: 'image-08',
+        title: 'AccessLearn Landing Page',
+        role: 'Course Project - Inclusive learning platform homepage',
+        type: 'image' as const,
+        src: '/artifacts/images/image-08.png',
+        tags: ['COURSEWORK', 'ACCESSIBILITY'],
+      },
+      {
+        id: 'image-09',
+        title: 'AccessLearn Authentication Flow',
+        role: 'Course Project - Login and sign-up screen design',
+        type: 'image' as const,
+        src: '/artifacts/images/image-09.png',
+        tags: ['COURSEWORK', 'AUTH FLOW'],
+      },
+      {
+        id: 'image-10',
+        title: 'AccessLearn Student Dashboard',
+        role: 'Course Project - Accessible learning dashboard concept',
+        type: 'image' as const,
+        src: '/artifacts/images/image-10.png',
+        tags: ['COURSEWORK', 'DASHBOARD'],
+      },
+    ];
   }, []);
+
+  const contactLinks = [
+    {
+      href: 'mailto:luwiyeyz@gmail.com',
+      label: 'Email Me',
+      icon: Mail,
+    },
+    {
+      href: '/resume/BigDataMARIANO_RESUME.pdf',
+      label: 'Download Resume',
+      icon: ExternalLink,
+      download: true,
+    },
+    {
+      href: '#work',
+      label: 'View Projects',
+      icon: ChevronRight,
+    },
+  ];
 
   return (
     <MotionConfig reducedMotion={performanceMode ? "always" : "never"}>
@@ -955,9 +1103,12 @@ export default function App() {
             ))}
           </div>
 
-          <button className="px-6 py-2 bg-white/5 border border-white/10 text-white font-black rounded-full text-[10px] uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all">
-            Initiate Contact
-          </button>
+          <a
+            href="mailto:luwiyeyz@gmail.com"
+            className="px-6 py-2 bg-white/5 border border-white/10 text-white font-black rounded-full text-[10px] uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all"
+          >
+            Email Me
+          </a>
         </div>
       </nav>
 
@@ -991,22 +1142,22 @@ export default function App() {
             >
               <a
                 href="#work"
-                className="px-10 py-5 bg-primary text-background-dark font-black rounded-full text-base sm:text-lg hover:scale-105 transition-transform shadow-2xl shadow-primary/30 uppercase tracking-widest text-center"
+                className={`${HERO_ACTION_BASE_CLASS} border-primary bg-primary text-background-dark shadow-2xl shadow-primary/30 hover:-translate-y-1 hover:scale-[1.02]`}
               >
                 View Projects
               </a>
               <a
                 href="/resume/BigDataMARIANO_RESUME.pdf"
                 download
-                className="px-10 py-5 bg-transparent border-2 border-white/10 text-white font-black rounded-full text-base sm:text-lg hover:bg-white/5 transition-all uppercase tracking-widest text-center"
+                className={`${HERO_ACTION_BASE_CLASS} bg-surface-dark/30 border-primary/45 text-white shadow-[0_0_30px_rgba(6,249,249,0.12)] hover:-translate-y-1 hover:border-primary hover:bg-primary/12 hover:text-primary`}
               >
                 Download Resume
               </a>
               <a
                 href="mailto:luwiyeyz@gmail.com"
-                className="px-10 py-5 bg-transparent border-2 border-primary/40 text-primary font-black rounded-full text-base sm:text-lg hover:bg-primary/10 transition-all uppercase tracking-widest text-center"
+                className={`${HERO_ACTION_BASE_CLASS} bg-surface-dark/20 border-primary/55 text-primary shadow-[0_0_30px_rgba(6,249,249,0.12)] hover:-translate-y-1 hover:border-primary hover:bg-primary/16`}
               >
-                Contact Me
+                Email Me
               </a>
             </motion.div>
           </motion.div>
@@ -1046,7 +1197,7 @@ export default function App() {
         <ParallaxSection id="work" className="py-40 px-6 max-w-7xl mx-auto">
           <SectionTitle 
             title="Digital Artifacts" 
-            subtitle="A collection of high-fidelity products engineered in the digital void." 
+            subtitle="Selected school course projects across mobile UI, web systems, dashboards, motion studies, and visual design." 
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
             {videoArtifacts.slice(0, 4).map((p, i) => (
@@ -1076,7 +1227,7 @@ export default function App() {
           <div className="mt-20">
             <SectionTitle
               title="Project Highlights"
-              subtitle="Applied systems, analytics, and machine learning projects from coursework and competitions."
+              subtitle="A broader set of coursework, design builds, analytics work, and competition outputs."
             />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
@@ -1262,11 +1413,13 @@ export default function App() {
               <p className="text-slate-400 text-2xl font-mono">[SYSTEM]: Ready to take your project to the next dimension?</p>
             </div>
             
-            <div className="flex justify-center gap-8">
-              {[Github, Linkedin, Mail].map((Icon, i) => (
+            <div className="flex flex-wrap justify-center gap-8">
+              {contactLinks.map(({ href, label, icon: Icon, download }) => (
                 <motion.a 
-                  key={i}
-                  href="#"
+                  key={label}
+                  href={href}
+                  download={download}
+                  aria-label={label}
                   whileHover={{ y: -10, scale: 1.1 }}
                   className="size-20 rounded-3xl bg-surface-dark/60 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:text-primary hover:border-primary/50 transition-all shadow-2xl"
                 >
@@ -1276,11 +1429,11 @@ export default function App() {
             </div>
             
             <div className="pt-32 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] text-slate-500 uppercase tracking-[0.4em] font-black">
-              <p>© 2026 Zia Louise Mariano. All Systems Operational.</p>
+              <p>Copyright 2026 Zia Louise Mariano. All Systems Operational.</p>
               <div className="flex gap-10">
-                <a href="#" className="hover:text-white transition-colors">Privacy</a>
-                <a href="#" className="hover:text-white transition-colors">Twitter</a>
-                <a href="#" className="hover:text-white transition-colors">Instagram</a>
+                <a href="#work" className="hover:text-white transition-colors">Work</a>
+                <a href="/resume/BigDataMARIANO_RESUME.pdf" download className="hover:text-white transition-colors">Resume</a>
+                <a href="mailto:luwiyeyz@gmail.com" className="hover:text-white transition-colors">Email</a>
               </div>
             </div>
           </motion.div>
