@@ -38,6 +38,8 @@ type ExperienceMode = 'full' | 'simple';
 const EXPERIENCE_MODE_KEY = 'zia.experienceMode';
 const HERO_ACTION_BASE_CLASS =
   "inline-flex min-h-[4.5rem] w-full items-center justify-center rounded-full border-2 px-10 py-5 text-center text-base font-black uppercase tracking-[0.2em] transition-all duration-300 sm:w-auto sm:min-w-[17rem] sm:text-lg";
+const HERO_ACTION_FILLED_CLASS =
+  `${HERO_ACTION_BASE_CLASS} border-primary bg-primary text-background-dark shadow-2xl shadow-primary/30 hover:-translate-y-1 hover:scale-[1.02]`;
 
 const isLikelyMobileDevice = () => {
   if (typeof window === 'undefined') return false;
@@ -1142,20 +1144,20 @@ export default function App() {
             >
               <a
                 href="#work"
-                className={`${HERO_ACTION_BASE_CLASS} border-primary bg-primary text-background-dark shadow-2xl shadow-primary/30 hover:-translate-y-1 hover:scale-[1.02]`}
+                className={HERO_ACTION_FILLED_CLASS}
               >
                 View Projects
               </a>
               <a
                 href="/resume/BigDataMARIANO_RESUME.pdf"
                 download
-                className={`${HERO_ACTION_BASE_CLASS} bg-surface-dark/30 border-primary/45 text-white shadow-[0_0_30px_rgba(6,249,249,0.12)] hover:-translate-y-1 hover:border-primary hover:bg-primary/12 hover:text-primary`}
+                className={HERO_ACTION_FILLED_CLASS}
               >
                 Download Resume
               </a>
               <a
                 href="mailto:luwiyeyz@gmail.com"
-                className={`${HERO_ACTION_BASE_CLASS} bg-surface-dark/20 border-primary/55 text-primary shadow-[0_0_30px_rgba(6,249,249,0.12)] hover:-translate-y-1 hover:border-primary hover:bg-primary/16`}
+                className={HERO_ACTION_FILLED_CLASS}
               >
                 Email Me
               </a>
