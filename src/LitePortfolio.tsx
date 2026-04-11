@@ -46,7 +46,7 @@ function LiteSectionTitle({
   eyebrow,
   title,
   subtitle,
-  experienceMode = 'simple',
+  experienceMode = 'company',
 }: {
   eyebrow: string;
   title: string;
@@ -80,7 +80,7 @@ function LiteSectionTitle({
 function LiteCard({
   children,
   className = '',
-  experienceMode = 'simple',
+  experienceMode = 'company',
 }: {
   children: React.ReactNode;
   className?: string;
@@ -104,7 +104,7 @@ function LiteCard({
 function ArtifactPlaceholder({
   project,
   onPreview,
-  experienceMode = 'simple',
+  experienceMode = 'company',
 }: {
   project: Artifact;
   onPreview: () => void;
@@ -143,7 +143,7 @@ function ArtifactPlaceholder({
 
 function LiteArtifactCard({
   project,
-  experienceMode = 'simple',
+  experienceMode = 'company',
 }: {
   project: Artifact;
   experienceMode?: ExperienceMode;
@@ -212,7 +212,7 @@ function ArtifactGroup({
   title,
   subtitle,
   items,
-  experienceMode = 'simple',
+  experienceMode = 'company',
 }: {
   title: string;
   subtitle: string;
@@ -253,7 +253,6 @@ export default function LitePortfolio({ experienceMode, isMobileDevice }: LitePo
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 28 });
   const isCompanyMode = experienceMode === 'company';
-  const isCreativeLite = experienceMode === 'simple';
 
   const groupedArtifacts = useMemo(() => {
     const animationIds = new Set(['video-01', 'video-02', 'video-03', 'video-04', 'video-07', 'video-08']);
@@ -307,23 +306,19 @@ export default function LitePortfolio({ experienceMode, isMobileDevice }: LitePo
     : 'rounded-[1.5rem] border border-white/10 bg-black/20 p-5 text-sm leading-relaxed text-slate-300';
 
   const proofIconClassName = isCompanyMode ? 'text-sky-200' : 'text-primary';
-  const modeLabel = isCompanyMode
-    ? 'Company Presentation Mode'
-    : isCreativeLite
-      ? 'Lite Creative Mode'
-      : 'Loading Immersive Mode';
-  const heroBadgeLabel = isCompanyMode ? 'Company-Ready Lightweight Portfolio' : 'Mobile-Optimized Creative Portfolio';
-  const performanceLabel = isCompanyMode ? 'Presentation Note' : 'Performance Note';
+  const modeLabel = isCompanyMode ? 'Mobile Company Mode' : 'Loading Live 3D Mode';
+  const heroBadgeLabel = isCompanyMode ? 'Mobile-Friendly Company Portfolio' : 'Live 3D Portfolio Preview';
+  const performanceLabel = isCompanyMode ? 'Mobile Note' : 'Loading Note';
   const performanceCopy = isCompanyMode
-    ? 'This version keeps the same projects and story, but uses a calmer professional backdrop, lighter visuals, and on-demand media loading for smoother browsing.'
-    : 'This version keeps the same portfolio content but loads much less on mobile. Videos stay unloaded until tapped, and the 3D scene is kept out of the initial phone bundle.';
+    ? 'This version keeps the same projects and story, but uses a calmer company-friendly backdrop, lighter visuals, and on-demand media loading for smoother browsing.'
+    : 'The live 3D portfolio is loading. Switch to Mobile anytime for the faster company-ready presentation.';
   const deviceCopy = isCompanyMode
     ? isMobileDevice
-      ? 'You are seeing the company-ready lightweight presentation tuned for smoother performance and a calmer employer-facing look.'
-      : 'This company-ready presentation is ideal when you want to share the portfolio with recruiters, hiring managers, or clients in a cleaner format.'
+      ? 'You are seeing the mobile version tuned for smoother performance and a cleaner company-facing look.'
+      : 'This mobile version is ideal when you want a faster portfolio view for recruiters, hiring managers, or clients.'
     : isMobileDevice
-      ? 'You are seeing the lighter creative experience tuned for smoother phone performance.'
-      : 'This lighter creative experience is also available on desktop whenever you want a cleaner, faster portfolio view.';
+      ? 'The live 3D version is loading on mobile. If it feels heavy, switch back to Mobile for the company-ready version.'
+      : 'The live 3D version is loading now. Use Mobile anytime when you want the lighter company-facing view.';
 
   return (
     <div className={pageClassName}>
@@ -433,7 +428,7 @@ export default function LitePortfolio({ experienceMode, isMobileDevice }: LitePo
               subtitle={
                 isCompanyMode
                   ? 'The same technical focus areas from the immersive portfolio, reframed in a cleaner company-facing presentation.'
-                  : 'The same technical focus areas from the immersive portfolio, presented in a lighter creative layout.'
+                  : 'The same technical focus areas from the immersive portfolio, presented in a lighter preview while the live 3D scene loads.'
               }
               experienceMode={experienceMode}
             />
@@ -678,7 +673,7 @@ export default function LitePortfolio({ experienceMode, isMobileDevice }: LitePo
             <div className="flex flex-col gap-5 border-t border-white/10 pt-8 text-[10px] font-black uppercase tracking-[0.28em] text-slate-500 md:flex-row md:items-center md:justify-between">
               <p>
                 Copyright 2026 Zia Louise Mariano.{' '}
-                {isCompanyMode ? 'Company presentation mode active.' : 'Mobile-optimized creative mode active.'}
+                {isCompanyMode ? 'Mobile company mode active.' : 'Live 3D portfolio preview loading.'}
               </p>
               <div className="flex flex-wrap justify-center gap-6 md:justify-end">
                 <a href="#work" className="transition-colors hover:text-white">Work</a>

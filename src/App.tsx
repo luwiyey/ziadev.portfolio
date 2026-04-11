@@ -27,6 +27,10 @@ const getExperienceModeFromQuery = (): ExperienceMode | null => {
   const params = new URLSearchParams(window.location.search);
   const mode = params.get('mode');
 
+  if (mode === 'simple') {
+    return 'company';
+  }
+
   if (isExperienceMode(mode)) {
     return mode;
   }
@@ -36,7 +40,7 @@ const getExperienceModeFromQuery = (): ExperienceMode | null => {
   }
 
   if (params.get('perf') === '1') {
-    return 'simple';
+    return 'company';
   }
 
   if (params.get('perf') === '0') {
@@ -70,12 +74,16 @@ const getInitialExperienceMode = (): ExperienceMode => {
   if (typeof window !== 'undefined') {
     const storedMode = window.localStorage.getItem(STORAGE_KEY);
 
+    if (storedMode === 'simple') {
+      return 'company';
+    }
+
     if (isExperienceMode(storedMode)) {
       return storedMode;
     }
   }
 
-  return isLikelyMobileDevice() ? 'simple' : 'full';
+  return isLikelyMobileDevice() ? 'company' : 'full';
 };
 
 function ExperienceToggle({
@@ -93,17 +101,6 @@ function ExperienceToggle({
       <div className="flex gap-2">
         <button
           type="button"
-          onClick={() => onChange('simple')}
-          className={`rounded-xl border px-3 py-2 text-[10px] font-black uppercase tracking-widest transition-colors ${
-            mode === 'simple'
-              ? 'border-primary bg-primary text-background-dark'
-              : 'border-white/15 bg-white/5 text-slate-300'
-          }`}
-        >
-          Creative
-        </button>
-        <button
-          type="button"
           onClick={() => onChange('company')}
           className={`rounded-xl border px-3 py-2 text-[10px] font-black uppercase tracking-widest transition-colors ${
             mode === 'company'
@@ -111,7 +108,7 @@ function ExperienceToggle({
               : 'border-white/15 bg-white/5 text-slate-300'
           }`}
         >
-          Company
+          Mobile
         </button>
         <button
           type="button"
@@ -122,7 +119,7 @@ function ExperienceToggle({
               : 'border-white/15 bg-white/5 text-slate-300'
           }`}
         >
-          Immersive
+          Live 3D
         </button>
       </div>
     </div>

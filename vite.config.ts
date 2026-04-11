@@ -10,7 +10,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'index.html'),
         original: path.resolve(__dirname, 'original.html'),
-        creative: path.resolve(__dirname, 'creative.html'),
+        mobile: path.resolve(__dirname, 'mobile.html'),
         company: path.resolve(__dirname, 'company.html'),
       },
     },

@@ -40,35 +40,6 @@ const HERO_ACTION_BASE_CLASS =
 const HERO_ACTION_FILLED_CLASS =
   `${HERO_ACTION_BASE_CLASS} border-primary bg-primary text-background-dark shadow-2xl shadow-primary/30 hover:-translate-y-1 hover:scale-[1.02]`;
 
-const isLikelyMobileDevice = () => {
-  if (typeof window === 'undefined') return false;
-  const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-  const narrowScreen = window.matchMedia('(max-width: 900px)').matches;
-  const lowThreadCount = typeof navigator !== 'undefined' && navigator.hardwareConcurrency <= 4;
-  return coarsePointer || narrowScreen || lowThreadCount;
-};
-
-const getExperienceModeFromQuery = (): ExperienceMode | null => {
-  if (typeof window === 'undefined') return null;
-  const params = new URLSearchParams(window.location.search);
-  const mode = params.get('mode');
-  if (mode === 'full' || mode === 'simple') return mode;
-  if (params.get('perf') === '1') return 'simple';
-  if (params.get('perf') === '0') return 'full';
-  return null;
-};
-
-const getInitialExperienceMode = (): ExperienceMode => {
-  const queryMode = getExperienceModeFromQuery();
-  if (queryMode) return queryMode;
-
-  if (typeof window !== 'undefined') {
-    const storedMode = window.localStorage.getItem(EXPERIENCE_MODE_KEY);
-    if (storedMode === 'full' || storedMode === 'simple') return storedMode;
-  }
-  return 'simple';
-};
-
 // --- 3D Background Components ---
 
 const ParticleField = ({ scrollYProgress, particleCount }: { scrollYProgress: any; particleCount: number }) => {
@@ -204,42 +175,6 @@ const Scene = ({ performanceMode, isMobileDevice }: { performanceMode: boolean; 
   );
 };
 
-const ExperienceToggle = ({
-  mode,
-  onChange,
-}: {
-  mode: ExperienceMode;
-  onChange: (mode: ExperienceMode) => void;
-}) => (
-  <div className="fixed left-1/2 -translate-x-1/2 bottom-4 md:bottom-6 z-[120] rounded-2xl border border-white/15 bg-background-dark/80 backdrop-blur-xl p-2">
-    <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] px-2 pb-2 text-slate-400">
-      Experience
-    </div>
-    <div className="flex gap-2">
-      <button
-        onClick={() => onChange('simple')}
-        className={`px-3 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-colors ${
-          mode === 'simple'
-            ? 'bg-primary text-background-dark border-primary'
-            : 'bg-white/5 text-slate-300 border-white/15'
-        }`}
-      >
-        Simple
-      </button>
-      <button
-        onClick={() => onChange('full')}
-        className={`px-3 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-colors ${
-          mode === 'full'
-            ? 'bg-primary text-background-dark border-primary'
-            : 'bg-white/5 text-slate-300 border-white/15'
-        }`}
-      >
-        Full
-      </button>
-    </div>
-  </div>
-);
-
 // --- UI Components ---
 
 const TextScramble = ({ text }: { text: string }) => {
@@ -308,7 +243,7 @@ const HologramCard = ({
           }`}
         ></div>
       )}
-      <div className="relative bg-surface-dark/60 backdrop-blur-2xl rounded-3xl border border-white/10 p-8 overflow-hidden">
+      <div className="relative h-full bg-surface-dark/60 backdrop-blur-2xl rounded-3xl border border-white/10 p-8 overflow-hidden">
         {/* Scanline Effect */}
         <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%]" />
         {children}
@@ -842,14 +777,13 @@ export default function FullPortfolio({
   experienceMode,
   isMobileDevice,
 }: FullPortfolioProps) {
-  const performanceMode = experienceMode === 'simple';
-  const [isBooted, setIsBooted] = useState(performanceMode);
+  const performanceMode = false;
+  const [isBooted, setIsBooted] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   useEffect(() => {
     window.localStorage.setItem(EXPERIENCE_MODE_KEY, experienceMode);
-    if (experienceMode === 'simple') setIsBooted(true);
   }, [experienceMode]);
 
   const videoArtifacts: Artifact[] = useMemo(() => {
@@ -1042,17 +976,8 @@ export default function FullPortfolio({
   ];
 
   return (
-    <MotionConfig reducedMotion={performanceMode ? "always" : "never"}>
-    <div className={`bg-background-dark text-white font-display selection:bg-primary/30 selection:text-primary overflow-x-clip ${performanceMode ? '' : 'cursor-none'} ${performanceMode ? 'simple-mode' : ''}`}>
-      {performanceMode && (
-        <style>{`
-          .simple-mode * {
-            animation-duration: 0s !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0s !important;
-          }
-        `}</style>
-      )}
+    <MotionConfig reducedMotion="never">
+    <div className="bg-background-dark text-white font-display selection:bg-primary/30 selection:text-primary overflow-x-clip cursor-none">
       <AnimatePresence>
         {!isBooted && <SystemBoot onComplete={() => setIsBooted(true)} />}
       </AnimatePresence>
@@ -1235,7 +1160,7 @@ export default function FullPortfolio({
               title="Project Highlights"
               subtitle="A broader set of coursework, design builds, analytics work, and competition outputs."
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:auto-rows-fr">
               {[
                 {
                   title: 'Student Information Systems and Advanced Calculators (CCC112, CCC123, OOP134)',
@@ -1272,6 +1197,7 @@ export default function FullPortfolio({
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
+                  className="h-full"
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

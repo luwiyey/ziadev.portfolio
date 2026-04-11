@@ -1,5 +1,5 @@
-export type ExperienceMode = 'full' | 'simple' | 'company';
+export type ExperienceMode = 'full' | 'company';
 
 export const isExperienceMode = (value: unknown): value is ExperienceMode => {
-  return value === 'full' || value === 'simple' || value === 'company';
+  return value === 'full' || value === 'company';
 };
