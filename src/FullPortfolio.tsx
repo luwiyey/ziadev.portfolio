@@ -32,8 +32,7 @@ import {
   ChevronRight,
   ExternalLink
 } from 'lucide-react';
-
-type ExperienceMode = 'full' | 'simple';
+import type { ExperienceMode } from './experience-mode';
 
 const EXPERIENCE_MODE_KEY = 'zia.experienceMode';
 const HERO_ACTION_BASE_CLASS =

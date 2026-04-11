@@ -1,8 +1,7 @@
 import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 
+import type { ExperienceMode } from './experience-mode';
 import LitePortfolio from './LitePortfolio';
-
-type ExperienceMode = 'full' | 'simple';
 
 const STORAGE_KEY = 'zia.experienceMode';
 
@@ -28,8 +27,12 @@ const getExperienceModeFromQuery = (): ExperienceMode | null => {
   const params = new URLSearchParams(window.location.search);
   const mode = params.get('mode');
 
-  if (mode === 'full' || mode === 'simple') {
+  if (mode === 'full' || mode === 'simple' || mode === 'company') {
     return mode;
+  }
+
+  if (params.get('audience') === 'company') {
+    return 'company';
   }
 
   if (params.get('perf') === '1') {
@@ -53,7 +56,7 @@ const getInitialExperienceMode = (): ExperienceMode => {
   if (typeof window !== 'undefined') {
     const storedMode = window.localStorage.getItem(STORAGE_KEY);
 
-    if (storedMode === 'full' || storedMode === 'simple') {
+    if (storedMode === 'full' || storedMode === 'simple' || storedMode === 'company') {
       return storedMode;
     }
   }
@@ -83,7 +86,18 @@ function ExperienceToggle({
               : 'border-white/15 bg-white/5 text-slate-300'
           }`}
         >
-          Lite
+          Creative
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange('company')}
+          className={`rounded-xl border px-3 py-2 text-[10px] font-black uppercase tracking-widest transition-colors ${
+            mode === 'company'
+              ? 'border-primary bg-primary text-background-dark'
+              : 'border-white/15 bg-white/5 text-slate-300'
+          }`}
+        >
+          Company
         </button>
         <button
           type="button"
@@ -111,6 +125,30 @@ export default function App() {
     }
 
     window.localStorage.setItem(STORAGE_KEY, experienceMode);
+  }, [experienceMode]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const url = new URL(window.location.href);
+
+    if (experienceMode === 'full') {
+      url.searchParams.delete('mode');
+      url.searchParams.delete('audience');
+      url.searchParams.delete('perf');
+    } else {
+      url.searchParams.set('mode', experienceMode);
+      if (experienceMode === 'company') {
+        url.searchParams.set('audience', 'company');
+      } else {
+        url.searchParams.delete('audience');
+      }
+      url.searchParams.delete('perf');
+    }
+
+    window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
   }, [experienceMode]);
 
   useEffect(() => {
