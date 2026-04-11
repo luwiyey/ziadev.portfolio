@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 
-import type { ExperienceMode } from './experience-mode';
+import { isExperienceMode, type ExperienceMode } from './experience-mode';
 import LitePortfolio from './LitePortfolio';
 
 const STORAGE_KEY = 'zia.experienceMode';
@@ -27,7 +27,7 @@ const getExperienceModeFromQuery = (): ExperienceMode | null => {
   const params = new URLSearchParams(window.location.search);
   const mode = params.get('mode');
 
-  if (mode === 'full' || mode === 'simple' || mode === 'company') {
+  if (isExperienceMode(mode)) {
     return mode;
   }
 
@@ -46,6 +46,14 @@ const getExperienceModeFromQuery = (): ExperienceMode | null => {
   return null;
 };
 
+const getDefaultExperienceMode = (): ExperienceMode | null => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  return isExperienceMode(window.__ZIA_DEFAULT_MODE__) ? window.__ZIA_DEFAULT_MODE__ : null;
+};
+
 const getInitialExperienceMode = (): ExperienceMode => {
   const queryMode = getExperienceModeFromQuery();
 
@@ -53,10 +61,16 @@ const getInitialExperienceMode = (): ExperienceMode => {
     return queryMode;
   }
 
+  const defaultMode = getDefaultExperienceMode();
+
+  if (defaultMode) {
+    return defaultMode;
+  }
+
   if (typeof window !== 'undefined') {
     const storedMode = window.localStorage.getItem(STORAGE_KEY);
 
-    if (storedMode === 'full' || storedMode === 'simple' || storedMode === 'company') {
+    if (isExperienceMode(storedMode)) {
       return storedMode;
     }
   }
@@ -133,8 +147,12 @@ export default function App() {
     }
 
     const url = new URL(window.location.href);
+    const defaultMode = getDefaultExperienceMode();
+    const keepCleanUrl =
+      (defaultMode !== null && experienceMode === defaultMode) ||
+      (defaultMode === null && experienceMode === 'full');
 
-    if (experienceMode === 'full') {
+    if (keepCleanUrl) {
       url.searchParams.delete('mode');
       url.searchParams.delete('audience');
       url.searchParams.delete('perf');
