@@ -27,20 +27,20 @@ const getExperienceModeFromQuery = (): ExperienceMode | null => {
   const params = new URLSearchParams(window.location.search);
   const mode = params.get('mode');
 
-  if (mode === 'simple') {
-    return 'company';
+  if (mode === 'simple' || mode === 'company') {
+    return 'mobile';
   }
 
   if (isExperienceMode(mode)) {
     return mode;
   }
 
-  if (params.get('audience') === 'company') {
-    return 'company';
+  if (params.get('audience') === 'company' || params.get('audience') === 'mobile') {
+    return 'mobile';
   }
 
   if (params.get('perf') === '1') {
-    return 'company';
+    return 'mobile';
   }
 
   if (params.get('perf') === '0') {
@@ -74,8 +74,8 @@ const getInitialExperienceMode = (): ExperienceMode => {
   if (typeof window !== 'undefined') {
     const storedMode = window.localStorage.getItem(STORAGE_KEY);
 
-    if (storedMode === 'simple') {
-      return 'company';
+    if (storedMode === 'simple' || storedMode === 'company') {
+      return 'mobile';
     }
 
     if (isExperienceMode(storedMode)) {
@@ -83,7 +83,7 @@ const getInitialExperienceMode = (): ExperienceMode => {
     }
   }
 
-  return isLikelyMobileDevice() ? 'company' : 'full';
+  return isLikelyMobileDevice() ? 'mobile' : 'full';
 };
 
 function ExperienceToggle({
@@ -94,16 +94,16 @@ function ExperienceToggle({
   onChange: (mode: ExperienceMode) => void;
 }) {
   return (
-    <div className="fixed left-1/2 bottom-4 z-[140] -translate-x-1/2 rounded-2xl border border-white/15 bg-background-dark/80 p-2 backdrop-blur-xl md:bottom-6">
+    <div className="fixed left-1/2 bottom-4 z-[140] w-[calc(100%-1rem)] max-w-xs -translate-x-1/2 rounded-2xl border border-white/15 bg-background-dark/80 p-2 backdrop-blur-xl md:bottom-6">
       <div className="px-2 pb-2 text-center text-[9px] font-black uppercase tracking-[0.22em] text-slate-400">
         Experience
       </div>
       <div className="flex gap-2">
         <button
           type="button"
-          onClick={() => onChange('company')}
-          className={`rounded-xl border px-3 py-2 text-[10px] font-black uppercase tracking-widest transition-colors ${
-            mode === 'company'
+          onClick={() => onChange('mobile')}
+          className={`flex-1 rounded-xl border px-3 py-2 text-[10px] font-black uppercase tracking-widest transition-colors ${
+            mode === 'mobile'
               ? 'border-primary bg-primary text-background-dark'
               : 'border-white/15 bg-white/5 text-slate-300'
           }`}
@@ -113,7 +113,7 @@ function ExperienceToggle({
         <button
           type="button"
           onClick={() => onChange('full')}
-          className={`rounded-xl border px-3 py-2 text-[10px] font-black uppercase tracking-widest transition-colors ${
+          className={`flex-1 rounded-xl border px-3 py-2 text-[10px] font-black uppercase tracking-widest transition-colors ${
             mode === 'full'
               ? 'border-primary bg-primary text-background-dark'
               : 'border-white/15 bg-white/5 text-slate-300'
@@ -155,11 +155,7 @@ export default function App() {
       url.searchParams.delete('perf');
     } else {
       url.searchParams.set('mode', experienceMode);
-      if (experienceMode === 'company') {
-        url.searchParams.set('audience', 'company');
-      } else {
-        url.searchParams.delete('audience');
-      }
+      url.searchParams.delete('audience');
       url.searchParams.delete('perf');
     }
 
