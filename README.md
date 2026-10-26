@@ -24,8 +24,9 @@ Project titles, descriptions, skills, highlights, and credentials live in
 src/portfolio-content.ts. The main layout is src/Portfolio.tsx and its styles
 are src/portfolio.css. The original experience remains in src/FullPortfolio.tsx.
 
-All 20 media projects are available through category filters, project search,
-and the full gallery. Videos load only after Play is pressed in the project
+Original media projects, current live applications, and independent interactive
+concepts are available through category filters, search, and the full gallery.
+Videos load only after Play is pressed in the project
 viewer. Original images and videos are retained in public/artifacts.
 
 Optimized images and video posters are committed in public/previews. Run
@@ -45,3 +46,32 @@ icons. Editable models, studio lights, materials, and a contact sheet are in
 design/blender/zia-interest-icons.blend. See design/blender/README.md for editing
 and rendering instructions. Website images in public/interests are lightweight
 WebP exports, so no live 3D engine is needed for the new design.
+
+The renders use transform-only floating animations, pause offscreen, and have
+a visible Pause control. System reduced-motion preferences disable animation.
+
+## Interactive concepts and navigation
+
+Five business websites are available at /?concept=fold, northline, good-dog,
+still, and forma. Each concept can be tried in the project dialog without
+leaving the portfolio, or opened separately. Their back links return to Work.
+Six lightweight browser experiments are in the interactive gallery. They are
+not represented as additional native Android apps or commissioned projects.
+
+Certificate previews have Close, Back to portfolio, zoom, download, Escape,
+keyboard focus containment, and focus restoration. Original media downloads
+do not replace the portfolio page with a raw file.
+
+Client work is credited as team contributions under a supervisor. Verified
+store links and provenance are documented in design/PROJECT-SOURCES.md.
+The old Holistic Vybez domain is deliberately not linked.
+
+Editable Shopify theme source is in design/shopify/forma. It is a theme concept,
+not a claim of a live Shopify deployment. See design/shopify/README.md.
+
+## Vercel
+
+This repository connects to the separate ziadev-portfolio Vercel project.
+Production follows main. Vercel builds with npm run build and serves dist.
+The Library, RouteCalc, and Lingkod-Ani projects are independent deployments.
+Local Vercel metadata and environment credentials are ignored by Git.

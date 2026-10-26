@@ -1,0 +1,7 @@
+<article class="product-card">
+  <a href="{{ product.url }}">
+    <div class="product-image">{% if product.featured_image %}{{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300,600,900', sizes: '(min-width: 750px) 30vw, 45vw' }}{% else %}{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}{% endif %}</div>
+    <div class="product-caption"><h3>{{ product.title | escape }}</h3><span>{{ product.price | money }}</span></div>
+    {% unless product.available %}<p class="eyebrow">Sold out</p>{% endunless %}
+  </a>
+</article>

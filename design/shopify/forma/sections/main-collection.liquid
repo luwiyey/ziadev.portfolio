@@ -1,0 +1,4 @@
+<section class="shell collection-page"><p class="eyebrow">The collection</p><h1>{{ collection.title | escape }}</h1><div class="rte">{{ collection.description }}</div>
+  {% paginate collection.products by 12 %}<div class="product-grid">{% for product in collection.products %}{% render 'product-card', product: product %}{% else %}<p>No objects in this collection yet.</p>{% endfor %}</div><nav class="pagination" aria-label="Collection pages">{{ paginate | default_pagination }}</nav>{% endpaginate %}
+</section>
+{% schema %}{ "name": "Collection", "settings": [] }{% endschema %}

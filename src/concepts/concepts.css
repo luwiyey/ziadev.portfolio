@@ -1,0 +1,1786 @@
+.concept-site {
+  color: #29291f;
+  background: #f8f4e9;
+  font:
+    400 15px/1.6 "DM Sans",
+    sans-serif;
+  min-height: 100svh;
+  -webkit-font-smoothing: antialiased;
+}
+.concept-site.is-embedded .concept-back,
+.concept-site.is-embedded .concept-footer > a {
+  display: none;
+}
+.concept-site * {
+  box-sizing: border-box;
+}
+.concept-site :where(h1, h2, h3, p, figure) {
+  margin: 0;
+}
+.concept-site :where(a, button) {
+  color: inherit;
+  touch-action: manipulation;
+}
+.concept-site a {
+  text-decoration: none;
+}
+.concept-site button {
+  font: inherit;
+  cursor: pointer;
+}
+.concept-site img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.concept-site :where(a, button):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+.concept-site :where(section[id], main[id]) {
+  scroll-margin-top: 30px;
+}
+.concept-site em {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+}
+.concept-back {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #f8f4e9;
+  color: #681c30 !important;
+  font-size: 10px;
+  padding: 10px 4%;
+  border-bottom: 1px solid #681c3020;
+}
+.concept-back > span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: auto;
+}
+.concept-site .c-kicker {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.concept-site .c-shell {
+  padding-inline: 6%;
+}
+.concept-site header nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 12px;
+}
+.concept-site header nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.concept-site header nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.concept-site h1,
+.concept-site h2 {
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1.03;
+}
+.concept-site h2 {
+  font-size: clamp(34px, 5vw, 72px);
+}
+.concept-site .concept-footer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border-top: 1px solid #8885;
+  padding: 30px 6%;
+}
+.concept-footer strong {
+  font-size: 22px;
+  white-space: nowrap;
+  font-family: Georgia, serif;
+}
+.concept-footer p {
+  font-size: 10px;
+  opacity: 0.7;
+  max-width: 540px;
+}
+.concept-footer a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.concept-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 25px 0;
+}
+.concept-filters button {
+  border: 1px solid #8885;
+  background: transparent;
+  padding: 9px 17px;
+  min-height: 44px;
+  border-radius: 30px;
+  font-size: 11px;
+}
+.concept-filters button[aria-pressed="true"] {
+  background: var(--concept-ink, #29291f);
+  color: var(--concept-paper, #f8f4e9);
+  border-color: var(--concept-ink, #29291f);
+}
+.concept-dialog {
+  color: inherit;
+  background: var(--concept-paper, #f8f4e9);
+  border: 0;
+  padding: 0;
+  width: min(780px, calc(100% - 32px));
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+  margin: auto;
+  border-radius: 4px;
+}
+.concept-dialog::backdrop {
+  background: #151b18b8;
+}
+.concept-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #8884;
+}
+.concept-site .concept-dialog-header h2 {
+  font:
+    500 26px/1.2 "DM Sans",
+    sans-serif;
+  letter-spacing: -0.03em;
+}
+.concept-dialog-header button {
+  display: grid;
+  place-items: center;
+  border: 1px solid #8886;
+  background: transparent;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.concept-site .concept-modal-image {
+  max-height: 65dvh;
+  width: 100%;
+  object-fit: contain;
+}
+.concept-modal-copy {
+  padding: 25px;
+}
+.concept-modal-copy > p {
+  margin-bottom: 20px;
+}
+.concept-modal-copy small {
+  font-size: 11px;
+  opacity: 0.7;
+}
+.concept-site .demo-total {
+  display: block;
+  font-size: 34px;
+  margin: 20px 0;
+}
+.concept-not-found {
+  min-height: 70svh;
+  padding: 15% 8%;
+}
+.concept-not-found a {
+  display: inline-flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* Fold: warm printed-paper typography and a bakery counter composition. */
+.fold-site {
+  --concept-ink: #7a291e;
+  --concept-paper: #fff5dd;
+  background: #fff5dd;
+  color: #7a291e;
+}
+.fold-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 6%;
+  border-bottom: 1px solid #7a291e30;
+}
+.fold-logo {
+  font:
+    700 65px/0.7 Georgia,
+    serif;
+  letter-spacing: -0.08em;
+}
+.fold-logo span {
+  display: block;
+  font:
+    9px/1.4 "DM Sans",
+    sans-serif;
+  letter-spacing: 0.06em;
+  margin-top: 14px;
+}
+.fold-hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  min-height: 620px;
+}
+.fold-hero-copy {
+  padding: 75px 0 50px 12%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.fold-hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(50px, 6.5vw, 100px);
+  margin: 24px -45px 26px 0;
+  position: relative;
+  z-index: 1;
+}
+.fold-hero h1 em {
+  font-size: 1.15em;
+}
+.fold-hero-copy > p:not(.c-kicker) {
+  max-width: 300px;
+  font-size: 14px;
+}
+.fold-button {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  border-bottom: 1px solid #7a291e;
+  padding: 14px 0;
+  margin-top: 25px;
+  font-size: 13px;
+}
+.fold-edition {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  margin-top: auto;
+  padding-top: 40px;
+}
+.fold-bread-scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: #e2ad54;
+  overflow: hidden;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    #a65e0a06 3px 4px
+  );
+}
+.fold-bread-scene > img {
+  width: 120%;
+  height: 75%;
+  object-fit: contain;
+  transform: rotate(-15deg);
+  max-width: none;
+  filter: drop-shadow(10px 20px 7px #6c3d2420);
+}
+.fold-stamp {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  border: 1px solid;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.2;
+  transform: rotate(15deg);
+}
+.fold-stamp small {
+  font-size: 6px;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+.fold-scene-note {
+  position: absolute;
+  left: 35px;
+  bottom: 25px;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+}
+.fold-ribbon {
+  display: flex;
+  justify-content: space-around;
+  gap: 28px;
+  padding: 20px;
+  background: #7a291e;
+  color: #fff5dd;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+.fold-ribbon span {
+  font-size: 28px;
+  line-height: 18px;
+}
+.fold-menu {
+  padding-block: 85px;
+}
+.fold-section-heading {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 25px;
+  align-items: end;
+}
+.fold-section-heading > p:last-child {
+  font-size: 11px;
+}
+.fold-goods {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+.fold-goods article > div {
+  background: #eee0bf;
+  aspect-ratio: 1.2;
+  margin-bottom: 20px;
+  display: grid;
+  place-items: center;
+}
+.fold-goods article img {
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s;
+}
+.fold-goods article:hover img {
+  transform: rotate(-5deg) scale(1.03);
+}
+.fold-goods h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font:
+    400 23px/1.3 Georgia,
+    serif;
+  margin: 6px 0;
+}
+.fold-goods h3 span {
+  font:
+    11px "DM Sans",
+    sans-serif;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+.fold-goods article > p:last-child {
+  font-size: 12px;
+}
+.fold-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8%;
+  align-items: center;
+  padding: 80px 9%;
+  background: #7a291e;
+  color: #fff5dd;
+}
+.fold-story-number {
+  font:
+    italic 25vw/0.8 Georgia,
+    serif;
+  color: #e2ad54;
+  letter-spacing: -0.1em;
+}
+.fold-story h2 {
+  margin: 23px 0;
+}
+.fold-story p:last-child {
+  font-size: 14px;
+  max-width: 380px;
+}
+.fold-visit {
+  padding-block: 90px;
+}
+.fold-visit h2 {
+  margin: 25px 0;
+}
+.fold-visit > a {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 15px;
+}
+.fold-visit > p:last-child {
+  font-size: 11px;
+  margin-top: 30px;
+  opacity: 0.7;
+}
+
+/* Northline: precision, full-bleed photography, and architectural proportion. */
+.north-site {
+  --concept-ink: #20372c;
+  --concept-paper: #eeede6;
+  background: #eeede6;
+  color: #20372c;
+  padding-inline: 5%;
+}
+.north-header {
+  padding-block: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #20372c40;
+}
+.north-logo {
+  font:
+    500 46px/0.9 "Space Grotesk",
+    sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.north-logo span {
+  font:
+    500 10px/1.5 "DM Sans",
+    sans-serif;
+  letter-spacing: 0.06em;
+}
+.north-hero {
+  padding-top: 35px;
+}
+.north-hero-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.north-hero-top > span {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.north-hero h1 {
+  font-size: clamp(55px, 9.6vw, 150px);
+  margin: 45px 0 40px;
+}
+.north-hero h1 em {
+  margin-left: 16%;
+}
+.north-hero-image {
+  height: 500px;
+  position: relative;
+  background: #d8d6ca;
+}
+.north-hero-image > img {
+  height: 100%;
+  object-position: 50% 50%;
+}
+.north-caption {
+  position: absolute;
+  left: 25px;
+  right: 25px;
+  bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 4px #000;
+}
+.north-caption > a {
+  border: 1px solid #fff8;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  background: #20372c80;
+}
+.north-under {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 30px 0 65px;
+}
+.north-under > p:first-child {
+  font-size: 20px;
+  line-height: 1.3;
+}
+.north-under > p:last-child {
+  font-size: 13px;
+  max-width: 380px;
+}
+.north-work {
+  padding-block: 65px;
+  border-top: 1px solid #20372c40;
+}
+.north-section-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+.north-section-title h2 {
+  flex: 0 1 60%;
+}
+.north-projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+.north-projects > button {
+  text-align: left;
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+.north-projects img {
+  height: 330px;
+  transition: filter 0.3s;
+  filter: saturate(0.55);
+}
+.north-projects button:hover img {
+  filter: saturate(1);
+}
+.north-projects button > span {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding-top: 17px;
+}
+.north-projects small {
+  grid-column: 1/-1;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.north-projects strong {
+  font-weight: 400;
+  font-size: 25px;
+}
+.north-approach {
+  padding: 70px 6%;
+  background: #20372c;
+  color: #eeede6;
+  margin-inline: -5.56%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 35px;
+}
+.north-approach h2 {
+  font-size: clamp(35px, 4vw, 65px);
+}
+.north-approach > div {
+  grid-column: 2;
+}
+.north-approach > div > p {
+  display: flex;
+  gap: 30px;
+  padding: 18px 0;
+  border-bottom: 1px solid #eeede650;
+  font-size: 19px;
+}
+.north-approach p > span {
+  font-size: 10px;
+}
+.north-contact {
+  padding-block: 80px;
+}
+.north-contact h2 {
+  margin-block: 25px;
+}
+.north-contact > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  border-bottom: 1px solid;
+  font-size: 13px;
+  padding-bottom: 9px;
+}
+.north-site .concept-footer {
+  padding-inline: 0;
+}
+
+/* Good Dog: bright, rounded, friendly, and deliberately a little offbeat. */
+.dog-site {
+  --concept-ink: #283b97;
+  --concept-paper: #fff7d9;
+  background: #fff7d9;
+  color: #283b97;
+}
+.dog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 5%;
+  border-bottom: 2px solid #283b97;
+}
+.dog-logo {
+  font:
+    700 35px/0.9 "Bricolage Grotesque",
+    sans-serif;
+  letter-spacing: -0.06em;
+}
+.dog-logo span {
+  display: block;
+  font:
+    9px/1.4 "DM Sans",
+    sans-serif;
+  letter-spacing: 0.11em;
+  margin-top: 10px;
+}
+.dog-pill {
+  border: 2px solid #283b97;
+  border-radius: 40px;
+  background: #283b97;
+  color: #fff7d9 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  min-height: 48px;
+  padding: 13px 24px;
+  font-size: 13px;
+}
+.dog-pill:hover {
+  background: #f78d72;
+  color: #283b97 !important;
+}
+.dog-hero {
+  padding: 65px 5% 50px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 20px;
+  overflow: hidden;
+}
+.dog-hero h1 {
+  font:
+    700 clamp(55px, 6vw, 92px)/1 "Bricolage Grotesque",
+    sans-serif;
+  letter-spacing: -0.065em;
+  margin-block: 24px;
+}
+.dog-hero h1 > span {
+  color: #e87051;
+}
+.dog-hero > div > p:not(.c-kicker) {
+  max-width: 340px;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+.dog-portrait {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 410px;
+}
+.dog-portrait-circle {
+  position: absolute;
+  width: 92%;
+  aspect-ratio: 1;
+  border-radius: 50% 50% 46% 54%;
+  background: #f78d72;
+  transform: rotate(-8deg);
+}
+.dog-portrait > img {
+  position: relative;
+  height: 460px;
+  object-fit: contain;
+  transform: rotate(5deg);
+  animation: dog-hello 4s ease-in-out infinite;
+}
+.dog-star {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #f2ce48;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.2;
+  transform: rotate(15deg);
+  border: 2px solid #283b97;
+}
+.dog-portrait-caption {
+  position: absolute;
+  bottom: 0;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  background: #fff7d9;
+  border: 2px solid;
+  padding: 8px 18px;
+  border-radius: 20px;
+  transform: rotate(-5deg);
+}
+@keyframes dog-hello {
+  50% {
+    transform: rotate(-2deg) translateY(-7px);
+  }
+}
+.dog-care {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  padding: 65px 5%;
+  background: #283b97;
+  color: #fff7d9;
+}
+.dog-care h2 {
+  font-size: 45px;
+  margin-top: 20px;
+}
+.dog-care article {
+  padding-top: 10px;
+}
+.dog-care article > span {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+.dog-care h3 {
+  font:
+    600 25px/1.2 "Bricolage Grotesque",
+    sans-serif;
+  margin: 20px 0 15px;
+}
+.dog-care article > p {
+  font-size: 13px;
+  color: #e4e5ff;
+}
+.dog-book {
+  padding: 80px 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+.dog-book h2 {
+  margin-block: 24px;
+}
+.dog-book > div > p:last-child {
+  font-size: 13px;
+}
+.dog-estimator {
+  border: 2px solid;
+  border-radius: 18px;
+  padding: 30px;
+  background: #f8eec7;
+  box-shadow: 8px 8px 0 #283b97;
+}
+.dog-estimator fieldset {
+  border: 0;
+  margin: 0 0 25px;
+  padding: 0;
+}
+.dog-estimator legend {
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+.dog-estimator fieldset > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.dog-estimator fieldset button {
+  border: 1px solid;
+  border-radius: 30px;
+  background: transparent;
+  padding: 10px 17px;
+  min-height: 44px;
+  font-size: 12px;
+}
+.dog-estimator fieldset button[aria-pressed="true"] {
+  background: #283b97;
+  color: #fff7d9;
+}
+.dog-total {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-block: 17px;
+  border-top: 1px dashed;
+}
+.dog-total span {
+  font-size: 11px;
+}
+.dog-total strong {
+  font:
+    600 38px "Bricolage Grotesque",
+    sans-serif;
+}
+.dog-estimator > .dog-pill {
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* Still: photographic pacing, a restrained gallery, and generous whitespace. */
+.still-site {
+  --concept-ink: #343f3c;
+  --concept-paper: #f7f6f0;
+  background: #f7f6f0;
+  color: #343f3c;
+}
+.still-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 5%;
+  gap: 25px;
+}
+.still-logo {
+  font:
+    italic 60px/0.7 Georgia,
+    serif;
+  letter-spacing: -0.07em;
+}
+.still-logo > span {
+  display: block;
+  font:
+    8px/1.5 "DM Sans",
+    sans-serif;
+  letter-spacing: 0.12em;
+  margin-top: 15px;
+}
+.still-hero {
+  position: relative;
+  padding: 30px 10% 55px;
+}
+.still-title {
+  position: relative;
+  z-index: 1;
+}
+.still-title h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(55px, 7.7vw, 115px);
+  margin: 25px 0 35px;
+}
+.still-title h1 em {
+  margin-left: 15%;
+}
+.still-title > span {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 8px;
+  letter-spacing: 0.13em;
+  margin-bottom: 30px;
+}
+.still-hero figure {
+  width: 78%;
+  margin-left: 22%;
+}
+.still-hero figure > img {
+  aspect-ratio: 1.7;
+  object-position: 50% 57%;
+}
+.still-hero figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 8px;
+  padding-top: 13px;
+  letter-spacing: 0.08em;
+}
+.still-side-note {
+  writing-mode: vertical-rl;
+  position: absolute;
+  left: 5%;
+  bottom: 130px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+.still-work {
+  padding: 60px 7% 90px;
+  border-top: 1px solid #343f3c30;
+}
+.still-work-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+.still-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px 45px;
+  margin-top: 40px;
+  align-items: start;
+}
+.still-grid > button {
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  min-width: 0;
+}
+.still-grid > button:nth-child(even) {
+  margin-top: 100px;
+}
+.still-grid button > div {
+  position: relative;
+  overflow: hidden;
+}
+.still-grid img {
+  aspect-ratio: 0.95;
+  transition: transform 0.5s;
+}
+.still-grid > button:nth-child(3) img {
+  aspect-ratio: 1.3;
+}
+.still-grid button:hover img {
+  transform: scale(1.03);
+}
+.still-grid button > div > span {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 15px;
+  border-radius: 30px;
+  background: #f7f6f0;
+  font-size: 10px;
+}
+.still-grid button > p {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 13px;
+  padding-top: 15px;
+}
+.still-grid button > p > span {
+  font-size: 9px;
+}
+.still-grid button > p > svg {
+  margin-left: auto;
+}
+.still-about {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: 30px;
+  padding: 70px 7%;
+  background: #d9e0d6;
+}
+.still-about h2 {
+  font-size: clamp(35px, 4.4vw, 65px);
+}
+.still-about > p:last-child {
+  font-size: 13px;
+  align-self: end;
+}
+.still-contact {
+  padding: 85px 7%;
+}
+.still-contact h2 {
+  font-size: clamp(50px, 8vw, 110px);
+  margin-block: 25px;
+}
+.still-contact > a {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-size: 13px;
+}
+
+/* Forma: a product-first storefront, with a functional no-payment demo bag. */
+.forma-site {
+  --concept-ink: #383b2b;
+  --concept-paper: #f9f7ef;
+  background: #f9f7ef;
+  color: #383b2b;
+}
+.forma-announcement {
+  text-align: center;
+  padding: 10px 20px;
+  background: #383b2b;
+  color: #f9f7ef;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+.forma-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 28px 5%;
+  border-bottom: 1px solid #383b2b25;
+}
+.forma-logo {
+  font:
+    500 50px/0.75 "Bricolage Grotesque",
+    sans-serif;
+  letter-spacing: -0.06em;
+}
+.forma-logo > span {
+  display: block;
+  font:
+    8px/1.4 "DM Sans",
+    sans-serif;
+  letter-spacing: 0.09em;
+  margin-top: 13px;
+}
+.forma-cart-button {
+  border: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: transparent;
+  min-height: 44px;
+  font-size: 11px;
+}
+.forma-hero {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  min-height: 540px;
+}
+.forma-hero > div:first-child {
+  padding: 65px 10%;
+}
+.forma-hero h1 {
+  font-size: clamp(60px, 7.8vw, 120px);
+  margin: 28px 0;
+}
+.forma-hero > div > p:not(.c-kicker) {
+  max-width: 290px;
+  font-size: 14px;
+}
+.forma-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  border-bottom: 1px solid;
+  padding-bottom: 8px;
+  margin-top: 30px;
+  font-size: 12px;
+}
+.forma-hero-art {
+  position: relative;
+  overflow: hidden;
+  background: #dad3c0;
+  background-image:
+    linear-gradient(150deg, #f2eee3, transparent 60%),
+    linear-gradient(0deg, #b0a18a 0 20%, transparent 20%);
+}
+.forma-hero-art img {
+  position: absolute;
+  object-fit: contain;
+  filter: drop-shadow(10px 16px 9px #383b2b25);
+}
+.forma-vase {
+  width: 82% !important;
+  height: 95%;
+  top: 1%;
+  left: -2%;
+}
+.forma-bowl {
+  width: 57% !important;
+  height: 50%;
+  bottom: 6%;
+  right: 0;
+}
+.forma-hero-art > span {
+  position: absolute;
+  bottom: 16px;
+  left: 25px;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+.forma-shop {
+  padding: 70px 5%;
+}
+.forma-shop-top {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 25px;
+}
+.forma-shop-top h2 {
+  font-size: clamp(36px, 4vw, 62px);
+}
+.forma-shop-top > span {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+.forma-products {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+.forma-product-art {
+  background: #ece8db;
+  position: relative;
+  aspect-ratio: 0.95;
+  overflow: hidden;
+}
+.forma-product-art > img {
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s;
+}
+.forma-products article:hover img {
+  transform: scale(1.04);
+}
+.forma-product-art > button {
+  position: absolute;
+  bottom: 17px;
+  right: 17px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #383b2b40;
+  border-radius: 50%;
+  background: #f9f7ef;
+}
+.forma-product-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 17px;
+}
+.forma-product-caption h3 {
+  font-weight: 500;
+  font-size: 14px;
+}
+.forma-product-caption > span {
+  font-size: 11px;
+  white-space: nowrap;
+}
+.forma-products article > p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  margin-top: 6px;
+}
+.forma-products article > p > span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: block;
+}
+.forma-add {
+  border: 0;
+  border-bottom: 1px solid #383b2b30;
+  padding: 12px 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  font-size: 10px !important;
+  min-height: 44px;
+}
+.forma-cart-status {
+  min-height: 25px;
+  font-size: 11px;
+  padding-top: 20px;
+}
+.forma-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8%;
+  background: #dfe2d3;
+  padding: 65px 7%;
+}
+.forma-story-art {
+  display: grid;
+  place-items: center;
+  max-height: 460px;
+}
+.forma-story-art > img {
+  height: 100%;
+  object-fit: contain;
+}
+.forma-story > div:last-child {
+  align-self: center;
+}
+.forma-story h2 {
+  margin-block: 24px;
+}
+.forma-story p:not(.c-kicker) {
+  font-size: 14px;
+  max-width: 380px;
+}
+.forma-site .forma-theme-note {
+  font-size: 10px !important;
+  opacity: 0.7;
+  line-height: 1.7;
+  margin-top: 25px;
+}
+.forma-cart-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #383b2b30;
+  padding: 15px 0;
+}
+.forma-cart-row > img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  background: #ece8db;
+}
+.forma-cart-row strong {
+  font-size: 14px;
+}
+.forma-cart-row p {
+  font-size: 11px;
+  margin: 6px 0;
+}
+.forma-quantity {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+.forma-quantity button {
+  background: none;
+  border: 1px solid #8885;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+}
+.forma-subtotal {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 25px 0;
+  font-size: 14px;
+}
+.forma-checkout {
+  background: #383b2b;
+  color: #f9f7ef !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0;
+  padding: 15px 20px;
+  min-height: 48px;
+  width: 100%;
+}
+.forma-checkout-note {
+  font-size: 12px;
+  padding: 15px;
+  background: #dfe2d3;
+  margin-top: 15px;
+}
+
+@media (max-width: 950px) {
+  .fold-section-heading {
+    grid-template-columns: 1fr 2fr;
+  }
+  .fold-section-heading > p:last-child {
+    grid-column: 2;
+  }
+  .fold-hero {
+    min-height: 550px;
+  }
+  .fold-goods h3 {
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+  }
+  .fold-goods h3 span {
+    margin-left: 0;
+  }
+  .dog-header nav {
+    display: none !important;
+  }
+  .dog-care {
+    gap: 25px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .dog-care > div {
+    grid-column: 1/-1;
+  }
+  .still-about {
+    grid-template-columns: 1fr 2fr;
+  }
+  .still-about > p:last-child {
+    grid-column: 2;
+  }
+  .forma-product-caption {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .concept-footer {
+    flex-wrap: wrap;
+  }
+  .concept-footer a {
+    margin-left: 0;
+  }
+}
+@media (max-width: 640px) {
+  .concept-back {
+    font-size: 9px;
+    padding: 10px 5%;
+    gap: 6px;
+  }
+  .concept-back > span {
+    display: none;
+  }
+  .concept-site header {
+    padding: 22px 6%;
+  }
+  .concept-site header nav {
+    gap: 17px;
+    font-size: 10px;
+  }
+  .concept-site header nav > a:last-child {
+    display: none;
+  }
+  .concept-site .concept-footer {
+    gap: 18px;
+    padding: 25px 6%;
+  }
+  .concept-footer strong {
+    font-size: 23px;
+    width: 100%;
+  }
+  .concept-footer p {
+    font-size: 10px;
+  }
+  .concept-footer a {
+    font-size: 11px;
+  }
+  .concept-site h2 {
+    font-size: 42px;
+  }
+  .concept-filters {
+    gap: 6px;
+  }
+  .concept-filters button {
+    padding-inline: 13px;
+  }
+  .concept-dialog {
+    width: calc(100% - 20px);
+  }
+  .concept-dialog-header {
+    padding: 15px 18px;
+  }
+  .concept-site .concept-dialog-header h2 {
+    font-size: 22px;
+  }
+  .concept-modal-copy {
+    padding: 20px;
+  }
+  .fold-logo {
+    font-size: 50px;
+  }
+  .fold-logo span {
+    font-size: 7px;
+  }
+  .fold-hero {
+    grid-template-columns: 1fr;
+  }
+  .fold-hero-copy {
+    padding: 40px 6% 30px;
+  }
+  .fold-hero h1 {
+    font-size: 58px;
+    margin-right: 0;
+  }
+  .fold-hero-copy > p:not(.c-kicker) {
+    max-width: 310px;
+  }
+  .fold-edition {
+    font-size: 8px;
+    padding-top: 30px;
+  }
+  .fold-bread-scene {
+    min-height: 340px;
+  }
+  .fold-bread-scene > img {
+    width: 100%;
+    height: 330px;
+  }
+  .fold-stamp {
+    width: 80px;
+    height: 80px;
+    top: 17px;
+    right: 18px;
+    font-size: 11px;
+  }
+  .fold-scene-note {
+    font-size: 13px;
+    bottom: 20px;
+    left: 20px;
+  }
+  .fold-ribbon {
+    font-size: 10px;
+    justify-content: start;
+    padding: 15px 20px;
+  }
+  .fold-menu {
+    padding-block: 45px;
+  }
+  .fold-section-heading {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .fold-section-heading > p:last-child {
+    grid-column: auto;
+  }
+  .fold-goods {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .fold-goods article > div {
+    aspect-ratio: 1.5;
+    margin-bottom: 14px;
+  }
+  .fold-goods h3 {
+    flex-direction: row;
+    font-size: 24px;
+    gap: 15px;
+  }
+  .fold-goods h3 span {
+    font-size: 11px;
+  }
+  .fold-story {
+    padding: 45px 6%;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .fold-story-number {
+    font-size: 130px;
+  }
+  .fold-visit {
+    padding-block: 45px;
+  }
+  .fold-visit > a {
+    font-size: 12px;
+  }
+  .north-site {
+    padding-inline: 6%;
+  }
+  .north-logo {
+    font-size: 35px;
+    gap: 10px;
+  }
+  .north-logo span {
+    font-size: 8px;
+  }
+  .north-site .north-header {
+    padding-inline: 0;
+  }
+  .north-hero-top > span {
+    display: none;
+  }
+  .north-hero h1 {
+    font-size: 58px;
+    margin: 30px 0;
+  }
+  .north-hero h1 em {
+    margin-left: 0;
+  }
+  .north-hero-image {
+    height: 310px;
+  }
+  .north-caption {
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    font-size: 8px;
+  }
+  .north-under {
+    flex-direction: column;
+    gap: 20px;
+    padding-block: 22px 40px;
+  }
+  .north-under > p:first-child {
+    font-size: 18px;
+  }
+  .north-under > p:last-child {
+    font-size: 13px;
+  }
+  .north-work {
+    padding-block: 40px;
+  }
+  .north-section-title {
+    flex-direction: column;
+    gap: 22px;
+  }
+  .north-projects {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .north-projects img {
+    height: 300px;
+  }
+  .north-approach {
+    margin-inline: -6.82%;
+    padding: 45px 6%;
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .north-approach > div {
+    grid-column: auto;
+  }
+  .north-approach > div > p {
+    font-size: 16px;
+  }
+  .north-contact {
+    padding-block: 45px;
+  }
+  .north-contact > a {
+    font-size: 11px;
+    gap: 15px;
+  }
+  .north-site .concept-footer {
+    padding-inline: 0;
+  }
+  .dog-logo {
+    font-size: 31px;
+  }
+  .dog-logo span {
+    font-size: 8px;
+  }
+  .dog-header > .dog-pill {
+    font-size: 10px;
+    padding: 10px 13px;
+    gap: 10px;
+    min-height: 44px;
+  }
+  .dog-hero {
+    padding: 35px 6%;
+    grid-template-columns: 1fr;
+  }
+  .dog-hero h1 {
+    font-size: 59px;
+  }
+  .dog-hero .c-kicker {
+    font-size: 8px;
+  }
+  .dog-portrait {
+    min-height: 330px;
+    margin-top: 25px;
+  }
+  .dog-portrait > img {
+    height: 335px;
+  }
+  .dog-star {
+    width: 85px;
+    height: 85px;
+    font-size: 10px;
+  }
+  .dog-portrait-circle {
+    width: 85%;
+  }
+  .dog-portrait-caption {
+    font-size: 8px;
+  }
+  .dog-care {
+    padding: 45px 6%;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .dog-care > div {
+    grid-column: auto;
+  }
+  .dog-care h2 {
+    font-size: 42px;
+  }
+  .dog-care h3 {
+    margin-block: 13px;
+  }
+  .dog-book {
+    padding: 45px 6%;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .dog-estimator {
+    padding: 23px;
+    box-shadow: 5px 5px 0 #283b97;
+  }
+  .dog-estimator fieldset button {
+    padding-inline: 14px;
+  }
+  .still-logo {
+    font-size: 48px;
+  }
+  .still-logo > span {
+    font-size: 7px;
+  }
+  .still-hero {
+    padding: 25px 6% 40px;
+  }
+  .still-title h1 {
+    font-size: 56px;
+    margin-block: 22px;
+  }
+  .still-title h1 em {
+    margin-left: 0;
+  }
+  .still-hero figure {
+    width: 100%;
+    margin-left: 0;
+  }
+  .still-hero figure > img {
+    aspect-ratio: 1.15;
+  }
+  .still-hero figcaption {
+    font-size: 7px;
+    gap: 10px;
+  }
+  .still-side-note {
+    display: none;
+  }
+  .still-work {
+    padding: 40px 6%;
+  }
+  .still-work-top {
+    display: block;
+  }
+  .still-grid {
+    gap: 35px 15px;
+    margin-top: 20px;
+  }
+  .still-grid > button:nth-child(even) {
+    margin-top: 45px;
+  }
+  .still-grid button > p {
+    font-size: 11px;
+    gap: 7px;
+    align-items: start;
+  }
+  .still-grid button > p > svg {
+    display: none;
+  }
+  .still-grid button > div > span {
+    font-size: 8px;
+    bottom: 9px;
+    right: 9px;
+    padding: 6px 9px;
+    gap: 6px;
+  }
+  .still-grid button > div > span > svg {
+    width: 12px;
+  }
+  .still-about {
+    padding: 40px 6%;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .still-about > p:last-child {
+    grid-column: auto;
+  }
+  .still-contact {
+    padding: 45px 6%;
+  }
+  .still-contact h2 {
+    font-size: 62px;
+  }
+  .forma-announcement {
+    font-size: 7px;
+  }
+  .forma-logo {
+    font-size: 40px;
+  }
+  .forma-logo > span {
+    font-size: 7px;
+    max-width: 155px;
+  }
+  .forma-header nav {
+    display: none !important;
+  }
+  .forma-cart-button {
+    font-size: 11px;
+  }
+  .forma-hero {
+    grid-template-columns: 1fr;
+  }
+  .forma-hero > div:first-child {
+    padding: 35px 6%;
+  }
+  .forma-hero h1 {
+    font-size: 79px;
+    margin-block: 20px;
+  }
+  .forma-hero-art {
+    min-height: 350px;
+  }
+  .forma-vase {
+    height: 95%;
+  }
+  .forma-shop {
+    padding: 45px 6%;
+  }
+  .forma-shop-top {
+    display: block;
+  }
+  .forma-shop-top > span {
+    display: block;
+    font-size: 7px;
+    margin-top: 16px;
+  }
+  .forma-products {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 14px;
+  }
+  .forma-product-caption h3 {
+    font-size: 12px;
+  }
+  .forma-product-caption > span {
+    font-size: 10px;
+  }
+  .forma-products article > p {
+    font-size: 9px;
+  }
+  .forma-product-art > button {
+    width: 36px;
+    height: 36px;
+    bottom: 10px;
+    right: 10px;
+  }
+  .forma-add {
+    font-size: 9px !important;
+    gap: 4px;
+  }
+  .forma-story {
+    padding: 40px 6%;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .forma-story-art {
+    height: 250px;
+  }
+  .forma-site .c-kicker {
+    font-size: 9px;
+  }
+  .forma-cart-row > img {
+    width: 75px;
+    height: 85px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .concept-site *,
+  .concept-site *::before,
+  .concept-site *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

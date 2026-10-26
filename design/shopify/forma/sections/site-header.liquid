@@ -1,0 +1,17 @@
+<div class="announcement">{{ section.settings.announcement | escape }}</div>
+<header class="site-header">
+  <a class="logo" href="{{ routes.root_url }}">{{ shop.name | escape }}<span>Objects for everyday living</span></a>
+  <nav aria-label="Main navigation">
+    {% for link in section.settings.menu.links %}<a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>{% endfor %}
+  </nav>
+  <a class="bag" href="{{ routes.cart_url }}">Bag ({{ cart.item_count }})</a>
+</header>
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "text", "id": "announcement", "label": "Announcement", "default": "Fewer things. Better things." },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

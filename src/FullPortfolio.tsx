@@ -33,6 +33,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import type { ExperienceMode } from './experience-mode';
+import CredentialPreview from './CredentialPreview';
 
 const EXPERIENCE_MODE_KEY = 'zia.experienceMode';
 const HERO_ACTION_BASE_CLASS =
@@ -633,6 +634,8 @@ const CertificateCarousel = () => {
             }}
             className="relative group cursor-pointer"
             onClick={() => setSelectedCertificate(cert)}
+            role="button" tabIndex={0} aria-label={'Preview ' + cert.title}
+            onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setSelectedCertificate(cert); } }}
           >
             <HologramCard className="h-[420px] p-0 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent-purple/10" />
@@ -663,75 +666,7 @@ const CertificateCarousel = () => {
         ))}
       </div>
 
-      <AnimatePresence>
-        {selectedCertificate && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[300] flex items-center justify-center p-4 md:p-8 bg-background-dark/90 backdrop-blur-xl"
-            onClick={() => setSelectedCertificate(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16, scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 120, damping: 18 }}
-              className="w-full max-w-5xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <HologramCard className="p-0 overflow-hidden">
-                <div className="p-4 md:p-6 border-b border-white/10 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="size-2 bg-primary rounded-full animate-pulse" />
-                    <div>
-                      <h4 className="text-sm md:text-base font-black uppercase tracking-widest text-primary">
-                        {selectedCertificate.title}
-                      </h4>
-                      <p className="text-[10px] md:text-xs font-mono text-slate-400">
-                        {selectedCertificate.issuer} - {selectedCertificate.date}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <a
-                      href={selectedCertificate.file}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="size-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"
-                      aria-label="Open certificate file"
-                    >
-                      <ExternalLink className="size-4 text-slate-300" />
-                    </a>
-                    <button
-                      onClick={() => setSelectedCertificate(null)}
-                      className="size-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"
-                      aria-label="Close certificate preview"
-                    >
-                      <X className="size-5 text-slate-300" />
-                    </button>
-                  </div>
-                </div>
-                <div className="bg-black/50 max-h-[78vh] overflow-auto">
-                  {selectedCertificate.type === 'pdf' ? (
-                    <iframe
-                      src={selectedCertificate.file}
-                      title={selectedCertificate.title}
-                      className="w-full h-[78vh] border-0"
-                    />
-                  ) : (
-                    <img
-                      src={selectedCertificate.file}
-                      alt={selectedCertificate.title}
-                      className="w-full h-auto object-contain"
-                    />
-                  )}
-                </div>
-              </HologramCard>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {selectedCertificate && <CredentialPreview certificate={selectedCertificate} onClose={() => setSelectedCertificate(null)} />}
     </section>
   );
 };

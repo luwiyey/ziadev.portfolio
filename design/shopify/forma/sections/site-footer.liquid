@@ -1,0 +1,2 @@
+<footer class="site-footer"><a class="logo" href="{{ routes.root_url }}">{{ shop.name | escape }}</a><nav aria-label="Footer navigation">{% for policy in shop.policies %}{% if policy.body != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}</nav><p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. {{ powered_by_link }}</p></footer>
+{% schema %}{ "name": "Footer", "settings": [] }{% endschema %}

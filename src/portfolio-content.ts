@@ -2,319 +2,640 @@ export type Artifact = {
   id: string;
   title: string;
   role: string;
-  type: 'video' | 'image';
+  type: "video" | "image";
   src: string;
   tags: string[];
+  preview?: string;
+  liveUrl?: string;
+  liveLabel?: string;
+  kind?: string;
+  interactiveDemo?: string;
+  categoryHint?: "Websites" | "Android apps" | "Animation & 3D" | "UI & design";
+  accessNote?: string;
+  details?: { overview: string; tools: string[]; features: string[] };
 };
 
 export type ContactLink = {
   href: string;
   label: string;
-  icon: 'mail' | 'resume' | 'work';
+  icon: "mail" | "resume" | "work";
   download?: boolean;
 };
 
-export const heroTitle = 'ARCHITECTING CYBER REALITIES';
+export const heroTitle = "ARCHITECTING CYBER REALITIES";
+
+// Store links are public references, not claims of sole authorship or current ownership.
+export const clientContributions = [
+  {
+    name: "Pet Purifair",
+    sector: "Pet-care retail",
+    platform: "Storefront",
+    href: "https://purifair.com.au/pages/pets",
+    linkLabel: "Current product page",
+    note: "Original client brand: Pet Purifair.",
+  },
+  {
+    name: "HappyCap",
+    sector: "Product storefront",
+    platform: "Shopify",
+    href: "https://gethappycap.com/",
+    linkLabel: "View storefront",
+    note: "",
+  },
+  {
+    name: "chebeauty",
+    sector: "Hair-care retail",
+    platform: "Shopify",
+    href: "https://chebeauty.com/",
+    linkLabel: "View storefront",
+    note: "",
+  },
+  {
+    name: "US Fireplace Store",
+    sector: "Home & hearth retail",
+    platform: "Shopify",
+    href: "https://usfireplacestore.com/",
+    linkLabel: "View storefront",
+    note: "",
+  },
+  {
+    name: "Save Rack",
+    sector: "E-commerce fulfillment",
+    platform: "Business website",
+    href: "https://saverack.com/",
+    linkLabel: "View website",
+    note: "A fulfillment-services website, not a Shopify retail store.",
+  },
+  {
+    name: "Holistic Vybez",
+    sector: "Wellness retail",
+    platform: "Historical client work",
+    href: "",
+    linkLabel: "",
+    note: "Historical contribution. The original domain no longer represents the client, so it is not linked.",
+  },
+];
 export const heroSubtitle =
-  'I build meaningful digital solutions by combining data analysis, machine learning, and creative design.';
+  "I build meaningful digital solutions by combining data analysis, machine learning, and creative design.";
 
 export const proofCards = [
   {
-    title: 'Machine Learning Projects',
-    desc: 'Building AI models using Python, TensorFlow, and YOLO.',
+    title: "Machine Learning Projects",
+    desc: "Building AI models using Python, TensorFlow, and YOLO.",
   },
   {
-    title: 'Data Analytics Systems',
-    desc: 'Data cleaning, visualization, and predictive analysis.',
+    title: "Data Analytics Systems",
+    desc: "Data cleaning, visualization, and predictive analysis.",
   },
   {
-    title: 'Creative Technology',
-    desc: 'User-focused systems that blend technical problem-solving with visual communication.',
+    title: "Creative Technology",
+    desc: "User-focused systems that blend technical problem-solving with visual communication.",
   },
 ];
 
 export const videoArtifacts: Artifact[] = [
   {
-    id: 'video-01',
-    title: 'Residential House 3D Architectural Visualization',
-    role: 'Course Project - 3D architectural visualization of a residential house using SketchUp and rendering tools',
-    type: 'video',
-    src: '/artifacts/videos/video-01.mp4',
-    tags: ['COURSEWORK', 'ARCHVIZ'],
+    id: "video-01",
+    title: "Residential House 3D Architectural Visualization",
+    role: "Course Project - 3D architectural visualization of a residential house using SketchUp and rendering tools",
+    type: "video",
+    src: "/artifacts/videos/video-01.mp4",
+    tags: ["COURSEWORK", "ARCHVIZ"],
   },
   {
-    id: 'video-02',
-    title: 'FORDA FILO Digital Animated Cartoon',
-    role: 'Course Project - Character illustration and short-form animation using digital illustration applications',
-    type: 'video',
-    src: '/artifacts/videos/video-02.mp4',
-    tags: ['COURSEWORK', 'ANIMATION'],
+    id: "video-02",
+    title: "FORDA FILO Digital Animated Cartoon",
+    role: "Course Project - Character illustration and short-form animation using digital illustration applications",
+    type: "video",
+    src: "/artifacts/videos/video-02.mp4",
+    tags: ["COURSEWORK", "ANIMATION"],
   },
   {
-    id: 'video-03',
-    title: 'Enrollment Process Demo (Freshmen and Transferees)',
-    role: 'Course Project - Panpacific University enrollment demo in animation for freshmen and transferee applicants',
-    type: 'video',
-    src: '/artifacts/videos/video-03.mp4',
-    tags: ['COURSEWORK', 'ENROLLMENT'],
+    id: "video-03",
+    title: "Enrollment Process Demo (Freshmen and Transferees)",
+    role: "Course Project - Panpacific University enrollment demo in animation for freshmen and transferee applicants",
+    type: "video",
+    src: "/artifacts/videos/video-03.mp4",
+    tags: ["COURSEWORK", "ENROLLMENT"],
   },
   {
-    id: 'video-04',
-    title: 'Enrollment Process Demo (Continuing and Returning)',
-    role: 'Course Project - Panpacific University enrollment demo in animation for continuing and returning students',
-    type: 'video',
-    src: '/artifacts/videos/video-04.mp4',
-    tags: ['COURSEWORK', 'ENROLLMENT'],
+    id: "video-04",
+    title: "Enrollment Process Demo (Continuing and Returning)",
+    role: "Course Project - Panpacific University enrollment demo in animation for continuing and returning students",
+    type: "video",
+    src: "/artifacts/videos/video-04.mp4",
+    tags: ["COURSEWORK", "ENROLLMENT"],
   },
   {
-    id: 'video-05',
-    title: 'PSNTI RouteCalc Android App',
-    role: 'Course Project - Android Studio mobile application for route, distance, and fare calculation',
-    type: 'video',
-    src: '/artifacts/videos/video-05.mp4',
-    tags: ['COURSEWORK', 'ANDROID APP'],
+    id: "video-05",
+    title: "PSNTI RouteCalc Android App",
+    role: "Course Project - Android Studio mobile application for route, distance, and fare calculation",
+    type: "video",
+    src: "/artifacts/videos/video-05.mp4",
+    tags: ["COURSEWORK", "ANDROID APP"],
   },
   {
-    id: 'video-06',
-    title: 'Neon Laser Tag Mini Game',
-    role: 'Personal Project - Android Studio mini game inspired by arcade-style laser tag with a neon visual theme',
-    type: 'video',
-    src: '/artifacts/videos/video-06.mp4',
-    tags: ['PERSONAL', 'ANDROID GAME'],
+    id: "video-06",
+    title: "Neon Laser Tag Mini Game",
+    role: "Personal Project - Android Studio mini game inspired by arcade-style laser tag with a neon visual theme",
+    type: "video",
+    src: "/artifacts/videos/video-06.mp4",
+    tags: ["PERSONAL", "ANDROID GAME"],
   },
   {
-    id: 'video-07',
-    title: 'ABOUT ME Animation',
-    role: 'Course Project - Hand-drawn FlipaClip character sketch animation introducing my identity and style',
-    type: 'video',
-    src: '/artifacts/videos/video-07.mp4',
-    tags: ['COURSEWORK', 'FLIPACLIP'],
+    id: "video-07",
+    title: "ABOUT ME Animation",
+    role: "Course Project - Hand-drawn FlipaClip character sketch animation introducing my identity and style",
+    type: "video",
+    src: "/artifacts/videos/video-07.mp4",
+    tags: ["COURSEWORK", "FLIPACLIP"],
   },
   {
-    id: 'video-08',
-    title: 'Why IT in Panpacific University',
-    role: 'Course Project - Frame-by-frame concept animation on why choose Information Technology at Panpacific University',
-    type: 'video',
-    src: '/artifacts/videos/video-08.mp4',
-    tags: ['COURSEWORK', 'EDUCATION'],
+    id: "video-08",
+    title: "Why IT in Panpacific University",
+    role: "Course Project - Frame-by-frame concept animation on why choose Information Technology at Panpacific University",
+    type: "video",
+    src: "/artifacts/videos/video-08.mp4",
+    tags: ["COURSEWORK", "EDUCATION"],
   },
   {
-    id: 'video-09',
-    title: 'PU Queue Web App',
-    role: 'Course Project - Whole-university office management system for queueing, requests, and office workflows',
-    type: 'video',
-    src: '/artifacts/videos/video-09.mp4',
-    tags: ['COURSEWORK', 'WEB APP'],
+    id: "video-09",
+    title: "PU Queue Web App",
+    role: "Course Project - Whole-university office management system for queueing, requests, and office workflows",
+    type: "video",
+    src: "/artifacts/videos/video-09.mp4",
+    tags: ["COURSEWORK", "WEB APP"],
   },
   {
-    id: 'video-10',
-    title: 'Lingkod-Ani',
-    role: 'Course Project - Barangay monitoring and communication website for agriculture services',
-    type: 'video',
-    src: '/artifacts/videos/video-10.mp4',
-    tags: ['COURSEWORK', 'WEB APP'],
+    id: "video-10",
+    title: "Lingkod-Ani",
+    role: "Course Project - Barangay monitoring and communication website for agriculture services",
+    type: "video",
+    src: "/artifacts/videos/video-10.mp4",
+    tags: ["COURSEWORK", "WEB APP"],
+    preview: "/previews/lingkod-live.webp",
+    liveUrl: "https://lingkod-ani.com/",
+    accessNote:
+      "The current website opens separately. The recorded walkthrough shows an earlier version. Live SMS and staff workspaces require authorized access.",
   },
 ];
 
+export const additionalProjects: Artifact[] = [
+  {
+    id: "routecalc-web",
+    title: "PSNTI RouteCalc - Web Beta",
+    role: "Personal Project - Responsive fare calculation and trip-tally web application for bus conductors",
+    type: "image",
+    src: "/previews/routecalc-live.webp",
+    liveUrl: "https://psntiroutecalcbeta.vercel.app/",
+    tags: ["PERSONAL", "WEB APP", "BETA"],
+    details: {
+      overview:
+        "The current web-based RouteCalc experience, alongside the original Android course project retained in this gallery.",
+      tools: ["React", "Vite", "Tailwind CSS"],
+      features: [
+        "Multi-route fare calculation",
+        "Conductor-focused fare and tally workflow",
+        "Responsive browser-based interface",
+      ],
+    },
+  },
+  {
+    id: "library-web",
+    title: "PU Library Accession System",
+    role: "Personal Project - Electronic accession book for library cataloguing, record review, reporting, and backups",
+    type: "image",
+    src: "/previews/library-live.webp",
+    liveUrl: "https://pu-library-accession.vercel.app/",
+    tags: ["PERSONAL", "WEB APP", "LIBRARY"],
+    details: {
+      overview:
+        "A library workspace designed around careful, reviewable accession records and day-to-day librarian tasks.",
+      tools: ["React", "TypeScript", "Vite", "Local-first workflows"],
+      features: [
+        "Accession records, import and export",
+        "Record review, analytics, and history",
+        "Backups and optional cross-device sharing",
+      ],
+    },
+    accessNote:
+      "The public application opens in a separate tab. Use sample data only when exploring; do not enter private library records.",
+  },
+  {
+    id: "monte-royale",
+    title: "Monte Royale Internship Admission",
+    role: "Sample Project - Internship admission website built with Google Apps Script",
+    kind: "Internship website sample",
+    type: "image",
+    src: "/previews/monte-royale.svg",
+    liveUrl:
+      "https://script.google.com/macros/s/AKfycbwHF8UXHktwCoeB5o9iKlxguxPi4Qk3w4Pa_Sny4pox/dev",
+    liveLabel: "Open restricted sample",
+    tags: ["SAMPLE", "GOOGLE APPS SCRIPT"],
+    accessNote:
+      "This is an editor-only Google Apps Script test deployment, not a public demo. Google sign-in and script editor access are required. A public deployment is pending; the illustration above is a project cover, not an application screenshot.",
+    details: {
+      overview:
+        "An internship admission website sample for Monte Royale. The supplied test deployment is access-restricted, so its internal workflows have not been publicly verified.",
+      tools: ["Google Apps Script"],
+      features: [
+        "Internship admission website sample",
+        "Hosted through Google Apps Script",
+        "Public preview pending a published deployment",
+      ],
+    },
+  },
+  {
+    id: "zia-pos",
+    title: "ZiaPOS - Cafe Point-of-Sale UI",
+    role: "Personal Project - Windows desktop point-of-sale interface prototype built in Visual Studio Community",
+    kind: "Desktop UI prototype",
+    type: "image",
+    src: "/previews/zia-pos.webp",
+    tags: ["PERSONAL", "C#", "WINDOWS FORMS"],
+    details: {
+      overview:
+        "A cafe point-of-sale screen with a product menu, numeric keypad, customer-order controls, and receipt actions. Identified from the original local C# project, not guessed from the screenshot.",
+      tools: ["C#", "Windows Forms", ".NET Framework 4.7.2", "Visual Studio"],
+      features: [
+        "Cafe product-menu layout and keypad",
+        "Order-management and receipt-control interface",
+        "Desktop UI prototype; transaction and database logic are not implemented in the inspected source",
+      ],
+    },
+  },
+  ...[
+    {
+      id: "fold",
+      title: "Fold - Neighborhood Bakery",
+      role: "Editorial bakery landing page with a browsable seasonal menu",
+      tools: ["React", "CSS", "SVG illustration"],
+      features: [
+        "Filterable bakery menu",
+        "Original bread illustrations",
+        "Responsive editorial layout",
+      ],
+    },
+    {
+      id: "northline",
+      title: "Northline - Architecture Studio",
+      role: "Architecture studio website with a project index and material-led visual direction",
+      tools: ["React", "CSS", "SVG illustration"],
+      features: [
+        "Residential and commercial project filters",
+        "Project-detail viewer",
+        "Responsive architectural compositions",
+      ],
+    },
+    {
+      id: "good-dog",
+      title: "Good Dog - Grooming Studio",
+      role: "Playful pet-care website with an interactive grooming estimate",
+      tools: ["React", "CSS", "SVG illustration"],
+      features: [
+        "Dog-size and service selections",
+        "Transparent demo pricing",
+        "Accessible booking-preview dialog",
+      ],
+    },
+    {
+      id: "still",
+      title: "Still - Photography Portfolio",
+      role: "Art-directed photography website with collections and a keyboard-accessible lightbox",
+      tools: ["React", "CSS", "Original visual studies"],
+      features: [
+        "Filterable photographic collections",
+        "Image lightbox",
+        "Editorial contact and commission section",
+      ],
+    },
+    {
+      id: "forma",
+      title: "Forma - Objects & Shopify Theme",
+      role: "Independent homeware storefront concept with an editable Shopify Liquid theme",
+      tools: ["React", "Shopify Liquid", "CSS", "JavaScript"],
+      features: [
+        "Interactive product filters and demo cart",
+        "Original product illustrations",
+        "Editable Shopify theme source; not yet installed on a Shopify store",
+      ],
+    },
+  ].map((concept) => ({
+    id: "concept-" + concept.id,
+    title: concept.title,
+    role: "Concept Project - " + concept.role,
+    kind: "Self-initiated concept",
+    type: "image" as const,
+    src: "/previews/concept-" + concept.id + ".webp",
+    liveUrl: "/?concept=" + concept.id,
+    liveLabel: "Explore concept",
+    tags: [
+      "CONCEPT",
+      "FRONTEND",
+      ...(concept.id === "forma" ? ["SHOPIFY THEME"] : []),
+    ],
+    accessNote:
+      "An independent portfolio concept for a fictional business, not commissioned client work. Demo interactions do not send bookings, take payment, or collect personal details.",
+    details: {
+      overview: concept.role + ".",
+      tools: concept.tools,
+      features: concept.features,
+    },
+  })),
+];
+
+export const interactiveProjects: Artifact[] = [
+  {
+    id: "lab-planner",
+    title: "Pocket Planner",
+    categoryHint: "Android apps",
+    interactiveDemo: "planner",
+    role: "Concept Project - Android-style habit and task UI, playable as a browser prototype",
+    tags: ["CONCEPT", "MOBILE UI", "BROWSER PROTOTYPE"],
+  },
+  {
+    id: "lab-target",
+    title: "Neon Target Practice",
+    categoryHint: "Android apps",
+    interactiveDemo: "target",
+    role: "Personal Project - Playable browser companion inspired by the Android laser-tag mini game",
+    tags: ["PERSONAL", "MINI GAME", "BROWSER COMPANION"],
+  },
+  {
+    id: "lab-material",
+    title: "Orbit Material Lab",
+    categoryHint: "Animation & 3D",
+    interactiveDemo: "material",
+    role: "Concept Project - Interactive CSS 3D object study with color, speed, and view controls",
+    tags: ["CONCEPT", "CSS 3D", "INTERACTIVE"],
+  },
+  {
+    id: "lab-motion",
+    title: "Motion Timing Studio",
+    categoryHint: "Animation & 3D",
+    interactiveDemo: "motion",
+    role: "Concept Project - Hands-on keyframe animation study with easing, duration, and playback controls",
+    tags: ["CONCEPT", "ANIMATION", "CSS KEYFRAMES"],
+  },
+  {
+    id: "lab-design",
+    title: "Palette & Type Studio",
+    categoryHint: "UI & design",
+    interactiveDemo: "design",
+    role: "Concept Project - Interactive interface styling and text-contrast checker",
+    tags: ["CONCEPT", "UI DESIGN", "ACCESSIBILITY"],
+  },
+  {
+    id: "lab-board",
+    title: "Focusboard",
+    categoryHint: "Websites",
+    interactiveDemo: "board",
+    role: "Concept Project - A small interactive task board with add, move, and complete actions",
+    tags: ["CONCEPT", "WEB APPLICATION", "PRODUCTIVITY"],
+  },
+].map((project) => ({
+  ...project,
+  type: "image" as const,
+  categoryHint: project.categoryHint as Artifact["categoryHint"],
+  kind:
+    project.id === "lab-target"
+      ? "Browser game companion"
+      : "Interactive browser concept",
+  src: "/previews/" + project.id + ".svg",
+  accessNote:
+    "Try this demo inside the portfolio. Browser-only state resets when the viewer closes; no account, personal data, real orders, or native Android installation is involved.",
+}));
+
 export const imageArtifacts: Artifact[] = [
   {
-    id: 'image-01',
-    title: 'RateMyDay Mobile UI System',
-    role: 'Course Project - High-fidelity mobile screens for activity tracking',
-    type: 'image',
-    src: '/artifacts/images/image-01.png',
-    tags: ['COURSEWORK', 'MOBILE UI'],
+    id: "image-01",
+    title: "RateMyDay Mobile UI System",
+    role: "Course Project - High-fidelity mobile screens for activity tracking",
+    type: "image",
+    src: "/artifacts/images/image-01.png",
+    tags: ["COURSEWORK", "MOBILE UI"],
   },
   {
-    id: 'image-02',
-    title: 'Activity Tracker Low-Fidelity Wireframe',
-    role: 'Course Project - Early-stage mobile flow planning',
-    type: 'image',
-    src: '/artifacts/images/image-02.png',
-    tags: ['COURSEWORK', 'WIREFRAME'],
+    id: "image-02",
+    title: "Activity Tracker Low-Fidelity Wireframe",
+    role: "Course Project - Early-stage mobile flow planning",
+    type: "image",
+    src: "/artifacts/images/image-02.png",
+    tags: ["COURSEWORK", "WIREFRAME"],
   },
   {
-    id: 'image-03',
-    title: 'Eco-Life Website Wireframe Boards',
-    role: 'Course Project - Layout planning for a sustainability website',
-    type: 'image',
-    src: '/artifacts/images/image-03.jpg',
-    tags: ['COURSEWORK', 'WEB WIREFRAME'],
+    id: "image-03",
+    title: "Eco-Life Website Wireframe Boards",
+    role: "Course Project - Layout planning for a sustainability website",
+    type: "image",
+    src: "/artifacts/images/image-03.jpg",
+    tags: ["COURSEWORK", "WEB WIREFRAME"],
   },
   {
-    id: 'image-04',
-    title: 'Good vs Bad Design Study',
-    role: 'Course Project - Visual design comparison and composition exercise',
-    type: 'image',
-    src: '/artifacts/images/image-04.png',
-    tags: ['COURSEWORK', 'DESIGN'],
+    id: "image-04",
+    title: "Good vs Bad Design Study",
+    role: "Course Project - Visual design comparison and composition exercise",
+    type: "image",
+    src: "/artifacts/images/image-04.png",
+    tags: ["COURSEWORK", "DESIGN"],
   },
   {
-    id: 'image-05',
-    title: 'Smart ID Wallet Product Mockup',
-    role: 'Course Project - Product concept rendering and presentation',
-    type: 'image',
-    src: '/artifacts/images/image-05.png',
-    tags: ['COURSEWORK', 'PRODUCT'],
+    id: "image-05",
+    title: "Smart ID Wallet Product Mockup",
+    role: "Course Project - Product concept rendering and presentation",
+    type: "image",
+    src: "/artifacts/images/image-05.png",
+    tags: ["COURSEWORK", "PRODUCT"],
   },
   {
-    id: 'image-06',
-    title: 'Eco-Life Sustainability Website',
-    role: 'Course Project - Interface design for an environmental website, prototyped in Figma before development',
-    type: 'image',
-    src: '/artifacts/images/image-06.jpg',
-    tags: ['COURSEWORK', 'WEB DESIGN'],
+    id: "image-06",
+    title: "Eco-Life Sustainability Website",
+    role: "Course Project - Interface design for an environmental website, prototyped in Figma before development",
+    type: "image",
+    src: "/artifacts/images/image-06.jpg",
+    tags: ["COURSEWORK", "WEB DESIGN"],
   },
   {
-    id: 'image-07',
-    title: 'Eco-Life Detail Screens',
-    role: 'Course Project - Supporting webpages and sections for the Eco-Life website experience',
-    type: 'image',
-    src: '/artifacts/images/image-07.jpg',
-    tags: ['COURSEWORK', 'UI DETAIL'],
+    id: "image-07",
+    title: "Eco-Life Detail Screens",
+    role: "Course Project - Supporting webpages and sections for the Eco-Life website experience",
+    type: "image",
+    src: "/artifacts/images/image-07.jpg",
+    tags: ["COURSEWORK", "UI DETAIL"],
   },
   {
-    id: 'image-08',
-    title: 'AccessLearn Website',
-    role: 'Course Project - Inclusive learning platform website prototyped in Figma before development',
-    type: 'image',
-    src: '/artifacts/images/image-08.png',
-    tags: ['COURSEWORK', 'WEB ACCESSIBILITY'],
+    id: "image-08",
+    title: "AccessLearn Website",
+    role: "Course Project - Inclusive learning platform website prototyped in Figma before development",
+    type: "image",
+    src: "/artifacts/images/image-08.png",
+    tags: ["COURSEWORK", "WEB ACCESSIBILITY"],
   },
   {
-    id: 'image-09',
-    title: 'AccessLearn Website Authentication Flow',
-    role: 'Course Project - Supporting login and sign-up webpages for the AccessLearn website prototype',
-    type: 'image',
-    src: '/artifacts/images/image-09.png',
-    tags: ['COURSEWORK', 'AUTH FLOW'],
+    id: "image-09",
+    title: "AccessLearn Website Authentication Flow",
+    role: "Course Project - Supporting login and sign-up webpages for the AccessLearn website prototype",
+    type: "image",
+    src: "/artifacts/images/image-09.png",
+    tags: ["COURSEWORK", "AUTH FLOW"],
   },
   {
-    id: 'image-10',
-    title: 'AccessLearn Website Dashboard',
-    role: 'Course Project - Supporting student dashboard webpage for the AccessLearn website prototype',
-    type: 'image',
-    src: '/artifacts/images/image-10.png',
-    tags: ['COURSEWORK', 'DASHBOARD'],
+    id: "image-10",
+    title: "AccessLearn Website Dashboard",
+    role: "Course Project - Supporting student dashboard webpage for the AccessLearn website prototype",
+    type: "image",
+    src: "/artifacts/images/image-10.png",
+    tags: ["COURSEWORK", "DASHBOARD"],
   },
 ];
 
 export const projectHighlights = [
   {
-    title: 'Student Information Systems and Advanced Calculators (CCC112, CCC123, OOP134)',
-    desc: 'Developed student information systems to automate administrative processes and manage data efficiently. Designed advanced calculators for complex mathematical operations with user-friendly interfaces.',
+    title:
+      "Student Information Systems and Advanced Calculators (CCC112, CCC123, OOP134)",
+    desc: "Developed student information systems to automate administrative processes and manage data efficiently. Designed advanced calculators for complex mathematical operations with user-friendly interfaces.",
   },
   {
-    title: 'Environment Website (HCI122)',
-    desc: 'Designed and prototyped an interactive website promoting environmental awareness, with usability and accessibility considerations using Figma.',
+    title: "Environment Website (HCI122)",
+    desc: "Designed and prototyped an interactive website promoting environmental awareness, with usability and accessibility considerations using Figma.",
   },
   {
-    title: 'Mini Grocery System and Fruit Grocery Database (CCC123, CCC124)',
-    desc: 'Built a beginner POS system for inventory and sales, and created an MS Access database to track fruit inventory and pricing.',
+    title: "Mini Grocery System and Fruit Grocery Database (CCC123, CCC124)",
+    desc: "Built a beginner POS system for inventory and sales, and created an MS Access database to track fruit inventory and pricing.",
   },
   {
-    title: 'Philippine Junior Data Science Challenge 2023',
-    desc: 'Developed client segmentation strategies for underserved areas and recommended targeted products and next-best actions as a Top 15 qualifier.',
+    title: "Philippine Junior Data Science Challenge 2023",
+    desc: "Developed client segmentation strategies for underserved areas and recommended targeted products and next-best actions as a Top 15 qualifier.",
   },
   {
-    title: 'Car Insurance Analysis (Onyx August Data Challenge)',
-    desc: 'Analyzed a 32k+ row dataset using Power BI and delivered actionable insights recognized by global professionals.',
+    title: "Car Insurance Analysis (Onyx August Data Challenge)",
+    desc: "Analyzed a 32k+ row dataset using Power BI and delivered actionable insights recognized by global professionals.",
   },
   {
-    title: 'COVID-19 OWID Dataset Analysis (UP Statistical Society Challenge)',
-    desc: 'Performed data wrangling, visualization, and regression analysis in Python, then presented findings in a clear narrative format.',
+    title: "COVID-19 OWID Dataset Analysis (UP Statistical Society Challenge)",
+    desc: "Performed data wrangling, visualization, and regression analysis in Python, then presented findings in a clear narrative format.",
   },
   {
-    title: 'Flipkart Dataset Analysis (SIDHI Hackathon)',
-    desc: 'Cleaned and analyzed e-commerce data with Python and delivered insights using a visually structured data poster.',
+    title: "Flipkart Dataset Analysis (SIDHI Hackathon)",
+    desc: "Cleaned and analyzed e-commerce data with Python and delivered insights using a visually structured data poster.",
   },
   {
-    title: 'Wind Turbine Object Detection Model',
-    desc: 'Trained a YOLOv8 model on a large dataset and achieved 89.6% accuracy in wind turbine detection.',
+    title: "Wind Turbine Object Detection Model",
+    desc: "Trained a YOLOv8 model on a large dataset and achieved 89.6% accuracy in wind turbine detection.",
   },
 ];
 
 export const skillGroups = [
   {
-    category: 'Programming',
-    items: ['Python', 'Java', 'JavaScript', 'C# (Beginner)', 'PHP', 'SQL'],
+    category: "Programming",
+    items: ["Python", "Java", "JavaScript", "C# (Beginner)", "PHP", "SQL"],
   },
   {
-    category: 'Web Development',
-    items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Angular', 'Next.js', 'Tailwind CSS', 'Node.js', 'Firebase'],
+    category: "Web Development",
+    items: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Angular",
+      "Next.js",
+      "Tailwind CSS",
+      "Node.js",
+      "Firebase",
+    ],
   },
   {
-    category: '3D & Frontend Systems',
-    items: ['Three.js', 'Framer Motion'],
+    category: "3D & Frontend Systems",
+    items: ["Three.js", "Framer Motion"],
   },
   {
-    category: 'Data & AI',
-    items: ['Pandas', 'NumPy', 'scikit-learn', 'TensorFlow', 'Jupyter', 'Power BI', 'Tableau', 'Excel', 'MySQL', 'PostgreSQL', 'Microsoft Access'],
+    category: "Data & AI",
+    items: [
+      "Pandas",
+      "NumPy",
+      "scikit-learn",
+      "TensorFlow",
+      "Jupyter",
+      "Power BI",
+      "Tableau",
+      "Excel",
+      "MySQL",
+      "PostgreSQL",
+      "Microsoft Access",
+    ],
   },
   {
-    category: 'Automation',
-    items: ['Selenium', 'Requests'],
+    category: "Automation",
+    items: ["Selenium", "Requests"],
   },
   {
-    category: 'Creative Tools',
-    items: ['Blender', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe Lightroom', 'DaVinci Resolve', 'Mobile Illustration Apps'],
+    category: "Creative Tools",
+    items: [
+      "Blender",
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Adobe Lightroom",
+      "DaVinci Resolve",
+      "Mobile Illustration Apps",
+    ],
   },
 ];
 
 export const contactLinks: ContactLink[] = [
   {
-    href: 'mailto:luwiyeyz@gmail.com',
-    label: 'Email Me',
-    icon: 'mail',
+    href: "mailto:luwiyeyz@gmail.com",
+    label: "Email Me",
+    icon: "mail",
   },
   {
-    href: '/resume/BigDataMARIANO_RESUME.pdf',
-    label: 'Download Resume',
-    icon: 'resume',
+    href: "/resume/BigDataMARIANO_RESUME.pdf",
+    label: "Download Resume",
+    icon: "resume",
     download: true,
   },
   {
-    href: '#work',
-    label: 'View Projects',
-    icon: 'work',
+    href: "#work",
+    label: "View Projects",
+    icon: "work",
   },
 ];
 
 export const profileStats = [
-  { value: '03+', label: 'Years.Exp' },
-  { value: '15+', label: 'Projects' },
+  { value: "03+", label: "Years.Exp" },
+  { value: "15+", label: "Projects" },
 ];
 
-export const aboutLead = 'I AM A CREATIVE TECHNOLOGIST.';
+export const aboutLead = "I AM A CREATIVE TECHNOLOGIST.";
 export const aboutLog =
-  '[LOG]: I enjoy combining analytical thinking with creative design to build meaningful digital solutions across software, data analytics, and machine learning projects.';
+  "[LOG]: I enjoy combining analytical thinking with creative design to build meaningful digital solutions across software, data analytics, and machine learning projects.";
 
 export const journeyParagraphs = [
-  'I began my career in creative media and storytelling, then transitioned into Information Technology where I discovered a strong passion for data analytics, machine learning, and software development.',
-  'My work combines analytical thinking, technical problem solving, and creative design to deliver practical and meaningful digital solutions.',
+  "I began my career in creative media and storytelling, then transitioned into Information Technology where I discovered a strong passion for data analytics, machine learning, and software development.",
+  "My work combines analytical thinking, technical problem solving, and creative design to deliver practical and meaningful digital solutions.",
 ];
 
 export const certificates = [
   {
-    title: 'TESDA National Certificate',
-    issuer: 'TESDA',
-    date: '2024',
-    file: '/certificates/tesda.png',
-    type: 'image' as const,
+    title: "TESDA National Certificate",
+    issuer: "TESDA",
+    date: "2024",
+    file: "/certificates/tesda.png",
+    type: "image" as const,
   },
 ];
 
 export const personalInterests = [
-  { id: 'shopping', label: 'Shopping' },
-  { id: 'exploring', label: 'Exploring' },
-  { id: 'pasta', label: 'Pasta' },
-  { id: 'bread', label: 'Fresh bread' },
-  { id: 'fruit', label: 'Fruit' },
-  { id: 'salad', label: 'Vegetable salads' },
-  { id: 'dogs', label: 'Dogs' },
-  { id: 'photography', label: 'Photography' },
-  { id: 'writing', label: 'Writing' },
-  { id: 'painting', label: 'Drawing & painting' },
-  { id: 'building', label: 'Building things' },
-  { id: 'thinking', label: 'Thinking & logic' },
+  { id: "shopping", label: "Shopping" },
+  { id: "exploring", label: "Exploring" },
+  { id: "pasta", label: "Pasta" },
+  { id: "bread", label: "Fresh bread" },
+  { id: "fruit", label: "Fruit" },
+  { id: "salad", label: "Vegetable salads" },
+  { id: "dogs", label: "Dogs" },
+  { id: "photography", label: "Photography" },
+  { id: "writing", label: "Writing" },
+  { id: "painting", label: "Drawing & painting" },
+  { id: "building", label: "Building things" },
+  { id: "thinking", label: "Thinking & logic" },
 ];
