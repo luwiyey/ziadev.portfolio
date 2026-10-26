@@ -889,3 +889,18 @@ export const personalInterests = [
   { id: "computer", label: "Computers & development" },
   { id: "networking", label: "Networking & systems" },
 ];
+
+const heroInterestIds = new Set([
+  "computer",
+  "networking",
+  "writing",
+  "photography",
+  "dogs",
+  "thinking",
+]);
+export const heroInterests = personalInterests.filter((interest) =>
+  heroInterestIds.has(interest.id),
+);
+export const aboutInterests = personalInterests.filter(
+  (interest) => !heroInterestIds.has(interest.id),
+);

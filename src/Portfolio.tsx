@@ -28,15 +28,16 @@ import {
 } from "lucide-react";
 import {
   additionalProjects,
+  aboutInterests,
   certificates,
   clientContributions,
   contactLinks,
   designCollections,
   exploringSkills,
+  heroInterests,
   imageArtifacts,
   interactiveProjects,
   journeyParagraphs,
-  personalInterests,
   profileStats,
   projectHighlights,
   proofCards,
@@ -799,35 +800,39 @@ export default function Portfolio() {
             </span>
           </div>
           <div className="hero-art" aria-hidden="true">
-            {personalInterests.map((interest) => (
+            {[...heroInterests, ...aboutInterests].map((interest) => (
               <img
                 key={interest.id}
-                className={"interest-object interest-" + interest.id}
+                className={
+                  "interest-object interest-" + interest.id +
+                  (aboutInterests.includes(interest) ? " interest-secondary" : "")
+                }
                 src={"/interests/" + interest.id + ".webp"}
                 alt=""
                 width="480"
                 height="480"
+                loading={aboutInterests.includes(interest) ? "lazy" : "eager"}
                 decoding="async"
               />
             ))}
           </div>
-          <div className="hero-intro">
-            <p>Web applications.</p>
-            <p>A creative eye.</p>
-            <p>A mind for how things work.</p>
-          </div>
-          <h1 id="hero-title" className="hero-name">
-            <span>Zia Louise</span>
-            <em>
-              Mariano<span className="name-period">.</span>
-            </em>
-          </h1>
-          <div className="hero-bottom">
-            <p>
+          <div className="hero-identity">
+            <div className="hero-intro">
+              <p>Web applications.</p>
+              <p>A creative eye.</p>
+              <p>A mind for how things work.</p>
+            </div>
+            <h1 id="hero-title" className="hero-name">
+              <span>Zia Louise</span>
+              <em>Mariano</em>
+            </h1>
+            <p className="hero-description">
               I build useful web applications, make sense of data, and bring a
               creative eye to the details. Currently focused on web development
               and applied AI.
             </p>
+          </div>
+          <div className="hero-bottom">
             <div className="hero-cta">
               <a className="button button-dark hero-work-link" href="#work">
                 Explore my work <ArrowDown size={17} aria-hidden="true" />
@@ -840,17 +845,11 @@ export default function Portfolio() {
               </a>
             </div>
           </div>
-          <div className="hero-footnote">
-            <span className="eyebrow">
-              React / Next.js / TypeScript / Firebase
-            </span>
-            <span className="eyebrow">Open to web developer roles</span>
-          </div>
         </section>
 
         <section id="work" className="work-section section-shell">
           <SectionHeading
-            label="Web development first"
+            label="Shopify stores"
             title="Selected"
             accent="work"
           >
@@ -1134,21 +1133,32 @@ export default function Portfolio() {
               })}
             </div>
             <div className="personal-note">
-              <p className="eyebrow">Away from the keyboard</p>
-              <h3>
-                Curious about <em>more than code.</em>
-              </h3>
-              <p>
-                I love exploring, photography, writing, drawing, painting, and
-                building things. Add dogs, a little shopping, pasta, fresh
-                bread, fruit, and vegetable salads to the mix. Thinking things
-                through and finding the logic is part of the fun, too.
-              </p>
-              <ul className="interest-labels">
-                {personalInterests.map((interest) => (
-                  <li key={interest.id}>{interest.label}</li>
+              <div className="personal-art" aria-hidden="true">
+                {aboutInterests.map((interest) => (
+                  <img
+                    key={interest.id}
+                    className={"personal-object personal-" + interest.id}
+                    src={"/interests/" + interest.id + ".webp"}
+                    alt=""
+                    width="480"
+                    height="480"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 ))}
-              </ul>
+              </div>
+              <div className="personal-copy">
+                <p className="eyebrow">Beyond the code</p>
+                <h3>
+                  Curious about <em>more than code.</em>
+                </h3>
+                <p>
+                  I love exploring, photography, writing, drawing, painting, and
+                  building things. Add dogs, a little shopping, pasta, fresh
+                  bread, fruit, and vegetable salads to the mix. Thinking things
+                  through and finding the logic is part of the fun, too.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -1279,7 +1289,17 @@ export default function Portfolio() {
             <h2>
               Let&apos;s make
               <br />
-              something <em>matter.</em>
+              something{" "}
+              <span className="contact-ending">
+                <em>matter.</em>
+                <a
+                  className="contact-inline-arrow"
+                  href={"mailto:" + email}
+                  aria-label="Email Zia"
+                >
+                  <ArrowUpRight strokeWidth={1.5} />
+                </a>
+              </span>
             </h2>
             <a
               className="contact-arrow"
@@ -1312,14 +1332,14 @@ export default function Portfolio() {
                     : ""}
               </span>
             </div>
+            <a
+              className="button button-dark contact-resume"
+              href={resume}
+              download
+            >
+              Download my resume <Download size={17} />
+            </a>
           </div>
-          <a
-            className="button button-dark contact-resume"
-            href={resume}
-            download
-          >
-            Download my resume <Download size={17} />
-          </a>
         </section>
       </main>
 
@@ -1340,18 +1360,21 @@ export default function Portfolio() {
           </a>
         </div>
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Zia Louise Mariano</p>
+          <p>
+            &copy; {new Date().getFullYear()}
+            <span className="footer-credit-name"> Zia Louise Mariano</span>
+            <span className="footer-version">v1.0.0</span>
+          </p>
           <button
             className="motion-toggle"
             onClick={() => setMotionPaused(!motionPaused)}
             aria-pressed={motionPaused}
           >
-            {motionPaused ? "Resume icon motion" : "Pause icon motion"}
+            {motionPaused ? "Resume motion" : "Pause motion"}
           </button>
-          <a href="./original.html">
-            Original 3D portfolio <ArrowUpRight size={13} />
+          <a href="./original.html" aria-label="View original 3D portfolio">
+            Original 3D <ArrowUpRight size={13} />
           </a>
-          <span>v1.0.0</span>
         </div>
       </footer>
       {selected && (

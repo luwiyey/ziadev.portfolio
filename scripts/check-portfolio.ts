@@ -3,10 +3,12 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import {
   additionalProjects,
+  aboutInterests,
   certificates,
   clientContributions,
   designCollections,
   imageArtifacts,
+  heroInterests,
   interactiveProjects,
   personalInterests,
   videoArtifacts,
@@ -38,6 +40,19 @@ for (const interest of personalInterests)
     existsSync("public/interests/" + interest.id + ".webp"),
     "Missing icon: " + interest.id,
   );
+assert.equal(heroInterests.length, 6, "Keep the upper hero limited to six focal objects.");
+assert.ok(
+  ["computer", "networking", "writing"].every((id) =>
+    heroInterests.some((interest) => interest.id === id),
+  ),
+  "Professional tools must remain part of the hero.",
+);
+assert.equal(aboutInterests.length, 8);
+assert.equal(
+  new Set([...heroInterests, ...aboutInterests].map((interest) => interest.id)).size,
+  personalInterests.length,
+  "Keep every original icon across the hero and About section.",
+);
 for (const project of all) {
   assert.ok(
     project.title && project.role && project.tags.length,
@@ -79,6 +94,11 @@ assert.equal(
   "Do not link the repurposed domain.",
 );
 const main = readFileSync("src/Portfolio.tsx", "utf8");
+const styles = readFileSync("src/portfolio.css", "utf8");
+assert.ok(
+  styles.match(/\.tag-list > span \{[^}]*border-radius: 2px;/s),
+  "Use rectangular skill labels, not pills.",
+);
 assert.ok(
   main.includes('Resume <Download size={16} aria-hidden="true" />'),
   "The header resume action must use a download icon, not a navigation arrow.",
@@ -102,6 +122,20 @@ const hero = main.slice(
   main.indexOf('id="top"'),
   main.indexOf('<section id="work"'),
 );
+assert.ok(
+  hero.includes("[...heroInterests, ...aboutInterests].map"),
+  "Keep the full icon set in the wider hero, with responsive visibility.",
+);
+assert.ok(!hero.includes("name-period"), "Do not restore the removed period after Mariano.");
+assert.ok(
+  !hero.includes("hero-footnote") && main.includes('label="Shopify stores"'),
+  "Keep the hero technology strip removed and the updated store label.",
+);
+assert.ok(
+  !hero.includes("hero-keepsakes") && main.includes("aboutInterests.map"),
+  "Keep secondary icons behind About copy, never below the hero buttons.",
+);
+assert.ok(!main.includes('className="interest-labels"'), "Keep the removed interests list out of the About section.");
 assert.equal(
   [...hero.matchAll(/href="#work"/g)].length,
   1,
