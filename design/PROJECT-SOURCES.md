@@ -51,3 +51,41 @@ not represented as photographs by Zia or buildings designed by Northline.
 - Chris Johnson: https://unsplash.com/photos/37zoajcSupg
   concrete.webp / image photo-1746911779503-f16ee2088257
 - License: https://unsplash.com/license
+
+## Final portfolio additions
+
+- Ice Guys Jewelry: https://iceguysjewelry.com/ inspected in the browser.
+  Shopify storefront; credited as a collaborative contribution under a supervisor.
+- Fieldwork, Morrow, Halfcourt, Ridgeline, and Clearline are five additional
+  original fictional concepts, not copies of Dribbble shots or client commissions.
+  Clearline uses explicit deterministic rules, not a live AI model.
+- Dribbble references were consulted for broad retail and interaction directions:
+  https://dribbble.com/tags/pet-ecommerce and the supplied basketball design link.
+  No Dribbble artwork, screenshots, or third-party project credit is republished.
+- New Unsplash reference photograph IDs used in fictional concepts:
+  market: photo-1542838132-92c53300491e;
+  dog: photo-1552053831-71594a27632d;
+  basketball: photo-1546519638-68e109498ffc;
+  tomatoes: photo-1546094096-0df4bcaaa337;
+  greens: photo-1540420773420-3366772f4999;
+  oranges: photo-1547514701-42782101795e;
+  mountain: photo-1464822759023-fed622ff2c3b.
+  Requested from https://images.unsplash.com/ with resizing and compression.
+  These are reference photos, not Zia's photography or real client products.
+- Product packaging and sports illustrations are original code-native assets.
+- Five layout walkthroughs are scroll-overviews generated from screenshots of
+  these working concept pages. They are not fabricated customer sessions.
+- The two supplied presentation boards are academic infographic and poster
+  collections. No medical guidance or individual source-file authorship beyond
+  the supplied collection is verified or claimed.
+- Canva Nest & Next and Lara Loraine Sulit were inspected via read-only Preview.
+  Only public-facing design content was captured, not account settings or editor
+  controls. Their source links can require Canva access. Nest & Next contains
+  placeholder copy and is explicitly labeled as a design prototype.
+- The published invitation design is shown as supplied design work. Depicted
+  people and photographs are not claimed as Zia's photography clients.
+- Student-ID source contains personal fields. With the user's approval, only
+  a layout reconstruction with name, portrait, ID, and signature removed is
+  published. The original file and source link are withheld.
+- The two new computer/networking renders are original editable Blender geometry
+  in the same source scene as the other twelve icons.

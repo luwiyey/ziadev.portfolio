@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -6,212 +6,10 @@ import {
   Pause,
   Play,
   Plus,
-  RotateCcw,
   Trash2,
 } from "lucide-react";
 import "./lab.css";
-
-function Planner() {
-  const [day, setDay] = useState(0);
-  const [completed, setCompleted] = useState<Record<string, boolean>>({});
-  const habits = [
-    "A glass of water first",
-    "Make something small",
-    "Take a screen-free walk",
-    "Read a few good pages",
-  ];
-  const done = habits.filter((_, i) => completed[day + "-" + i]).length;
-  return (
-    <div className="lab-planner">
-      <div className="phone-shell">
-        <div className="phone-status">
-          <span>9:41</span>
-          <span>POCKET / BROWSER PROTOTYPE</span>
-        </div>
-        <p className="lab-eyebrow">A LITTLE AT A TIME.</p>
-        <h3>
-          Good days
-          <br />
-          are <em>made.</em>
-        </h3>
-        <div
-          className="planner-days"
-          role="group"
-          aria-label="Choose a planner day"
-        >
-          {["M", "T", "W", "T", "F", "S", "S"].map((label, index) => (
-            <button
-              key={index}
-              onClick={() => setDay(index)}
-              aria-label={
-                [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                  "Sunday",
-                ][index]
-              }
-              aria-pressed={day === index}
-            >
-              {label}
-              <span>{index + 1}</span>
-            </button>
-          ))}
-        </div>
-        <div className="planner-progress">
-          <span>{done} of 4 little wins</span>
-          <progress value={done} max={4} aria-label="Daily habits completed" />
-        </div>
-        <div className="planner-habits">
-          {habits.map((habit, index) => (
-            <label key={habit}>
-              <input
-                type="checkbox"
-                checked={Boolean(completed[day + "-" + index])}
-                onChange={(event) =>
-                  setCompleted({
-                    ...completed,
-                    [day + "-" + index]: event.target.checked,
-                  })
-                }
-              />
-              <span>{habit}</span>
-              <Check size={17} />
-            </label>
-          ))}
-        </div>
-        <p className="planner-note" role="status">
-          {done === 4
-            ? "A little progress. A very good day."
-            : "You do not have to do everything. Start here."}
-        </p>
-      </div>
-      <div className="lab-side-note">
-        <span>01 / MOBILE INTERFACE</span>
-        <h4>
-          Small screen.
-          <br />
-          Thoughtful details.
-        </h4>
-        <p>
-          Change the day and check off a few habits. Each day has its own
-          progress.
-        </p>
-        <p className="lab-disclaimer">
-          Android-style interaction study in the browser. This is not a
-          downloadable Android application.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function TargetGame() {
-  const [phase, setPhase] = useState<"idle" | "running" | "paused" | "done">(
-    "idle",
-  );
-  const [remaining, setRemaining] = useState(20);
-  const [score, setScore] = useState(0);
-  const [spot, setSpot] = useState(4);
-  useEffect(() => {
-    if (phase !== "running") return;
-    if (remaining <= 0) {
-      setPhase("done");
-      return;
-    }
-    const timer = setTimeout(() => setRemaining((value) => value - 1), 1000);
-    return () => clearTimeout(timer);
-  }, [phase, remaining]);
-  const start = () => {
-    setScore(0);
-    setRemaining(20);
-    setSpot(4);
-    setPhase("running");
-  };
-  const hit = () => {
-    if (phase !== "running") return;
-    setScore((value) => value + 1);
-    setSpot((value) => (value + 4) % 9);
-  };
-  return (
-    <div className="target-game">
-      <div className="target-game-head">
-        <div>
-          <p className="lab-eyebrow">BROWSER ARCADE / NO DOWNLOAD</p>
-          <h3>
-            NEON
-            <br />
-            <span>TARGET PRACTICE</span>
-          </h3>
-        </div>
-        <div className="target-score">
-          <span>
-            SCORE <strong>{score}</strong>
-          </span>
-          <span>
-            TIME <strong>{remaining}s</strong>
-          </span>
-        </div>
-      </div>
-      <div className="target-arena">
-        {phase === "running" ? (
-          <button
-            className="neon-target"
-            aria-label="Hit the target"
-            onClick={hit}
-            style={{
-              left: 16 + (spot % 3) * 33 + "%",
-              top: 18 + Math.floor(spot / 3) * 32 + "%",
-            }}
-          >
-            <span />+
-          </button>
-        ) : (
-          <div className="target-message">
-            <h4>
-              {phase === "done"
-                ? score + " targets tagged."
-                : phase === "paused"
-                  ? "Take a breather."
-                  : "Ready, steady, tag."}
-            </h4>
-            <p>
-              {phase === "done"
-                ? "One more round?"
-                : "Tap the target or use Tab and Enter. You have 20 seconds."}
-            </p>
-            <button
-              onClick={phase === "paused" ? () => setPhase("running") : start}
-            >
-              {phase === "paused"
-                ? "Resume"
-                : phase === "done"
-                  ? "Play again"
-                  : "Start game"}{" "}
-              <Play size={15} />
-            </button>
-          </div>
-        )}
-      </div>
-      <div className="target-game-foot">
-        <p>Companion browser experiment, not the original Android game.</p>
-        {phase === "running" && (
-          <button onClick={() => setPhase("paused")}>
-            <Pause size={15} /> Pause
-          </button>
-        )}
-        {phase !== "idle" && (
-          <button onClick={start}>
-            <RotateCcw size={15} /> Restart
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
+import Ledger from "./Ledger";
 
 function MaterialLab() {
   const [color, setColor] = useState("#a64150");
@@ -259,7 +57,7 @@ function MaterialLab() {
           <input
             type="color"
             value={color}
-              onInput={(event) => setColor(event.currentTarget.value)}
+            onInput={(event) => setColor(event.currentTarget.value)}
             onChange={(event) => setColor(event.target.value)}
           />
         </label>
@@ -424,7 +222,7 @@ function DesignLab() {
           <input
             type="color"
             value={background}
-              onInput={(event) => setBackground(event.currentTarget.value)}
+            onInput={(event) => setBackground(event.currentTarget.value)}
             onChange={(event) => setBackground(event.target.value)}
           />
         </label>
@@ -433,7 +231,7 @@ function DesignLab() {
           <input
             type="color"
             value={foreground}
-              onInput={(event) => setForeground(event.currentTarget.value)}
+            onInput={(event) => setForeground(event.currentTarget.value)}
             onChange={(event) => setForeground(event.target.value)}
           />
         </label>
@@ -579,8 +377,7 @@ function BoardLab() {
 }
 
 const demos: Record<string, () => React.ReactNode> = {
-  planner: Planner,
-  target: TargetGame,
+  budget: Ledger,
   material: MaterialLab,
   motion: MotionLab,
   design: DesignLab,

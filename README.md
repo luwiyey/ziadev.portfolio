@@ -26,8 +26,10 @@ are src/portfolio.css. The original experience remains in src/FullPortfolio.tsx.
 
 Original media projects, current live applications, and independent interactive
 concepts are available through category filters, search, and the full gallery.
-Videos load only after Play is pressed in the project
-viewer. Original images and videos are retained in public/artifacts.
+Videos load only after Play is pressed in the project viewer. Streaming copies
+in public/demos are H.264/AAC, 720p or smaller, with fast-start metadata.
+Original images and recordings remain in public/artifacts. Regenerate the
+streaming copies with node scripts/optimize-project-videos.mjs (FFmpeg required).
 
 Optimized images and video posters are committed in public/previews. Run
 npm run previews after changing source media (requires FFmpeg on PATH, or
@@ -52,10 +54,13 @@ a visible Pause control. System reduced-motion preferences disable animation.
 
 ## Interactive concepts and navigation
 
-Five business websites are available at /?concept=fold, northline, good-dog,
-still, and forma. Each concept can be tried in the project dialog without
+Ten business websites are available at /?concept=fold, northline, good-dog,
+still, forma, fieldwork, morrow, halfcourt, ridgeline, and clearline.
+Each concept can be tried in the project dialog without
 leaving the portfolio, or opened separately. Their back links return to Work.
-Six lightweight browser experiments are in the interactive gallery. They are
+Five lightweight browser experiments are in the interactive gallery, including
+Ledger, a cash-flow application. Pocket Planner and the duplicate Neon Target
+Practice have been removed. These experiments are
 not represented as additional native Android apps or commissioned projects.
 
 Certificate previews have Close, Back to portfolio, zoom, download, Escape,
@@ -65,6 +70,16 @@ do not replace the portfolio page with a raw file.
 Client work is credited as team contributions under a supervisor. Verified
 store links and provenance are documented in design/PROJECT-SOURCES.md.
 The old Holistic Vybez domain is deliberately not linked.
+
+UI & Design opens with the supplied infographic and poster boards. Canva
+website previews stay inside the portfolio; opening their source is optional.
+The student identity layout is a privacy-safe reconstruction, with real
+identifiers and signatures removed and its source link withheld.
+
+A session-scoped construction notice uses a native dialog with a blurred
+backdrop, stamped entrance, keyboard support, and a Continue action. It appears
+once per browsing session. Client logos and their descriptions form individual
+cards below 1050px; filters use intentional full-width rows on phones.
 
 Editable Shopify theme source is in design/shopify/forma. It is a theme concept,
 not a claim of a live Shopify deployment. See design/shopify/README.md.

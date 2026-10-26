@@ -291,6 +291,29 @@ for a in (-.2, .7, 1.6, 2.5):
     tube("Idea ray", [(1.0*math.cos(a), .04, 1.2+.75*math.sin(a)),
         (1.2*math.cos(a), .04, 1.2+.94*math.sin(a))], .045, "cream")
 
+start("13 - Computer")
+box("Desktop display shell", (0, 0, 1.15), (1.85, .18, 1.18), "red", .12)
+box("Dark display glass", (0, -.105, 1.18), (1.62, .035, .91), "glass", .06)
+for z, length in [(1.43, .7), (1.25, 1.05), (1.07, .5)]:
+    box("Code line", (-.18, -.13, z), (length, .015, .045), "gold" if z == 1.43 else "cream", .012)
+box("Monitor stand", (0, .05, .43), (.18, .22, .58), "metal", .045)
+box("Monitor foot", (0, -.05, .18), (.85, .56, .12), "red", .07)
+box("Keyboard", (0, -.6, .16), (1.5, .48, .1), "cream", .06)
+for x in range(8):
+    for y in range(3):
+        box("Keyboard key", (-.59 + x*.17, -.76+y*.12, .22), (.11, .075, .025), "gold" if x == 7 else "red", .015)
+
+start("14 - Networking")
+box("Router enclosure", (0, 0, .43), (1.7, 1.0, .48), "green", .15)
+for x in (-.6, .6):
+    cylinder("Antenna base", (x, .28, .72), .1, .16, "metal")
+    tube("Router antenna", [(x, .28, .75), (x*1.2, .31, 1.62)], .065, "cream")
+for x in (-.48, -.22, .04, .3):
+    sphere("Network status light", (x, -.51, .45), (.045, .025, .045), "gold")
+for r in (.3, .52, .74):
+    tube("Wireless signal arc", [(r*math.cos(a), -.07, 1.14+r*math.sin(a)) for a in [math.pi*.2+i*math.pi*.6/12 for i in range(13)]], .04, "gold")
+sphere("Wireless origin", (0, -.07, 1.28), (.08, .08, .08), "gold")
+
 scene = bpy.context.scene
 scene.render.engine = "CYCLES"
 scene.cycles.device = "CPU"
@@ -335,8 +358,10 @@ for name, pos, power, size in [("Key softbox", (-3, -4, 7), 650, 4),
     aim(light, (0, 0, .7))
 
 names = ["shopping", "exploring", "pasta", "bread", "fruit", "salad",
-         "dogs", "photography", "writing", "painting", "building", "thinking"]
+         "dogs", "photography", "writing", "painting", "building", "thinking", "computer", "networking"]
 for index, collection in enumerate(collections):
+    if os.environ.get("ICON_ONLY_NEW") and index < 12:
+        continue
     for group in collections:
         group.hide_render = group != collection
     scene.render.filepath = os.path.join(OUTPUT, names[index] + ".png")
@@ -347,18 +372,18 @@ for index, collection in enumerate(collections):
 for index, collection in enumerate(collections):
     collection.hide_render = False
     x = ((index % 4) - 1.5) * 3.6
-    y = (1 - index // 4) * 3.8
+    y = (1.5 - index // 4) * 3.8
     for obj in collection.objects:
         obj.location.x += x
         obj.location.y += y
 camera.location = (3, -13, 20)
-camera.data.ortho_scale = 17
+camera.data.ortho_scale = 19
 aim(camera, (0, 0, .6))
 scene.render.resolution_x = 1200
 scene.render.resolution_y = 900
 scene.cycles.samples = 16
 scene.render.filepath = os.path.join(SOURCE, "icon-contact-sheet.png")
-scene["About"] = "Twelve original, editable interest icons for Zia Louise Mariano."
+scene["About"] = "Fourteen original, editable interest icons for Zia Louise Mariano."
 scene["Palette"] = "Burgundy, olive green, golden yellow, warm cream."
 scene["Rerender"] = "Run scripts/build-interest-icons.py to regenerate individual transparent PNGs."
 bpy.context.preferences.filepaths.save_version = 0

@@ -10,6 +10,8 @@ export type Artifact = {
   liveLabel?: string;
   kind?: string;
   interactiveDemo?: string;
+  walkthrough?: string;
+  resources?: { label: string; href: string }[];
   categoryHint?: "Websites" | "Android apps" | "Animation & 3D" | "UI & design";
   accessNote?: string;
   details?: { overview: string; tools: string[]; features: string[] };
@@ -26,6 +28,14 @@ export const heroTitle = "ARCHITECTING CYBER REALITIES";
 
 // Store links are public references, not claims of sole authorship or current ownership.
 export const clientContributions = [
+  {
+    name: "Ice Guys Jewelry",
+    sector: "Jewelry & custom pieces",
+    platform: "Shopify",
+    href: "https://iceguysjewelry.com/",
+    linkLabel: "View storefront",
+    note: "Collaborative storefront work; current site may have evolved.",
+  },
   {
     name: "Pet Purifair",
     sector: "Pet-care retail",
@@ -99,7 +109,7 @@ export const videoArtifacts: Artifact[] = [
     title: "Residential House 3D Architectural Visualization",
     role: "Course Project - 3D architectural visualization of a residential house using SketchUp and rendering tools",
     type: "video",
-    src: "/artifacts/videos/video-01.mp4",
+    src: "/demos/video-01.mp4",
     tags: ["COURSEWORK", "ARCHVIZ"],
   },
   {
@@ -107,7 +117,7 @@ export const videoArtifacts: Artifact[] = [
     title: "FORDA FILO Digital Animated Cartoon",
     role: "Course Project - Character illustration and short-form animation using digital illustration applications",
     type: "video",
-    src: "/artifacts/videos/video-02.mp4",
+    src: "/demos/video-02.mp4",
     tags: ["COURSEWORK", "ANIMATION"],
   },
   {
@@ -115,7 +125,7 @@ export const videoArtifacts: Artifact[] = [
     title: "Enrollment Process Demo (Freshmen and Transferees)",
     role: "Course Project - Panpacific University enrollment demo in animation for freshmen and transferee applicants",
     type: "video",
-    src: "/artifacts/videos/video-03.mp4",
+    src: "/demos/video-03.mp4",
     tags: ["COURSEWORK", "ENROLLMENT"],
   },
   {
@@ -123,7 +133,7 @@ export const videoArtifacts: Artifact[] = [
     title: "Enrollment Process Demo (Continuing and Returning)",
     role: "Course Project - Panpacific University enrollment demo in animation for continuing and returning students",
     type: "video",
-    src: "/artifacts/videos/video-04.mp4",
+    src: "/demos/video-04.mp4",
     tags: ["COURSEWORK", "ENROLLMENT"],
   },
   {
@@ -131,7 +141,7 @@ export const videoArtifacts: Artifact[] = [
     title: "PSNTI RouteCalc Android App",
     role: "Course Project - Android Studio mobile application for route, distance, and fare calculation",
     type: "video",
-    src: "/artifacts/videos/video-05.mp4",
+    src: "/demos/video-05.mp4",
     tags: ["COURSEWORK", "ANDROID APP"],
   },
   {
@@ -139,7 +149,7 @@ export const videoArtifacts: Artifact[] = [
     title: "Neon Laser Tag Mini Game",
     role: "Personal Project - Android Studio mini game inspired by arcade-style laser tag with a neon visual theme",
     type: "video",
-    src: "/artifacts/videos/video-06.mp4",
+    src: "/demos/video-06.mp4",
     tags: ["PERSONAL", "ANDROID GAME"],
   },
   {
@@ -147,7 +157,7 @@ export const videoArtifacts: Artifact[] = [
     title: "ABOUT ME Animation",
     role: "Course Project - Hand-drawn FlipaClip character sketch animation introducing my identity and style",
     type: "video",
-    src: "/artifacts/videos/video-07.mp4",
+    src: "/demos/video-07.mp4",
     tags: ["COURSEWORK", "FLIPACLIP"],
   },
   {
@@ -155,7 +165,7 @@ export const videoArtifacts: Artifact[] = [
     title: "Why IT in Panpacific University",
     role: "Course Project - Frame-by-frame concept animation on why choose Information Technology at Panpacific University",
     type: "video",
-    src: "/artifacts/videos/video-08.mp4",
+    src: "/demos/video-08.mp4",
     tags: ["COURSEWORK", "EDUCATION"],
   },
   {
@@ -163,7 +173,7 @@ export const videoArtifacts: Artifact[] = [
     title: "PU Queue Web App",
     role: "Course Project - Whole-university office management system for queueing, requests, and office workflows",
     type: "video",
-    src: "/artifacts/videos/video-09.mp4",
+    src: "/demos/video-09.mp4",
     tags: ["COURSEWORK", "WEB APP"],
   },
   {
@@ -171,7 +181,7 @@ export const videoArtifacts: Artifact[] = [
     title: "Lingkod-Ani",
     role: "Course Project - Barangay monitoring and communication website for agriculture services",
     type: "video",
-    src: "/artifacts/videos/video-10.mp4",
+    src: "/demos/video-10.mp4",
     tags: ["COURSEWORK", "WEB APP"],
     preview: "/previews/lingkod-live.webp",
     liveUrl: "https://lingkod-ani.com/",
@@ -266,6 +276,61 @@ export const additionalProjects: Artifact[] = [
   },
   ...[
     {
+      id: "fieldwork",
+      title: "Fieldwork - The Everyday Market",
+      role: "Neighborhood grocery storefront with department browsing, unit prices, search, and a sample pickup or delivery basket",
+      tools: ["React", "TypeScript", "Responsive CSS", "Cart state"],
+      features: [
+        "Brief: make a weekly grocery shop quick to scan",
+        "Design decision: practical department navigation and visible pack prices, not a lifestyle-only landing page",
+        "Working search, department filters, quantity controls, and sample delivery fee",
+      ],
+    },
+    {
+      id: "morrow",
+      title: "Morrow - Dog Food Store",
+      role: "Product-led pet-food concept with original packaging, recipe browsing, and a sample shopping bag",
+      tools: ["React", "TypeScript", "Packaging design", "CSS"],
+      features: [
+        "Brief: help shoppers compare recipes without unverified health claims",
+        "Design decision: oversized grotesque type, warm clay, dog photography, and readable product packs",
+        "Recipe filters, pack preview selection, and editable sample bag",
+      ],
+    },
+    {
+      id: "halfcourt",
+      title: "Halfcourt - Sports & Court Culture",
+      role: "Athletic retail concept with dramatic court photography, original merchandise illustrations, and size-aware cart interactions",
+      tools: ["React", "TypeScript", "SVG", "Barlow Condensed"],
+      features: [
+        "Brief: get players from the brand story to the right piece of gear",
+        "Design decision: condensed sports typography and orange-on-charcoal contrast rather than editorial serif styling",
+        "Category filters, required apparel sizes, and distinct cart lines per size",
+      ],
+    },
+    {
+      id: "ridgeline",
+      title: "Ridgeline - Find Your Pace",
+      role: "Landscape-led outdoor experience concept with a trail comparison index and sample group-price planner",
+      tools: ["React", "TypeScript", "Space Grotesk", "CSS"],
+      features: [
+        "Brief: choose an outing by distance, duration, and difficulty",
+        "Design decision: a comparison index instead of a repeated card grid",
+        "Difficulty filters, route selection, and a bounded group-price calculator; no real booking",
+      ],
+    },
+    {
+      id: "clearline",
+      title: "Clearline - Workflow Studio",
+      role: "Technical B2B landing page with an explainable request-routing simulator and a manual-effort calculator",
+      tools: ["React", "TypeScript", "Rule-based routing", "CSS"],
+      features: [
+        "Brief: make an automation service understandable before asking for trust",
+        "Design decision: a single technical typeface and visible input, rule, and review stages",
+        "Local request-routing simulation and time-estimate calculator; not a connected AI model",
+      ],
+    },
+    {
       id: "fold",
       title: "Fold - Neighborhood Bakery",
       role: "Editorial bakery landing page with a browsable seasonal menu",
@@ -329,6 +394,11 @@ export const additionalProjects: Artifact[] = [
     src: "/previews/concept-" + concept.id + ".webp",
     liveUrl: "/?concept=" + concept.id,
     liveLabel: "Explore concept",
+    ...(["fieldwork", "morrow", "halfcourt", "ridgeline", "clearline"].includes(
+      concept.id,
+    )
+      ? { walkthrough: "/walkthroughs/" + concept.id + ".mp4" }
+      : {}),
     tags: [
       "CONCEPT",
       "FRONTEND",
@@ -346,20 +416,12 @@ export const additionalProjects: Artifact[] = [
 
 export const interactiveProjects: Artifact[] = [
   {
-    id: "lab-planner",
-    title: "Pocket Planner",
-    categoryHint: "Android apps",
-    interactiveDemo: "planner",
-    role: "Concept Project - Android-style habit and task UI, playable as a browser prototype",
-    tags: ["CONCEPT", "MOBILE UI", "BROWSER PROTOTYPE"],
-  },
-  {
-    id: "lab-target",
-    title: "Neon Target Practice",
-    categoryHint: "Android apps",
-    interactiveDemo: "target",
-    role: "Personal Project - Playable browser companion inspired by the Android laser-tag mini game",
-    tags: ["PERSONAL", "MINI GAME", "BROWSER COMPANION"],
+    id: "lab-budget",
+    title: "Ledger - Monthly Money",
+    categoryHint: "Websites",
+    interactiveDemo: "budget",
+    role: "Concept Project - A cash-flow workspace for reviewing expenses, recording transactions, and checking a monthly spending limit",
+    tags: ["CONCEPT", "FINANCE UI", "REACT"],
   },
   {
     id: "lab-material",
@@ -397,10 +459,7 @@ export const interactiveProjects: Artifact[] = [
   ...project,
   type: "image" as const,
   categoryHint: project.categoryHint as Artifact["categoryHint"],
-  kind:
-    project.id === "lab-target"
-      ? "Browser game companion"
-      : "Interactive browser concept",
+  kind: "Interactive browser concept",
   src: "/previews/" + project.id + ".svg",
   accessNote:
     "Try this demo inside the portfolio. Browser-only state resets when the viewer closes; no account, personal data, real orders, or native Android installation is involved.",
@@ -547,7 +606,13 @@ export const skillGroups = [
   },
   {
     category: "3D & Frontend Systems",
-    items: ["Three.js", "Framer Motion"],
+    items: [
+      "Three.js",
+      "CSS animation",
+      "Framer Motion",
+      "Responsive design",
+      "Accessible interfaces",
+    ],
   },
   {
     category: "Data & AI",
@@ -567,18 +632,201 @@ export const skillGroups = [
   },
   {
     category: "Automation",
-    items: ["Selenium", "Requests"],
+    items: [
+      "Python scripting",
+      "Selenium",
+      "Requests",
+      "Google Apps Script",
+      "API integration",
+    ],
+  },
+  {
+    category: "E-commerce",
+    items: [
+      "Shopify",
+      "Liquid theme development",
+      "Product & collection layouts",
+      "Cart interfaces",
+      "Storefront styling",
+    ],
+  },
+  {
+    category: "Applied AI & engineering",
+    items: [
+      "YOLOv8",
+      "Object detection",
+      "Machine learning",
+      "AI-assisted development",
+      "Prompt iteration",
+      "Human review & validation",
+    ],
   },
   {
     category: "Creative Tools",
     items: [
       "Blender",
+      "Figma",
+      "Canva",
+      "SketchUp",
       "Adobe Photoshop",
       "Adobe Illustrator",
       "Adobe Lightroom",
       "DaVinci Resolve",
       "Mobile Illustration Apps",
     ],
+  },
+  {
+    category: "Delivery & collaboration",
+    items: [
+      "Git",
+      "GitHub",
+      "Vercel",
+      "Vite",
+      "TypeScript checks",
+      "Browser testing",
+    ],
+  },
+];
+
+export const exploringSkills = [
+  "LLM-powered applications",
+  "Retrieval-augmented generation (RAG)",
+  "AI workflow automation",
+  "n8n",
+  "Automated end-to-end tests",
+];
+
+export const designCollections: Artifact[] = [
+  {
+    id: "design-infographics",
+    title: "Information, Illustrated",
+    kind: "Academic visual-design collection",
+    role: "Course Project - Infographics translating educational topics into illustrated visual hierarchies",
+    type: "image",
+    src: "/design-work/infographics.webp",
+    preview: "/design-work/infographics-cover.webp",
+    categoryHint: "UI & design",
+    tags: ["COURSEWORK", "INFOGRAPHICS", "VISUAL COMMUNICATION"],
+    details: {
+      overview:
+        "A collected presentation of academic infographic work. The focus is visual communication: grouping information, balancing illustration with type, and guiding the reader through a topic.",
+      tools: ["Digital layout", "Illustration", "Visual hierarchy"],
+      features: [
+        "Educational poster compositions",
+        "Topic-specific color and illustration",
+        "Full presentation board available to inspect",
+      ],
+    },
+    accessNote:
+      "Presentation board supplied by Zia. Shown as visual-design work, not a web application or independently verified medical guidance.",
+  },
+  {
+    id: "design-posters",
+    title: "Messages with a Point of View",
+    kind: "Academic poster collection",
+    role: "Course Project - Poster compositions for technology, community, environment, and educational themes",
+    type: "image",
+    src: "/design-work/posters.webp",
+    preview: "/design-work/posters-cover.webp",
+    categoryHint: "UI & design",
+    tags: ["COURSEWORK", "POSTER DESIGN", "COMPOSITION"],
+    details: {
+      overview:
+        "A selection of one-time academic outputs brought together in a presentation board. Each poster uses a different visual vocabulary to support its subject and intended audience.",
+      tools: ["Digital composition", "Typography", "Visual storytelling"],
+      features: [
+        "Campaign and educational poster formats",
+        "Subject-led art direction",
+        "Full presentation board available to inspect",
+      ],
+    },
+  },
+  {
+    id: "design-invitation",
+    title: "A Love Letter - Invitation Website",
+    kind: "Canva invitation design",
+    role: "Personal Project - A romantic invitation website study using a photo-strip composition, layered florals, and burgundy accents",
+    type: "image",
+    src: "/design-work/canva-invitation.webp",
+    preview: "/design-work/canva-invitation-cover.webp",
+    categoryHint: "UI & design",
+    tags: ["DESIGN", "CANVA", "INVITATION WEBSITE"],
+    resources: [
+      {
+        label: "Open the invitation website",
+        href: "https://theylikeboss.my.canva.site/you-are-invited/",
+      },
+    ],
+    accessNote:
+      "Preview of the supplied published Canva invitation. Design work is shown here; photographs and depicted people are not presented as my photography clients.",
+  },
+  {
+    id: "design-nest",
+    title: "Nest & Next - Virtual Assistance",
+    kind: "Canva website prototype",
+    role: "Concept Project - A service-business website design exploring a warm visual identity and a structured client journey",
+    type: "image",
+    src: "/design-work/canva-nest.webp",
+    categoryHint: "UI & design",
+    tags: ["CONCEPT", "CANVA", "WEBSITE DESIGN"],
+    resources: [
+      {
+        label: "Open the Canva source",
+        href: "https://www.canva.com/design/DAHMXBTUsmI/3-P-g1WhgLInAzfTat28uA/edit",
+      },
+    ],
+    accessNote:
+      "A screenshot of the supplied Canva website preview. This is a design prototype with placeholder copy, not a fully developed service website. The source may require Canva access.",
+    details: {
+      overview:
+        "A virtual-assistance service website study centered on a nest-and-next visual concept, discovery-call path, and service hierarchy.",
+      tools: ["Canva", "Website prototyping", "Visual hierarchy"],
+      features: [
+        "Warm brown and cream art direction",
+        "Service and process section planning",
+        "In-portfolio screenshot preview",
+      ],
+    },
+  },
+  {
+    id: "design-lara",
+    title: "Lara Loraine Sulit - VA Portfolio",
+    kind: "Canva website design",
+    role: "Personal Project - A virtual-assistant portfolio design with service-led navigation and a warm, professional visual identity",
+    type: "image",
+    src: "/design-work/canva-lara.webp",
+    categoryHint: "UI & design",
+    tags: ["DESIGN", "CANVA", "PORTFOLIO"],
+    resources: [
+      {
+        label: "Open the Canva source",
+        href: "https://www.canva.com/design/DAHRH8zrmjQ/x3kNXx2wRI27xCPjHHTuZg/edit",
+      },
+    ],
+    accessNote:
+      "Preview of the supplied Canva design, not a coded website or a claim that I provide the services described in this person's portfolio. Canva may require sign-in for the source.",
+  },
+  {
+    id: "design-student-id",
+    title: "Northridge - Student Identity Layout",
+    kind: "Privacy-safe layout study",
+    role: "Personal Project - Burgundy and cream student-card design with a clear identity hierarchy",
+    type: "image",
+    src: "/design-work/student-id-redacted.svg",
+    categoryHint: "UI & design",
+    tags: ["DESIGN", "CANVA", "IDENTITY LAYOUT"],
+    accessNote:
+      "Privacy-safe portfolio reconstruction of the supplied Canva layout. Real student names, identifiers, signatures, and the original source link are withheld. This preview is not a usable identification document.",
+    details: {
+      overview:
+        "A student-card layout study combining an institutional header, portrait area, prominent name hierarchy, and secondary administrative details. The portfolio redraw preserves the overall visual direction without publishing personal information.",
+      tools: ["Canva", "Typography", "Layout"],
+      features: [
+        "Burgundy, cream, and gold visual system",
+        "Clear information hierarchy",
+        "Privacy-safe presentation with identifying fields removed",
+      ],
+    },
   },
 ];
 
@@ -638,4 +886,6 @@ export const personalInterests = [
   { id: "painting", label: "Drawing & painting" },
   { id: "building", label: "Building things" },
   { id: "thinking", label: "Thinking & logic" },
+  { id: "computer", label: "Computers & development" },
+  { id: "networking", label: "Networking & systems" },
 ];

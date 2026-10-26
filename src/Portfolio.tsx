@@ -31,6 +31,8 @@ import {
   certificates,
   clientContributions,
   contactLinks,
+  designCollections,
+  exploringSkills,
   imageArtifacts,
   interactiveProjects,
   journeyParagraphs,
@@ -44,15 +46,15 @@ import {
 } from "./portfolio-content";
 import "./portfolio.css";
 import CredentialPreview from "./CredentialPreview";
+import ConstructionNotice from "./ConstructionNotice";
 const InteractiveLab = lazy(() => import("./concepts/InteractiveLab"));
 
 const email = "luwiyeyz@gmail.com";
 const resume = contactLinks.find((link) => link.icon === "resume")!.href;
 const categories = [
   "All work",
-  "Websites",
+  "Websites & apps",
   "Landing pages",
-  "Android apps",
   "Animation & 3D",
   "UI & design",
 ] as const;
@@ -74,15 +76,19 @@ const projects: Project[] = [
   ...imageArtifacts,
   ...additionalProjects,
   ...interactiveProjects,
+  ...designCollections,
 ].map((project) => {
   const category: Category =
-    project.categoryHint ??
+    (project.categoryHint === "Websites" ||
+    project.categoryHint === "Android apps"
+      ? "Websites & apps"
+      : project.categoryHint) ??
     (project.id.startsWith("concept-")
       ? "Landing pages"
       : webIds.has(project.id) || Boolean(project.liveUrl)
-        ? "Websites"
+        ? "Websites & apps"
         : appIds.has(project.id)
-          ? "Android apps"
+          ? "Websites & apps"
           : project.type === "video"
             ? "Animation & 3D"
             : "UI & design");
@@ -90,13 +96,11 @@ const projects: Project[] = [
     ...project,
     category,
     color:
-      category === "Websites"
+      category === "Websites & apps"
         ? "sage"
-        : category === "Android apps"
-          ? "lavender"
-          : category === "Animation & 3D"
-            ? "peach"
-            : "butter",
+        : category === "Animation & 3D"
+          ? "peach"
+          : "butter",
   };
 });
 const projectOrder = [
@@ -104,6 +108,13 @@ const projectOrder = [
   "library-web",
   "routecalc-web",
   "video-09",
+  "concept-fieldwork",
+  "concept-morrow",
+  "concept-halfcourt",
+  "concept-ridgeline",
+  "concept-clearline",
+  "design-infographics",
+  "design-posters",
   "concept-forma",
   "concept-still",
   "concept-fold",
@@ -120,6 +131,7 @@ projects.sort((a, b) => {
 const preview = (project: Artifact) =>
   project.preview ??
   (project.interactiveDemo ||
+  project.id.startsWith("design-") ||
   additionalProjects.some((item) => item.id === project.id)
     ? project.src
     : "/previews/" + project.id + ".webp");
@@ -163,14 +175,79 @@ const orderedSkillGroups = [
   ...skillGroups.filter((group) => group.category !== "Web Development"),
 ];
 
+function ClientMark({ name }: { name: string }) {
+  const brands: Record<string, { className: string; content: ReactNode }> = {
+    "Ice Guys Jewelry": {
+      className: "iceguys",
+      content: (
+        <strong>
+          ICE GUYS<span>JEWELRY</span>
+        </strong>
+      ),
+    },
+    "Pet Purifair": {
+      className: "purifair",
+      content: (
+        <>
+          <span>PET</span>
+          <img src="/brands/purifair.svg" alt="Purifair" loading="lazy" />
+        </>
+      ),
+    },
+    HappyCap: {
+      className: "happycap",
+      content: (
+        <>
+          <span aria-hidden="true" className="cap-mark" />
+          <strong>HappyCap</strong>
+        </>
+      ),
+    },
+    chebeauty: {
+      className: "chebeauty",
+      content: (
+        <img src="/brands/chebeauty.svg" alt="chebeauty" loading="lazy" />
+      ),
+    },
+    "US Fireplace Store": {
+      className: "fireplace",
+      content: (
+        <img
+          src="/brands/fireplace.webp"
+          alt="US Fireplace Store"
+          loading="lazy"
+        />
+      ),
+    },
+    "Save Rack": {
+      className: "saverack",
+      content: (
+        <img src="/brands/saverack.webp" alt="Save Rack" loading="lazy" />
+      ),
+    },
+    "Holistic Vybez": {
+      className: "holistic",
+      content: (
+        <strong>
+          HOLISTIC
+          <br />
+          <em>VYBEZ</em>
+        </strong>
+      ),
+    },
+  };
+  const brand = brands[name];
+  return (
+    <div className={"brand-tile brand-" + brand.className}>{brand.content}</div>
+  );
+}
+
 function SectionHeading({
-  number,
   label,
   title,
   accent,
   children,
 }: {
-  number: string;
   label: string;
   title: string;
   accent: string;
@@ -179,9 +256,7 @@ function SectionHeading({
   return (
     <div className="section-heading">
       <div>
-        <p className="eyebrow">
-          <span>{number}</span> {label}
-        </p>
+        <p className="eyebrow">{label}</p>
         <h2>
           {title} <em>{accent}</em>
           <span className="heading-dot">.</span>
@@ -200,8 +275,16 @@ function ProjectCard({
   onOpen: (project: Project) => void;
 }) {
   const caseStudy = project.details ?? webCaseStudies[project.id];
+  const isCollection = ["design-infographics", "design-posters"].includes(project.id);
   return (
-    <article className="project-card">
+    <article
+      className={
+        "project-card" +
+        (isCollection
+          ? " highlighted-design"
+          : "")
+      }
+    >
       <button
         className={"project-visual " + project.color}
         onClick={() => onOpen(project)}
@@ -209,13 +292,15 @@ function ProjectCard({
       >
         <div className="project-topline">
           <span>
-            {project.interactiveDemo
-              ? "Interactive lab"
-              : project.id.startsWith("concept-")
-                ? "Independent concept"
-                : project.liveUrl
-                  ? "Web application"
-                  : project.category}
+            {isCollection
+              ? "Visual design collection"
+              : project.interactiveDemo
+                ? "Interactive lab"
+                : project.id.startsWith("concept-")
+                  ? "Independent concept"
+                  : project.liveUrl
+                    ? "Web application"
+                    : project.category}
           </span>
           <span>
             {project.interactiveDemo ? (
@@ -279,24 +364,6 @@ function ProjectCard({
           "",
         )}
       </p>
-      {(project.interactiveDemo || project.id.startsWith("concept-")) && (
-        <button
-          className="project-live-link in-page-demo"
-          onClick={() => onOpen(project)}
-        >
-          Try inside portfolio <Play size={14} />
-        </button>
-      )}
-      {project.liveUrl && (
-        <a
-          className="project-live-link"
-          href={project.liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {project.liveLabel ?? "Visit live website"} <ArrowUpRight size={15} />
-        </a>
-      )}
       {caseStudy && (
         <div className="project-focus">
           <span>
@@ -304,9 +371,6 @@ function ProjectCard({
               ? caseStudy.tools.join(" / ")
               : "Queues / Requests / Office workflows"}
           </span>
-          <button onClick={() => onOpen(project)}>
-            Explore the project <ArrowRight size={14} />
-          </button>
         </div>
       )}
     </article>
@@ -325,6 +389,7 @@ function ProjectDialog({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [zoomed, setZoomed] = useState(false);
   const [embedded, setEmbedded] = useState(project.id.startsWith("concept-"));
   const demoRef = useRef<HTMLIFrameElement>(null);
   const caseStudy = project.details ?? webCaseStudies[project.id];
@@ -369,6 +434,16 @@ function ProjectDialog({
       <div className="dialog-surface">
         <div className="dialog-toolbar">
           <span className="eyebrow">{project.category}</span>
+          {project.type === "image" &&
+            !project.interactiveDemo &&
+            !embedded && (
+              <button
+                className="text-link image-fit"
+                onClick={() => setZoomed(!zoomed)}
+              >
+                {zoomed ? "Fit image" : "Enlarge image"}
+              </button>
+            )}
           <button
             ref={closeRef}
             className="project-close"
@@ -382,7 +457,8 @@ function ProjectDialog({
           className={
             "dialog-media " +
             project.color +
-            (project.interactiveDemo || embedded ? " is-interactive" : "")
+            (project.interactiveDemo || embedded ? " is-interactive" : "") +
+            (zoomed ? " image-expanded" : "")
           }
         >
           {project.interactiveDemo ? (
@@ -450,7 +526,7 @@ function ProjectDialog({
               className="text-link embedded-toggle"
               onClick={() => setEmbedded(!embedded)}
             >
-              {embedded ? "Show project cover" : "Try inside portfolio"}{" "}
+              {embedded ? "Show project cover" : "Open interactive preview"}{" "}
               <Play size={15} />
             </button>
           )}
@@ -461,12 +537,45 @@ function ProjectDialog({
               target="_blank"
               rel="noopener noreferrer"
             >
-              {project.liveLabel ?? "Visit live website"}{" "}
+              {project.liveLabel ?? "Open website in a new tab"}{" "}
               <ArrowUpRight size={17} />
             </a>
           )}
           {project.accessNote && (
             <p className="project-access-note">{project.accessNote}</p>
+          )}
+          {project.walkthrough && (
+            <div className="walkthrough">
+              <h3>Layout walkthrough</h3>
+              <p>
+                A short overview of this original website concept. Use the
+                interactive preview above to try its controls.
+              </p>
+              <video
+                src={project.walkthrough}
+                poster={preview(project)}
+                controls
+                playsInline
+                preload="none"
+                aria-label={project.title + " layout walkthrough"}
+              />
+            </div>
+          )}
+          {project.resources && (
+            <div className="design-resources">
+              {project.resources.map((resource) => (
+                <a
+                  className="text-link"
+                  key={resource.href}
+                  href={resource.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {resource.label}
+                  <ArrowUpRight size={16} />
+                </a>
+              ))}
+            </div>
           )}
           {caseStudy && (
             <div className="case-study">
@@ -535,6 +644,13 @@ export default function Portfolio() {
   const [showAll, setShowAll] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const [motionPaused, setMotionPaused] = useState(false);
+  const [noticeOpen, setNoticeOpen] = useState(() => {
+    try {
+      return sessionStorage.getItem("zia:construction-notice:v1") !== "seen";
+    } catch {
+      return true;
+    }
+  });
   const heroRef = useRef<HTMLElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const copyTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -558,7 +674,7 @@ export default function Portfolio() {
     : filteredProjects.slice(0, 6);
 
   useEffect(() => {
-    document.title = "Zia Louise Mariano | Web Developer";
+    document.title = "Zia Louise Mariano | Web Developer & Data Analyst";
     return () => {
       if (copyTimeout.current) clearTimeout(copyTimeout.current);
     };
@@ -624,7 +740,6 @@ export default function Portfolio() {
           aria-label="Zia Mariano, back to top"
         >
           zia<span>m.</span>
-          <span className="wordmark-star">*</span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
           {navItems.map((item) => (
@@ -678,11 +793,9 @@ export default function Portfolio() {
         >
           <div className="hero-grid" aria-hidden="true" />
           <div className="hero-topline">
-            <span className="eyebrow">
-              <span className="status-dot" /> Web developer / Creative thinker
-            </span>
+            <span className="eyebrow">Web developer & Data analyst</span>
             <span className="eyebrow hero-location">
-              Based in the Philippines <span className="tiny-star">*</span>
+              Based in the Philippines
             </span>
           </div>
           <div className="hero-art" aria-hidden="true">
@@ -714,8 +827,9 @@ export default function Portfolio() {
           </h1>
           <div className="hero-bottom">
             <p>
-              I build websites and web applications for everyday workflows,
-              combining development with a background in data and visual design.
+              I build useful web applications, make sense of data, and bring a
+              creative eye to the details. Currently focused on web development
+              and applied AI.
             </p>
             <div className="hero-cta">
               <a className="button button-dark" href="#work">
@@ -733,13 +847,6 @@ export default function Portfolio() {
             <span className="eyebrow">
               React / Next.js / TypeScript / Firebase
             </span>
-            <button
-              className="motion-toggle"
-              onClick={() => setMotionPaused(!motionPaused)}
-              aria-pressed={motionPaused}
-            >
-              {motionPaused ? "Resume icon motion" : "Pause icon motion"}
-            </button>
             <a className="eyebrow" href="#work">
               Explore my web projects <ArrowDown size={14} />
             </a>
@@ -748,7 +855,6 @@ export default function Portfolio() {
 
         <section id="work" className="work-section section-shell">
           <SectionHeading
-            number="01"
             label="Web development first"
             title="Selected"
             accent="work"
@@ -806,21 +912,25 @@ export default function Portfolio() {
                   />
                 </div>
                 <div className="brand-tile brand-holistic">
-                  <span className="holistic-sun" aria-hidden="true">
-                    *
-                  </span>
                   <strong>
                     HOLISTIC
                     <br />
                     <em>VYBEZ</em>
                   </strong>
                 </div>
+                <div className="brand-tile brand-iceguys">
+                  <strong>
+                    ICE GUYS<span>JEWELRY</span>
+                  </strong>
+                </div>
               </div>
             </div>
             <div className="client-work-list">
-              {clientContributions.map((client, index) => (
+              {clientContributions.map((client) => (
                 <article key={client.name}>
-                  <span className="client-index">0{index + 1}</span>
+                  <div className="client-inline-brand">
+                    <ClientMark name={client.name} />
+                  </div>
                   <div>
                     <p className="project-kind">
                       {client.sector} / {client.platform}
@@ -970,9 +1080,7 @@ export default function Portfolio() {
 
         <section id="about" className="about-section">
           <div className="section-shell">
-            <p className="eyebrow light-eyebrow">
-              <span>02</span> A little about me
-            </p>
+            <p className="eyebrow light-eyebrow">A little about me</p>
             <div className="about-grid">
               <div className="about-portrait">
                 <img
@@ -991,11 +1099,12 @@ export default function Portfolio() {
                 <h2>
                   Web developer.
                   <br />
-                  <em>Creative thinker.</em>
+                  <em>Data analyst.</em>
                 </h2>
                 <p className="about-lead">
-                  I build web applications with an eye for design and an
-                  interest in the workflows behind the screen.
+                  A creative thinker who enjoys the logic behind a useful
+                  product, the story behind the data, and the details that make
+                  an interface work.
                 </p>
                 {journeyParagraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
@@ -1051,7 +1160,6 @@ export default function Portfolio() {
 
         <section id="skills" className="skills-section section-shell">
           <SectionHeading
-            number="03"
             label="Tools of the trade"
             title="Skills &"
             accent="interests"
@@ -1063,9 +1171,14 @@ export default function Portfolio() {
             </p>
           </SectionHeading>
           <div className="skills-list">
-            {orderedSkillGroups.map((group, index) => (
-              <div className="skill-row" key={group.category}>
-                <span className="skill-number">0{index + 1}</span>
+            {orderedSkillGroups.map((group) => (
+              <div
+                className={
+                  "skill-row" +
+                  (group.category.includes("AI") ? " ai-skill-row" : "")
+                }
+                key={group.category}
+              >
                 <h3>{group.category}</h3>
                 <div className="tag-list">
                   {group.items.map((item) => (
@@ -1075,14 +1188,25 @@ export default function Portfolio() {
               </div>
             ))}
           </div>
+          <div className="learning-note">
+            <h3>Next on my workbench</h3>
+            <p>
+              Areas I am exploring through small, testable projects, not a claim
+              of production expertise.
+            </p>
+            <div className="tag-list">
+              {exploringSkills.map((skill) => (
+                <span key={skill}>{skill}</span>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="highlights-section section-shell" id="highlights">
           <SectionHeading
-            number="04"
             label="Beyond the gallery"
-            title="More things"
-            accent="I've built"
+            title="Data &"
+            accent="earlier projects"
           >
             <p>
               Coursework, data challenges, and experiments
@@ -1091,12 +1215,9 @@ export default function Portfolio() {
             </p>
           </SectionHeading>
           <div className="highlights-list">
-            {projectHighlights.map((item, index) => (
+            {projectHighlights.map((item) => (
               <details className="highlight-item" key={item.title}>
                 <summary>
-                  <span className="highlight-index">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   <h3>{item.title}</h3>
                   <span className="highlight-expand">
                     <ChevronDown size={20} />
@@ -1111,10 +1232,9 @@ export default function Portfolio() {
         <section id="credentials" className="credentials-section">
           <div className="section-shell">
             <SectionHeading
-              number="05"
               label="Learning, always"
-              title="A little"
-              accent="proof"
+              title="Technical"
+              accent="credentials"
             >
               <p>Certification and verified technical competency.</p>
             </SectionHeading>
@@ -1159,9 +1279,7 @@ export default function Portfolio() {
         </section>
 
         <section id="contact" className="contact-section section-shell">
-          <p className="eyebrow">
-            <span>06</span> Have something in mind?
-          </p>
+          <p className="eyebrow">Have something in mind?</p>
           <div className="contact-heading">
             <h2>
               Let&apos;s make
@@ -1214,7 +1332,6 @@ export default function Portfolio() {
         <div className="footer-top">
           <a className="wordmark" href="#top">
             zia<span>m.</span>
-            <span className="wordmark-star">*</span>
           </a>
           <nav aria-label="Footer navigation">
             {navItems.map((item) => (
@@ -1229,7 +1346,13 @@ export default function Portfolio() {
         </div>
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Zia Louise Mariano</p>
-          <span>Built with curiosity. Made with care.</span>
+          <button
+            className="motion-toggle"
+            onClick={() => setMotionPaused(!motionPaused)}
+            aria-pressed={motionPaused}
+          >
+            {motionPaused ? "Resume icon motion" : "Pause icon motion"}
+          </button>
           <a href="./original.html">
             Original 3D portfolio <ArrowUpRight size={13} />
           </a>
@@ -1242,6 +1365,18 @@ export default function Portfolio() {
           project={selected}
           onClose={() => setSelected(null)}
           onNavigate={navigateProject}
+        />
+      )}
+      {noticeOpen && (
+        <ConstructionNotice
+          onContinue={() => {
+            try {
+              sessionStorage.setItem("zia:construction-notice:v1", "seen");
+            } catch {
+              /* Browsing remains available when storage is restricted. */
+            }
+            setNoticeOpen(false);
+          }}
         />
       )}
       {selectedCertificate && (

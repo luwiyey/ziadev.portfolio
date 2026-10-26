@@ -1,0 +1,310 @@
+.ledger {
+  background: #101f27;
+  color: #edf2f0;
+  font:
+    400 14px/1.5 "DM Sans",
+    sans-serif;
+  padding: 0;
+}
+.ledger * {
+  box-sizing: border-box;
+}
+.ledger :where(h3, h4, p) {
+  margin: 0;
+}
+.ledger button,
+.ledger input,
+.ledger select {
+  font: inherit;
+}
+.ledger button {
+  cursor: pointer;
+}
+.ledger :where(button, input, select):focus-visible {
+  outline: 2px solid #d5e97a;
+  outline-offset: 3px;
+}
+.ledger header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 30px;
+  border-bottom: 1px solid #ffffff20;
+}
+.ledger header strong {
+  font:
+    600 30px "Bricolage Grotesque",
+    sans-serif;
+  letter-spacing: -0.05em;
+}
+.ledger header strong span {
+  color: #d5e97a;
+  margin-left: 4px;
+}
+.ledger header > span {
+  color: #8eaaaf;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+.ledger header button {
+  margin-left: auto;
+  border: 1px solid #52636c;
+  color: #edf2f0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border-radius: 3px;
+}
+.ledger main {
+  padding: 30px;
+}
+.ledger-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+.ledger-heading p,
+.ledger-entry > p {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #9bb6ba;
+}
+.ledger-heading h3 {
+  font:
+    500 clamp(25px, 3vw, 42px)/1.1 "Bricolage Grotesque",
+    sans-serif;
+  margin-top: 10px;
+  letter-spacing: -0.04em;
+}
+.ledger label {
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+  color: #bdd0d0;
+}
+.ledger :where(input, select) {
+  width: 100%;
+  min-width: 0;
+  min-height: 43px;
+  padding: 10px;
+  border: 1px solid #52636c;
+  background: #152a33;
+  color: #f5f6ed;
+  border-radius: 3px;
+}
+.ledger-metrics {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  border: 1px solid #ffffff20;
+  margin-bottom: 28px;
+}
+.ledger-metrics > div {
+  padding: 25px;
+  border-left: 1px solid #ffffff20;
+}
+.ledger-metrics > div:first-child {
+  border: 0;
+  background: #d5e97a;
+  color: #14282e;
+}
+.ledger-metrics p {
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+.ledger-metrics strong {
+  display: block;
+  font:
+    500 clamp(20px, 2.8vw, 34px)/1.2 "Bricolage Grotesque",
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.035em;
+}
+.ledger-balance span {
+  display: block;
+  margin-top: 12px;
+  font-size: 10px;
+}
+.ledger-metrics svg {
+  width: 20px;
+  margin-bottom: 8px;
+  color: #d5e97a;
+}
+.ledger-columns {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+}
+.ledger-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.ledger h4 {
+  font:
+    500 20px "Bricolage Grotesque",
+    sans-serif;
+}
+.ledger-section-title > span {
+  font-size: 8px;
+  color: #9bb6ba;
+  letter-spacing: 0.1em;
+}
+.ledger-bars {
+  display: grid;
+  gap: 18px;
+  margin: 25px 0;
+}
+.ledger-bars > div > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+.ledger-track {
+  height: 6px;
+  background: #ffffff12;
+}
+.ledger-track span {
+  display: block;
+  height: 100%;
+  background: #6cafad;
+}
+.ledger-limit {
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  align-items: center;
+}
+.ledger progress {
+  width: 100%;
+  height: 6px;
+  accent-color: #d5e97a;
+  margin-top: 15px;
+}
+.ledger-budget-note {
+  font-size: 11px;
+  color: #d5e97a;
+  margin-top: 6px;
+}
+.ledger-entry {
+  border: 1px solid #ffffff20;
+  padding: 22px;
+}
+.ledger-entry h4 {
+  margin-block: 10px 20px;
+}
+.ledger-entry form {
+  display: grid;
+  gap: 17px;
+}
+.ledger-entry form > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.ledger-entry button {
+  background: #d5e97a;
+  color: #14282e;
+  border: 0;
+  min-height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.ledger-transactions {
+  margin-top: 35px;
+}
+.ledger-section-title button {
+  background: none;
+  border: 0;
+  color: #9bb6ba;
+  padding: 10px;
+  font-size: 11px;
+}
+.ledger-section-title button[aria-pressed="true"] {
+  color: #d5e97a;
+  border-bottom: 1px solid;
+}
+.ledger-table {
+  overflow-x: auto;
+}
+.ledger table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 12px;
+}
+.ledger :where(th, td) {
+  padding: 12px 8px;
+  border-bottom: 1px solid #ffffff18;
+}
+.ledger th {
+  font-weight: 400;
+  color: #9bb6ba;
+  font-size: 10px;
+}
+.ledger td:nth-child(3) {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ledger td.is-income {
+  color: #d5e97a;
+}
+.ledger td button {
+  background: none;
+  border: 0;
+  color: #9bb6ba;
+  min-width: 36px;
+  min-height: 36px;
+  display: grid;
+  place-items: center;
+}
+.ledger-message {
+  margin-top: 20px !important;
+  min-height: 35px;
+  font-size: 11px;
+  color: #9bb6ba;
+}
+@media (max-width: 600px) {
+  .ledger header {
+    padding: 18px;
+  }
+  .ledger header > span {
+    display: none;
+  }
+  .ledger main {
+    padding: 22px 18px;
+  }
+  .ledger-heading {
+    align-items: start;
+  }
+  .ledger-heading label {
+    width: 100px;
+    flex: 0 0 100px;
+  }
+  .ledger-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ledger-metrics .ledger-balance {
+    grid-column: 1/-1;
+  }
+  .ledger-metrics > div {
+    padding: 20px;
+  }
+  .ledger-columns {
+    grid-template-columns: 1fr;
+  }
+  .ledger table {
+    font-size: 10px;
+  }
+  .ledger :where(th, td) {
+    padding-inline: 3px;
+  }
+}

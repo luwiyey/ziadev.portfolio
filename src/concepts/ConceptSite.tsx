@@ -11,6 +11,7 @@ import {
   X,
 } from "lucide-react";
 import "./concepts.css";
+import { Clearline, Fieldwork, Halfcourt, Morrow, Ridgeline } from "./NewConcepts";
 
 const image = (name: string) => "/concepts/" + name;
 const photos = [
@@ -1031,6 +1032,11 @@ const concepts: Record<string, { name: string; component: () => ReactNode }> = {
   "good-dog": { name: "Good Dog Grooming", component: GoodDog },
   still: { name: "Still Photography", component: Still },
   forma: { name: "Forma Objects", component: Forma },
+  fieldwork: { name: "Fieldwork Market", component: Fieldwork },
+  morrow: { name: "Morrow Dog Food", component: Morrow },
+  halfcourt: { name: "Halfcourt Sports", component: Halfcourt },
+  ridgeline: { name: "Ridgeline Outdoors", component: Ridgeline },
+  clearline: { name: "Clearline Automation", component: Clearline },
 };
 export default function ConceptSite({ slug }: { slug: string }) {
   const concept = concepts[slug];
