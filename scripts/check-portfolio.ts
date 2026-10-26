@@ -79,6 +79,10 @@ assert.equal(
   "Do not link the repurposed domain.",
 );
 const main = readFileSync("src/Portfolio.tsx", "utf8");
+assert.ok(
+  main.includes('Resume <Download size={16} aria-hidden="true" />'),
+  "The header resume action must use a download icon, not a navigation arrow.",
+);
 const order = main.match(/const projectOrder = \[([\s\S]*?)\];/)?.[1] ?? "";
 const postersIndex = order.indexOf('"design-posters"');
 assert.ok(
@@ -87,15 +91,30 @@ assert.ok(
 );
 const intro = main.slice(
   main.indexOf('<div className="hero-intro">'),
-  main.indexOf('<div className="hero-actions">'),
+  main.indexOf('<h1 id="hero-title"'),
+);
+assert.deepEqual(
+  [...intro.matchAll(/<p>([^<]+)<\/p>/g)].map((match) => match[1]),
+  ["Web applications.", "A creative eye.", "A mind for how things work."],
+  "Keep the three independent phrases above the name.",
+);
+const hero = main.slice(
+  main.indexOf('id="top"'),
+  main.indexOf('<section id="work"'),
+);
+assert.equal(
+  [...hero.matchAll(/href="#work"/g)].length,
+  1,
+  "The hero must have only one projects action.",
 );
 assert.ok(
-  intro.includes('href="#work"') && intro.includes("Explore my work"),
-  "The hero arrow must be a labeled link to the work section.",
+  !hero.includes("hero-explore") && !hero.includes("View projects"),
+  "Do not restore a detached arrow or duplicate projects action.",
 );
 assert.ok(
-  main.indexOf('<h1 id="hero-title"') < main.indexOf('<div className="hero-intro">'),
-  "Keep the introduction and its action below the name.",
+  hero.includes('className="button button-dark hero-work-link" href="#work"') &&
+    hero.includes('Explore my work <ArrowDown size={17} aria-hidden="true" />'),
+  "Use one clear projects button with its own downward arrow.",
 );
 for (const id of ["work", "about", "skills", "credentials", "contact"])
   assert.ok(

@@ -750,7 +750,7 @@ export default function Portfolio() {
         </nav>
         <div className="header-actions">
           <a className="resume-link" href={resume} download>
-            Resume <ArrowUpRight size={16} />
+            Resume <Download size={16} aria-hidden="true" />
           </a>
           <button
             className="menu-toggle icon-button"
@@ -811,6 +811,11 @@ export default function Portfolio() {
               />
             ))}
           </div>
+          <div className="hero-intro">
+            <p>Web applications.</p>
+            <p>A creative eye.</p>
+            <p>A mind for how things work.</p>
+          </div>
           <h1 id="hero-title" className="hero-name">
             <span>Zia Louise</span>
             <em>
@@ -818,33 +823,21 @@ export default function Portfolio() {
             </em>
           </h1>
           <div className="hero-bottom">
-            <div className="hero-intro">
-              <p>
-                Web applications.
-                <br />A creative eye.
-                <br />A mind for how things work.
-              </p>
-              <a className="hero-explore" href="#work">
-                Explore my work <ArrowDown size={18} aria-hidden="true" />
+            <p>
+              I build useful web applications, make sense of data, and bring a
+              creative eye to the details. Currently focused on web development
+              and applied AI.
+            </p>
+            <div className="hero-cta">
+              <a className="button button-dark hero-work-link" href="#work">
+                Explore my work <ArrowDown size={17} aria-hidden="true" />
               </a>
-            </div>
-            <div className="hero-actions">
-              <p>
-                I build useful web applications, make sense of data, and bring a
-                creative eye to the details. Currently focused on web development
-                and applied AI.
-              </p>
-              <div className="hero-cta">
-                <a className="button button-dark" href="#work">
-                  View projects <ArrowDownRight size={17} />
-                </a>
-                <a className="button button-dark" href={resume} download>
-                  Download resume <Download size={16} />
-                </a>
-                <a className="button button-dark" href={"mailto:" + email}>
-                  Email me <ArrowUpRight size={17} />
-                </a>
-              </div>
+              <a className="button button-dark" href={resume} download>
+                Download resume <Download size={16} />
+              </a>
+              <a className="button button-dark" href={"mailto:" + email}>
+                Email me <ArrowUpRight size={17} />
+              </a>
             </div>
           </div>
           <div className="hero-footnote">
