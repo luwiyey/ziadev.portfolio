@@ -37,3 +37,11 @@ npm run fonts refreshes the font files on Windows using curl.exe.
 
 Email links use luwiyeyz@gmail.com. The resume remains at
 public/resume/BigDataMARIANO_RESUME.pdf. No public GitHub profile link is shown.
+
+## Personal 3D artwork
+
+The deep-red design uses original Blender renders for the personal interest
+icons. Editable models, studio lights, materials, and a contact sheet are in
+design/blender/zia-interest-icons.blend. See design/blender/README.md for editing
+and rendering instructions. Website images in public/interests are lightweight
+WebP exports, so no live 3D engine is needed for the new design.

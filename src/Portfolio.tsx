@@ -2,11 +2,11 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   ArrowDown, ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight,
   AudioLines, ChartNoAxesCombined, Check, ChevronDown, Code2, Download,
-  ExternalLink, Mail, Menu, Play, Search, Sparkles, X,
+  ExternalLink, Mail, Menu, Play, Search, X,
 } from 'lucide-react';
 import {
-  certificates, contactLinks, heroSubtitle, imageArtifacts, journeyParagraphs,
-  profileStats, projectHighlights, proofCards, skillGroups, videoArtifacts,
+  certificates, contactLinks, imageArtifacts, journeyParagraphs,
+  personalInterests, profileStats, projectHighlights, proofCards, skillGroups, videoArtifacts,
   type Artifact,
 } from './portfolio-content';
 import './portfolio.css';
@@ -41,6 +41,22 @@ const navItems = [
   { href: '#credentials', label: 'Credentials' },
   { href: '#contact', label: 'Contact' },
 ];
+const webCaseStudies: Record<string, { overview: string; tools: string[]; features: string[] }> = {
+  'video-10': {
+    overview: 'A barangay agriculture platform that brings monitoring and communication into one workspace for the team.',
+    tools: ['Next.js', 'TypeScript', 'Firebase'],
+    features: ['Farmer records and agriculture-service monitoring', 'SMS conversations and community alerts', 'Shared dashboards for barangay operations'],
+  },
+  'video-09': {
+    overview: 'A university-wide web application that organizes service requests, queues, and workflows across campus offices.',
+    tools: ['Next.js', 'React', 'Firebase'],
+    features: ['University office and service workflows', 'Queueing and request management', 'A shared place to navigate campus services'],
+  },
+};
+const orderedSkillGroups = [
+  ...skillGroups.filter(group => group.category === 'Web Development'),
+  ...skillGroups.filter(group => group.category !== 'Web Development'),
+];
 
 function SectionHeading({ number, label, title, accent, children }: {
   number: string; label: string; title: string; accent: string; children?: ReactNode;
@@ -57,12 +73,13 @@ function SectionHeading({ number, label, title, accent, children }: {
 }
 
 function ProjectCard({ project, onOpen }: { project: Project; onOpen: (project: Project) => void }) {
+  const caseStudy = webCaseStudies[project.id];
   return (
     <article className="project-card">
       <button className={'project-visual ' + project.color} onClick={() => onOpen(project)}
         aria-label={'View ' + project.title}>
         <div className="project-topline">
-          <span>{project.category}</span>
+          <span>{caseStudy ? 'Featured web application' : project.category}</span>
           <span>{project.type === 'video' ? <><Play size={12} /> Video demo</> : 'Design preview'}</span>
         </div>
         <div className={'project-image-wrap ' + (project.type === 'video' ? 'video-poster' : '')}>
@@ -80,6 +97,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: (project: 
         <ArrowUpRight size={20} aria-hidden="true" />
       </div>
       <p className="project-summary">{project.role.replace(/^(Course|Personal) Project - /, '')}</p>
+      {caseStudy && <div className="project-focus"><span>{caseStudy.tools.length ? caseStudy.tools.join(' / ') : 'Queues / Requests / Office workflows'}</span><button onClick={() => onOpen(project)}>Explore the project <ArrowRight size={14} /></button></div>}
     </article>
   );
 }
@@ -90,6 +108,7 @@ function ProjectDialog({ project, onClose, onNavigate }: {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const [playing, setPlaying] = useState(false);
+  const caseStudy = webCaseStudies[project.id];
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -132,6 +151,12 @@ function ProjectDialog({ project, onClose, onNavigate }: {
           <p className="eyebrow">{project.tags[0] === 'PERSONAL' ? 'Personal project' : 'Course project'}</p>
           <h2 id="project-dialog-title">{project.title}</h2>
           <p>{project.role.replace(/^(Course|Personal) Project - /, '')}.</p>
+          {caseStudy && <div className="case-study">
+            <h3>The project</h3><p>{caseStudy.overview}</p>
+            <h3>What it covers</h3><ul>{caseStudy.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+            {caseStudy.tools.length > 0 && <><h3>Built with</h3><div className="tag-list">{caseStudy.tools.map(tool => <span key={tool}>{tool}</span>)}</div></>}
+            <p className="case-context">Developed as a course project. The video above shows the application in use.</p>
+          </div>}
           <div className="dialog-bottom">
             <div className="tag-list">{project.tags.slice(1).map(tag => <span key={tag}>{tag}</span>)}</div>
             <a className="text-link" href={project.src} target="_blank" rel="noreferrer">Open original <ExternalLink size={15} /></a>
@@ -158,12 +183,13 @@ export default function Portfolio() {
   const copyTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const filteredProjects = projects.filter(project =>
     (category === 'All work' || project.category === category) &&
-    (project.title + ' ' + project.role + ' ' + project.category).toLowerCase().includes(query.trim().toLowerCase())
+    (project.title + ' ' + project.role + ' ' + project.category + ' ' +
+      (webCaseStudies[project.id]?.tools.join(' ') ?? '')).toLowerCase().includes(query.trim().toLowerCase())
   );
   const visibleProjects = showAll ? filteredProjects : filteredProjects.slice(0, 6);
 
   useEffect(() => {
-    document.title = 'Zia Louise Mariano | Software, Data & Design';
+    document.title = 'Zia Louise Mariano | Web Developer';
     return () => { if (copyTimeout.current) clearTimeout(copyTimeout.current); };
   }, []);
 
@@ -221,30 +247,27 @@ export default function Portfolio() {
       <main id="main">
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-grid" aria-hidden="true" />
-          <div className="hero-topline"><span className="eyebrow"><span className="status-dot" /> Software / Data / Design</span><span className="eyebrow hero-location">Based in the Philippines <span className="tiny-star">*</span></span></div>
+          <div className="hero-topline"><span className="eyebrow"><span className="status-dot" /> Web developer / Creative thinker</span><span className="eyebrow hero-location">Based in the Philippines <span className="tiny-star">*</span></span></div>
           <div className="hero-art" aria-hidden="true">
-            <div className="art-brackets">{'{ }'}<span>turning ideas into interfaces</span></div>
-            <div className="art-chart"><ChartNoAxesCombined size={64} strokeWidth={1.4} /><span>curiosity + data</span></div>
-            <div className="art-flower"><svg viewBox="0 0 120 120"><path d="M60 6 70 36 96 18 84 48 116 51 88 67 108 92 77 85 71 116 57 88 29 105 37 75 6 69 35 55 17 28 47 37Z" fill="currentColor" /><circle cx="60" cy="61" r="10" fill="#f5f3ed" /></svg></div>
-            <div className="art-note">A creative mind.<br />An analytical eye.<ArrowDownRight size={25} /></div>
-            <div className="art-orbit"><Sparkles size={30} strokeWidth={1.5} /><span>made with intention</span></div>
+            {personalInterests.map(interest => <img key={interest.id} className={'interest-object interest-' + interest.id}
+              src={'/interests/' + interest.id + '.webp'} alt="" width="480" height="480" decoding="async" />)}
           </div>
-          <div className="hero-intro"><p>Hello, I&apos;m Zia.<br />I connect creative thinking<br />with technical problem-solving.</p><ArrowDownRight size={42} strokeWidth={1.2} /></div>
+          <div className="hero-intro"><p>Web applications.<br />A creative eye.<br />A mind for how things work.</p><ArrowDownRight size={42} strokeWidth={1.2} /></div>
           <h1 id="hero-title" className="hero-name"><span>Zia Louise</span><em>Mariano<span className="name-period">.</span></em></h1>
           <div className="hero-bottom">
-            <p>{heroSubtitle}</p>
+            <p>I build websites and web applications for everyday workflows, combining development with a background in data and visual design.</p>
             <div className="hero-cta">
               <a className="button button-dark" href="#work">View projects <ArrowDownRight size={17} /></a>
               <a className="button button-dark" href={resume} download>Download resume <Download size={16} /></a>
               <a className="button button-dark" href={'mailto:' + email}>Email me <ArrowUpRight size={17} /></a>
             </div>
           </div>
-          <div className="hero-footnote"><span className="eyebrow">A selection of ideas, experiments & things I&apos;ve built</span><a className="eyebrow" href="#work">Scroll to explore <ArrowDown size={14} /></a></div>
+          <div className="hero-footnote"><span className="eyebrow">React / Next.js / TypeScript / Firebase</span><a className="eyebrow" href="#work">Explore my web projects <ArrowDown size={14} /></a></div>
         </section>
 
         <section id="work" className="work-section section-shell">
-          <SectionHeading number="01" label="The portfolio" title="Selected" accent="work">
-            <p>Practical systems. Playful experiments.<br />A little of both, always with a purpose.</p>
+          <SectionHeading number="01" label="Web development first" title="Selected" accent="work">
+            <p>Web applications for campus offices and barangay services, followed by websites, interfaces, and creative experiments.</p>
           </SectionHeading>
           <div className="work-controls">
             <div className="filter-list" role="group" aria-label="Filter projects by category">
@@ -271,7 +294,7 @@ export default function Portfolio() {
             <p className="eyebrow light-eyebrow"><span>02</span> A little about me</p>
             <div className="about-grid">
               <div className="about-portrait"><img src="/previews/profile.webp" alt="Zia Louise Mariano" width="640" height="640" loading="lazy" decoding="async" /><span>Zia Louise Mariano <ArrowDownRight size={18} /></span></div>
-              <div className="about-copy"><h2>A creative mind.<br />A <em>technical</em> side.</h2><p className="about-lead">I enjoy combining analytical thinking with creative design to build meaningful digital solutions.</p>
+              <div className="about-copy"><h2>Web developer.<br /><em>Creative thinker.</em></h2><p className="about-lead">I build web applications with an eye for design and an interest in the workflows behind the screen.</p>
                 {journeyParagraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
                 <div className="about-stats">{profileStats.map(stat => <div key={stat.label}><strong>{stat.value}</strong><span>{stat.label === 'Years.Exp' ? 'Years of creative & technical work' : 'Projects & experiments'}</span></div>)}</div>
                 <a className="text-link" href={resume} download>Get to know my background <Download size={16} /></a>
@@ -281,12 +304,20 @@ export default function Portfolio() {
               const Icon = [Code2, ChartNoAxesCombined, AudioLines][index];
               return <div key={card.title}><Icon size={26} strokeWidth={1.5} /><h3>{card.title}</h3><p>{card.desc}</p></div>;
             })}</div>
+            <div className="personal-note">
+              <p className="eyebrow">Away from the keyboard</p>
+              <h3>Curious about <em>more than code.</em></h3>
+              <p>I love exploring, photography, writing, drawing, painting, and building things.
+                Add dogs, a little shopping, pasta, fresh bread, fruit, and vegetable salads to the mix.
+                Thinking things through and finding the logic is part of the fun, too.</p>
+              <ul className="interest-labels">{personalInterests.map(interest => <li key={interest.id}>{interest.label}</li>)}</ul>
+            </div>
           </div>
         </section>
 
         <section id="skills" className="skills-section section-shell">
           <SectionHeading number="03" label="Tools of the trade" title="Skills &" accent="interests"><p>The tools I use to turn questions into insights<br />and ideas into something you can use.</p></SectionHeading>
-          <div className="skills-list">{skillGroups.map((group, index) => <div className="skill-row" key={group.category}><span className="skill-number">0{index + 1}</span><h3>{group.category}</h3><div className="tag-list">{group.items.map(item => <span key={item}>{item}</span>)}</div></div>)}</div>
+          <div className="skills-list">{orderedSkillGroups.map((group, index) => <div className="skill-row" key={group.category}><span className="skill-number">0{index + 1}</span><h3>{group.category}</h3><div className="tag-list">{group.items.map(item => <span key={item}>{item}</span>)}</div></div>)}</div>
         </section>
 
         <section className="highlights-section section-shell" id="highlights">
@@ -307,7 +338,7 @@ export default function Portfolio() {
         <section id="contact" className="contact-section section-shell">
           <p className="eyebrow"><span>06</span> Have something in mind?</p>
           <div className="contact-heading"><h2>Let&apos;s make<br />something <em>matter.</em></h2><a className="contact-arrow" href={'mailto:' + email} aria-label="Email Zia"><ArrowUpRight strokeWidth={1} /></a></div>
-          <div className="contact-details"><p>For opportunities in software, data, AI, and design.<br />I&apos;d love to hear what you&apos;re working on.</p><div className="email-actions"><a className="contact-email" href={'mailto:' + email}>{email}<ArrowUpRight size={20} /></a><button className="copy-email" onClick={copyEmail}>{copied ? <Check size={14} /> : <Mail size={14} />}{copied ? 'Copied!' : 'Copy email'}</button><span role="status" className="copy-status">{copied ? 'Email address copied.' : copyError ? 'Please select the email address above to copy it.' : ''}</span></div></div>
+          <div className="contact-details"><p>I&apos;m looking for web developer opportunities.<br />Let&apos;s talk about your team and what you&apos;re building.</p><div className="email-actions"><a className="contact-email" href={'mailto:' + email}>{email}<ArrowUpRight size={20} /></a><button className="copy-email" onClick={copyEmail}>{copied ? <Check size={14} /> : <Mail size={14} />}{copied ? 'Copied!' : 'Copy email'}</button><span role="status" className="copy-status">{copied ? 'Email address copied.' : copyError ? 'Please select the email address above to copy it.' : ''}</span></div></div>
           <a className="button button-dark contact-resume" href={resume} download>Download my resume <Download size={17} /></a>
         </section>
       </main>

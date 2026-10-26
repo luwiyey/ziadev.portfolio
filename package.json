@@ -10,7 +10,8 @@
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
     "previews": "node scripts/prepare-previews.mjs",
-    "fonts": "node scripts/prepare-fonts.mjs"
+    "fonts": "node scripts/prepare-fonts.mjs",
+    "interests": "node scripts/prepare-interest-previews.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

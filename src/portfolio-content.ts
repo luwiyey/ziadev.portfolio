@@ -303,3 +303,18 @@ export const certificates = [
     type: 'image' as const,
   },
 ];
+
+export const personalInterests = [
+  { id: 'shopping', label: 'Shopping' },
+  { id: 'exploring', label: 'Exploring' },
+  { id: 'pasta', label: 'Pasta' },
+  { id: 'bread', label: 'Fresh bread' },
+  { id: 'fruit', label: 'Fruit' },
+  { id: 'salad', label: 'Vegetable salads' },
+  { id: 'dogs', label: 'Dogs' },
+  { id: 'photography', label: 'Photography' },
+  { id: 'writing', label: 'Writing' },
+  { id: 'painting', label: 'Drawing & painting' },
+  { id: 'building', label: 'Building things' },
+  { id: 'thinking', label: 'Thinking & logic' },
+];
