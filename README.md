@@ -75,3 +75,7 @@ This repository connects to the separate ziadev-portfolio Vercel project.
 Production follows main. Vercel builds with npm run build and serves dist.
 The Library, RouteCalc, and Lingkod-Ani projects are independent deployments.
 Local Vercel metadata and environment credentials are ignored by Git.
+
+Git LFS must be enabled in the Vercel project's Git settings. Otherwise the
+MP4 paths contain small pointer text files instead of playable media. The
+build checks all ten original videos and fails clearly if this happens.
