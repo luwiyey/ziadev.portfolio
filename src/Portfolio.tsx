@@ -113,8 +113,8 @@ const projectOrder = [
   "concept-halfcourt",
   "concept-ridgeline",
   "concept-clearline",
-  "design-infographics",
   "design-posters",
+  "design-infographics",
   "concept-forma",
   "concept-still",
   "concept-fold",
@@ -811,14 +811,6 @@ export default function Portfolio() {
               />
             ))}
           </div>
-          <div className="hero-intro">
-            <p>
-              Web applications.
-              <br />A creative eye.
-              <br />A mind for how things work.
-            </p>
-            <ArrowDownRight size={42} strokeWidth={1.2} />
-          </div>
           <h1 id="hero-title" className="hero-name">
             <span>Zia Louise</span>
             <em>
@@ -826,30 +818,40 @@ export default function Portfolio() {
             </em>
           </h1>
           <div className="hero-bottom">
-            <p>
-              I build useful web applications, make sense of data, and bring a
-              creative eye to the details. Currently focused on web development
-              and applied AI.
-            </p>
-            <div className="hero-cta">
-              <a className="button button-dark" href="#work">
-                View projects <ArrowDownRight size={17} />
+            <div className="hero-intro">
+              <p>
+                Web applications.
+                <br />A creative eye.
+                <br />A mind for how things work.
+              </p>
+              <a className="hero-explore" href="#work">
+                Explore my work <ArrowDown size={18} aria-hidden="true" />
               </a>
-              <a className="button button-dark" href={resume} download>
-                Download resume <Download size={16} />
-              </a>
-              <a className="button button-dark" href={"mailto:" + email}>
-                Email me <ArrowUpRight size={17} />
-              </a>
+            </div>
+            <div className="hero-actions">
+              <p>
+                I build useful web applications, make sense of data, and bring a
+                creative eye to the details. Currently focused on web development
+                and applied AI.
+              </p>
+              <div className="hero-cta">
+                <a className="button button-dark" href="#work">
+                  View projects <ArrowDownRight size={17} />
+                </a>
+                <a className="button button-dark" href={resume} download>
+                  Download resume <Download size={16} />
+                </a>
+                <a className="button button-dark" href={"mailto:" + email}>
+                  Email me <ArrowUpRight size={17} />
+                </a>
+              </div>
             </div>
           </div>
           <div className="hero-footnote">
             <span className="eyebrow">
               React / Next.js / TypeScript / Firebase
             </span>
-            <a className="eyebrow" href="#work">
-              Explore my web projects <ArrowDown size={14} />
-            </a>
+            <span className="eyebrow">Open to web developer roles</span>
           </div>
         </section>
 

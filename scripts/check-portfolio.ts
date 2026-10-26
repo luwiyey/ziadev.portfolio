@@ -79,6 +79,24 @@ assert.equal(
   "Do not link the repurposed domain.",
 );
 const main = readFileSync("src/Portfolio.tsx", "utf8");
+const order = main.match(/const projectOrder = \[([\s\S]*?)\];/)?.[1] ?? "";
+const postersIndex = order.indexOf('"design-posters"');
+assert.ok(
+  postersIndex >= 0 && postersIndex < order.indexOf('"design-infographics"'),
+  "Posters (001) must precede infographics (002).",
+);
+const intro = main.slice(
+  main.indexOf('<div className="hero-intro">'),
+  main.indexOf('<div className="hero-actions">'),
+);
+assert.ok(
+  intro.includes('href="#work"') && intro.includes("Explore my work"),
+  "The hero arrow must be a labeled link to the work section.",
+);
+assert.ok(
+  main.indexOf('<h1 id="hero-title"') < main.indexOf('<div className="hero-intro">'),
+  "Keep the introduction and its action below the name.",
+);
 for (const id of ["work", "about", "skills", "credentials", "contact"])
   assert.ok(
     main.includes('id="' + id + '"'),

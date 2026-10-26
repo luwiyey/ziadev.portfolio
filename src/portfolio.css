@@ -566,18 +566,28 @@
   width: 130px;
 }
 .portfolio .hero-intro {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  position: absolute;
-  right: 27%;
-  top: 285px;
-  width: 275px;
-  font-size: 12px;
-  line-height: 1.55;
+  padding-left: 22px;
+  border-left: 2px solid var(--gold);
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.45;
 }
-.portfolio .hero-intro > svg {
-  margin-bottom: 4px;
+.portfolio .hero-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  margin-top: 14px;
+  border-bottom: 1px solid #e4bd6880;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 500;
+}
+.portfolio .hero-explore svg {
+  flex: 0 0 auto;
+  transition: transform 0.2s;
+}
+.portfolio .hero-explore:hover svg {
+  transform: translateY(3px);
 }
 .portfolio .hero-name {
   position: relative;
@@ -602,14 +612,22 @@
   color: var(--gold);
 }
 .portfolio .hero-bottom {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
   align-items: center;
   justify-content: space-between;
-  gap: 36px;
-  padding: 28px 0 36px;
+  gap: 50px;
+  padding: 36px 0;
 }
-.portfolio .hero-bottom > p {
-  max-width: 340px;
+.portfolio .hero-actions {
+  display: grid;
+  gap: 22px;
+  width: 100%;
+  max-width: 680px;
+  justify-self: end;
+}
+.portfolio .hero-actions > p {
+  max-width: 540px;
   font-size: 14px;
   color: #ebc7ca;
 }
@@ -1623,12 +1641,6 @@
   .portfolio .hero-art {
     height: 265px;
   }
-  .portfolio .hero-intro {
-    top: 265px;
-    font-size: 11px;
-    right: 28%;
-    width: 245px;
-  }
   .portfolio .interest-object {
     width: 130px;
     height: 130px;
@@ -1638,8 +1650,7 @@
     flex-direction: column;
     gap: 25px;
   }
-  .portfolio .hero-bottom > p {
-    max-width: 460px;
+  .portfolio .hero-actions > p {
     font-size: 14px;
   }
   .portfolio .hero-cta {
@@ -1815,22 +1826,6 @@
     right: -5px;
     top: 108px;
   }
-  .portfolio .hero-intro {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    margin-top: -12px;
-    width: 200px;
-    font-size: 11px;
-    line-height: 1.65;
-  }
-  .portfolio .hero-intro > svg {
-    width: 26px;
-    height: 26px;
-    flex: 0 0 26px;
-    margin-left: 10px;
-  }
   .portfolio .hero-name {
     display: block;
     font-size: clamp(52px, 16.2vw, 115px);
@@ -1855,7 +1850,7 @@
     padding: 26px 0 25px;
     gap: 22px;
   }
-  .portfolio .hero-bottom > p {
+  .portfolio .hero-actions > p {
     max-width: 360px;
     font-size: 13px;
   }
@@ -1875,7 +1870,7 @@
   .portfolio .hero-footnote {
     padding: 17px 0 20px;
   }
-  .portfolio .hero-footnote > span {
+  .portfolio .hero-footnote > span:last-child {
     display: none;
   }
   .portfolio .hero-footnote {
@@ -2198,26 +2193,6 @@
   aspect-ratio: 1;
   justify-self: center;
 }
-.portfolio .hero-intro {
-  position: relative;
-  inset: auto;
-  display: flex;
-  width: min(100%, 680px);
-  margin: 12px auto 25px;
-  align-items: center;
-  justify-content: space-between;
-  font-size: clamp(15px, 1.5vw, 21px);
-  line-height: 1.45;
-  padding-left: 22px;
-  border-left: 2px solid var(--gold);
-}
-.portfolio .hero-intro > svg {
-  width: 62px;
-  height: 62px;
-  flex: 0 0 62px;
-  color: var(--gold);
-  margin: 0 8px 0 25px;
-}
 .portfolio .hero-name {
   margin-top: 0;
 }
@@ -2465,16 +2440,8 @@
     width: min(100%, 100px);
   }
   .portfolio .hero-intro {
-    width: 100%;
-    margin: 20px 0 28px;
     padding-left: 17px;
     font-size: 16px;
-  }
-  .portfolio .hero-intro > svg {
-    width: 45px;
-    height: 45px;
-    flex-basis: 45px;
-    margin-right: 0;
   }
   .portfolio .hero-name {
     margin-top: 0;
@@ -2500,6 +2467,15 @@
   }
   .portfolio .construction-stamp span {
     font-size: 22px;
+  }
+}
+@media (max-width: 980px) {
+  .portfolio .hero-bottom {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+  .portfolio .hero-actions {
+    max-width: none;
   }
 }
 @media (max-width: 540px) {
