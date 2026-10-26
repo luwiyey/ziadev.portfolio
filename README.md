@@ -1,20 +1,39 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Zia Louise Mariano - Portfolio
 
-# Run and deploy your AI Studio app
+A responsive portfolio for software, data, and creative design work.
 
-This contains everything you need to run your app locally.
+## Development
 
-View your app in AI Studio: https://ai.studio/apps/8887bc35-364a-45d8-9129-d20965cb0116
+- Install packages: npm install
+- Start the local site: npm run dev
+- Check TypeScript: npm run lint
+- Build static pages: npm run build
+- Preview the build: npm run preview
 
-## Run Locally
+## Pages
 
-**Prerequisites:**  Node.js
+- index.html: the redesigned portfolio, on desktop and mobile.
+- mobile.html: the same responsive portfolio, preserving existing mobile links.
+- company.html: compatibility entry for previously shared links.
+- original.html: the preserved original 3D portfolio, loaded separately.
+- ?mode=full also opens the original experience.
 
+## Content and media
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Project titles, descriptions, skills, highlights, and credentials live in
+src/portfolio-content.ts. The main layout is src/Portfolio.tsx and its styles
+are src/portfolio.css. The original experience remains in src/FullPortfolio.tsx.
+
+All 20 media projects are available through category filters, project search,
+and the full gallery. Videos load only after Play is pressed in the project
+viewer. Original images and videos are retained in public/artifacts.
+
+Optimized images and video posters are committed in public/previews. Run
+npm run previews after changing source media (requires FFmpeg on PATH, or
+FFMPEG_PATH set to its executable).
+
+Fonts are served locally from public/fonts, with their OFL licenses included.
+npm run fonts refreshes the font files on Windows using curl.exe.
+
+Email links use luwiyeyz@gmail.com. The resume remains at
+public/resume/BigDataMARIANO_RESUME.pdf. No public GitHub profile link is shown.
